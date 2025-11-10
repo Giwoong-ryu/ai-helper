@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Zap, Clock, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   const tools = [
@@ -72,40 +72,6 @@ export default function Home() {
           </div>
         </div>
       </header>
-
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
-          <Sparkles className="w-4 h-4 text-primary" />
-          <span className="text-sm font-medium">통합 AI 활용 가이드</span>
-        </div>
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-          모든 AI 도구의 활용법을
-          <br />
-          <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 bg-clip-text text-transparent">
-            한 곳에서 배우세요
-          </span>
-        </h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-          Claude, ChatGPT, Gemini, Perplexity 등 주요 AI 도구들의 스킬, 커맨드,
-          에이전트 활용법을 체계적으로 정리했습니다.
-        </p>
-
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-lg border">
-            <Zap className="w-4 h-4 text-yellow-500" />
-            <span className="text-sm font-medium">31개 스킬셋</span>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-lg border">
-            <Clock className="w-4 h-4 text-blue-500" />
-            <span className="text-sm font-medium">실전 예제</span>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-lg border">
-            <Sparkles className="w-4 h-4 text-purple-500" />
-            <span className="text-sm font-medium">지속 업데이트</span>
-          </div>
-        </div>
-      </section>
 
       {/* Tools Grid */}
       <section className="container mx-auto px-4 pb-20">
