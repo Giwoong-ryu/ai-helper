@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Claude 요금제 및 토큰 사용량 가이드</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1120;
+      --card: #020617;
+      --border: #1e293b;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.12);
+      --text-primary: #e5e7eb;
+      --text-secondary: #9ca3af;
+      --warning-bg: rgba(217, 119, 6, 0.14);
+      --warning-border: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 60%);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .breadcrumb a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-secondary);
+    }
+
+    .section {
+      background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.25), transparent 60%);
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 24px 20px;
+      margin-top: 24px;
+    }
+
+    .section h2 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.4);
+    }
+
+    thead tr {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    tbody tr:nth-child(odd) {
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(15, 23, 42, 0.3);
+    }
+
+    th {
+      font-weight: 600;
+      color: #cbd5f5;
+    }
+
+    .plan-name {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #e5e7ff;
+      margin-left: 6px;
+    }
+
+    .warning-box {
+      background: var(--warning-bg);
+      border-left: 3px solid var(--warning-border);
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      color: var(--text-primary);
+      line-height: 1.7;
+      margin-top: 8px;
+    }
+
+    .warning-box strong {
+      color: #fbbf24;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .mini-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 14px 12px;
+    }
+
+    .mini-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .mini-body {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .pill-headline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      margin-bottom: 12px;
+    }
+
+    .pill-headline span {
+      font-size: 13px;
+    }
+
+    ul {
+      padding-left: 16px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    .footer-nav {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .footer-nav a {
+      color: #a5b4fc;
+      text-decoration: none;
+    }
+
+    .footer-nav a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        padding: 20px 14px 32px;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="breadcrumb">
+      <a href="/ai-helper/">AI Helper</a> · <a href="/ai-helper/claude/">Claude</a> · <span>요금제 & 토큰</span>
+    </div>
+
+    <header>
+      <h1>Claude 요금제 및 토큰 사용량</h1>
+      <p class="subtitle">
+        “이번 달에 어느 플랜이 적당한지, 내 작업량이면 토큰이 얼마나 드는지”를 한눈에 정리한 페이지입니다.
+      </p>
+      <div class="tag-row">
+        <span class="tag">Free / Pro / Max 비교</span>
+        <span class="tag">토큰 사용량 체감 기준</span>
+        <span class="tag">Skills · Agents · MCP 기준</span>
+      </div>
+    </header>
+
+    <!-- 1. 요금제별 제공량 -->
+    <section class="section">
+      <h2>1. 요금제 한눈에 비교</h2>
+      <p class="section-desc">
+        실제 체감 기준으로 “하루에 어느 정도까지 쓸 수 있는지”에 초점을 맞춘 표입니다. 숫자는 대략적인 감(추정치) 정도로 보면 됩니다.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>요금제</th>
+            <th>월 요금(USD 기준)</th>
+            <th>하루 사용량 체감</th>
+            <th>추천 용도</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="plan-name">Free</td>
+            <td>$0</td>
+            <td>
+              · 채팅 기준 약 10–20회<br />
+              · 단문 위주 글쓰기 위주<br />
+              · Skills를 조금만 써도 금방 소진
+            </td>
+            <td>
+              · 가볍게 맛보기<br />
+              · 간단한 질문, 짧은 코드 확인
+            </td>
+          </tr>
+          <tr>
+            <td class="plan-name">
+              Pro
+              <span class="badge-main">주 사용 플랜</span>
+            </td>
+            <td>$20 / 월</td>
+            <td>
+              · 채팅 기준 하루 50–100회 수준<br />
+              · 중간 길이 문서·코드 작업 충분<br />
+              · Skills 5–10개 + Agents 병행 사용 가능
+            </td>
+            <td>
+              · 개인 개발/업무용 메인 플랜<br />
+              · 6–10개 스킬, 소규모 프로젝트
+            </td>
+          </tr>
+          <tr>
+            <td class="plan-name">Max</td>
+            <td>$100 / 월</td>
+            <td>
+              · 채팅 기준 250–500회 이상<br />
+              · 대형 문서/코드, 장시간 세션<br />
+              · 전체 스킬셋 + MCP 풀 활용
+            </td>
+            <td>
+              · 팀/서비스 수준 자동화<br />
+              · 여러 프로젝트 병행, 에이전트 다수 운용
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <strong>⚠️ 한 줄 기억:</strong><br />
+        · Free: “맛보기용”이라고 생각하면 편하고,<br />
+        · Pro: “혼자 쓰는 메인 플랜”,<br />
+        · Max: “여러 사람이 같이 쓰거나, 서비스급으로 돌릴 때” 선택하는 게 안전합니다.
+      </div>
+    </section>
+
+    <!-- 2. 도구별 토큰 사용량 감각 -->
+    <section class="section">
+      <h2>2. 도구별 토큰 사용량 감각 잡기</h2>
+      <p class="section-desc">
+        같은 작업이라도 <strong>일반 채팅 / Skills / Agents / MCP</strong>에 따라 토큰 체감이 달라집니다.
+        아래는 “대략 어느 정도 쓴다” 기준입니다.
+      </p>
+
+      <div class="grid-2">
+        <div class="mini-card">
+          <div class="mini-title">기본 채팅 · 문서 작성</div>
+          <div class="mini-body">
+            · A4 1장(한글 기준) 정리/요약: 1–3K 토큰<br />
+            · 블로그 글 1편(1500–2500자): 2–5K 토큰<br />
+            · 하루 10편 수준 작업: 대략 20–40K 토큰
+          </div>
+        </div>
+
+        <div class="mini-card">
+          <div class="mini-title">Skills (스킬)</div>
+          <div class="mini-body">
+            · 스킬 1개당 “프롬프트+설명”이 항상 추가됨<br />
+            · 한 번 호출 시: 보통 일반 대화보다 1.2–1.5배 정도<br />
+            · 프로젝트 전체에 자동으로 적용되므로, <br />
+              “자주 쓰는 패턴만 스킬로 묶는 것”이 안전함
+          </div>
+        </div>
+
+        <div class="mini-card">
+          <div class="mini-title">Agents (에이전트)</div>
+          <div class="mini-body">
+            · 에이전트는 “몇 번 왕복 대화”를 자동으로 더 붙이는 느낌<br />
+            · 1회 호출에 3–5번 왕복 대화가 들어가면, <br />
+              중형 작업 한 번에 5–15K 토큰까지도 사용 가능<br />
+            · “작업 단위”를 짧게 쪼개서 호출하는 게 포인트
+          </div>
+        </div>
+
+        <div class="mini-card">
+          <div class="mini-title">MCP / 외부 파일 · API</div>
+          <div class="mini-body">
+            · 5MB PDF 1개 읽기: 20–30K 토큰 수준<br />
+            · 500줄 코드/로그 분석: 3–5K 토큰 수준<br />
+            · 같은 자료를 여러 번 읽기보다는, <br />
+              “한 번 읽힌 내용을 바탕으로 후속 질문”을 하는 구조가 좋음
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 어떤 플랜을 선택할지 기준 -->
+    <section class="section">
+      <h2>3. 플랜 선택 기준 정리</h2>
+      <p class="section-desc">
+        “나는 어떤 플랜을 써야 할까?”를 빠르게 결정할 수 있게,
+        상황별 기준을 짧게 정리했습니다.
+      </p>
+
+      <div class="pill-headline">
+        <span>📌 이렇게 생각하면 편함</span>
+      </div>
+      <ul>
+        <li><strong>무료 플랜만으로 충분</strong>: 한 달에 문서 몇 개, 가끔 질문하는 정도.</li>
+        <li>
+          <strong>Pro 필요</strong>:  
+          매일 코드/문서 작업, Skills 3–10개, 에이전트로 루틴 조금이라도 자동화하고 싶을 때.
+        </li>
+        <li>
+          <strong>Max 고려</strong>:  
+          여러 프로젝트를 동시에 돌리거나, 팀/서비스 수준에서 “항상 Claude가 켜져 있는 느낌”을 만들고 싶을 때.
+        </li>
+      </ul>
+
+      <div class="warning-box" style="margin-top: 12px;">
+        <strong>Tip:</strong><br />
+        · 보통은 Pro에서 시작해서, <br />
+        &nbsp;&nbsp;“토큰 부족 메시지가 자주 뜨는지”를 기준으로 Max로 올릴지 판단하는 게 안전합니다.
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="/ai-helper/claude/">← Claude 메인 페이지로 돌아가기</a>
+      <a href="/ai-helper/claude/claude_plugins.html">플러그인 활용법 보기 →</a>
+    </div>
+  </div>
+</body>
+</html>
