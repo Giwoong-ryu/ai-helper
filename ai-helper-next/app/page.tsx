@@ -61,76 +61,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI 도구 링크 섹션 시작 */}
+      {/* AI 도구 링크 카드 섹션 시작 */}
       <section id="ai-tools" className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-slate-50 mb-4">주요 AI 도구</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-slate-50 mb-6">주요 AI 도구</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <a href="/ai-helper/claude/" className="block rounded-lg bg-slate-800 p-4 hover:bg-slate-700 transition">
-            <h3 className="text-lg font-semibold text-emerald-300 mb-1">Claude</h3>
-            <p className="text-sm text-slate-300">구조화·자동화 중심 팀용 모델</p>
+          <a href="/ai-helper/claude/" className="block rounded-lg bg-slate-900 p-5 hover:bg-slate-800 transition">
+            <h3 className="text-lg font-semibold text-emerald-300 mb-2">Claude</h3>
+            <p className="text-sm text-slate-400">구조화·자동화 중심 팀용 모델</p>
           </a>
-          <a href="/ai-helper/chatgpt/" className="block rounded-lg bg-slate-800 p-4 hover:bg-slate-700 transition">
-            <h3 className="text-lg font-semibold text-sky-300 mb-1">GPT (ChatGPT)</h3>
-            <p className="text-sm text-slate-300">아이디어 발산·프롬프트 실험에 적합</p>
+          <a href="/ai-helper/chatgpt/" className="block rounded-lg bg-slate-900 p-5 hover:bg-slate-800 transition">
+            <h3 className="text-lg font-semibold text-sky-300 mb-2">GPT (ChatGPT)</h3>
+            <p className="text-sm text-slate-400">아이디어 발산·프롬프트 실험에 적합</p>
           </a>
-          <a href="/ai-helper/gemini/" className="block rounded-lg bg-slate-800 p-4 hover:bg-slate-700 transition">
-            <h3 className="text-lg font-semibold text-cyan-300 mb-1">Gemini</h3>
-            <p className="text-sm text-slate-300">멀티모달·Google 생태계 중심 모델</p>
+          <a href="/ai-helper/gemini/" className="block rounded-lg bg-slate-900 p-5 hover:bg-slate-800 transition">
+            <h3 className="text-lg font-semibold text-cyan-300 mb-2">Gemini</h3>
+            <p className="text-sm text-slate-400">멀티모달·Google 생태계 중심 모델</p>
           </a>
-          <a href="/ai-helper/perplexity/" className="block rounded-lg bg-slate-800 p-4 hover:bg-slate-700 transition">
-            <h3 className="text-lg font-semibold text-indigo-300 mb-1">Perplexity</h3>
-            <p className="text-sm text-slate-300">실시간 검색·리서치 탐색 도구</p>
+          <a href="/ai-helper/perplexity/" className="block rounded-lg bg-slate-900 p-5 hover:bg-slate-800 transition">
+            <h3 className="text-lg font-semibold text-indigo-300 mb-2">Perplexity</h3>
+            <p className="text-sm text-slate-400">실시간 검색·리서치 탐색 도구</p>
           </a>
         </div>
       </section>
-      {/* AI 도구 링크 섹션 끝 */}
+      {/* AI 도구 링크 카드 섹션 끝 */}
 
-      {/* 간략 설명 섹션 시작 */}
+      {/* 간략 설명 1줄 시작 */}
       <section id="tools-summary" className="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
         <p className="text-sm text-slate-400 text-center">
-          Claude, ChatGPT, Gemini, Perplexity 등 주요 AI 도구들의 스킬·커맨드·에이전트 활용법을 체계적으로 정리했습니다.
+          주요 AI 도구들의 간단 비교만 제공합니다 — 더 많은 자료는 각 도구 링크에서 확인하세요.
         </p>
       </section>
-      {/* 간략 설명 섹션 끝 */}
+      {/* 간략 설명 1줄 끝 */}
 
-      {/* AI 어시스턴트 비교 표 섹션 시작 */}
-      <section id="comparison-table" className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-slate-50 mb-4">AI 어시스턴트 비교 한눈에 보기</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left text-slate-300 bg-slate-900 rounded-lg">
-            <thead className="bg-slate-800 text-slate-200">
-              <tr>
-                <th className="px-4 py-3">모델</th>
-                <th className="px-4 py-3">강점</th>
-                <th className="px-4 py-3">추천 상황</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-700">
-              <tr className="bg-slate-850">
-                <td className="px-4 py-3 font-medium text-emerald-300">Claude</td>
-                <td className="px-4 py-3">정확한 구조화, 팀 매뉴얼·자동화 설계</td>
-                <td className="px-4 py-3">정형화된 문서/코드 중심 또는 자동화가 핵심일 때</td>
-              </tr>
-              <tr className="bg-slate-800">
-                <td className="px-4 py-3 font-medium text-sky-300">GPT (ChatGPT)</td>
-                <td className="px-4 py-3">창의적 아이디어·프롬프트 실험</td>
-                <td className="px-4 py-3">아이디어 발산·글쓰기·기획 중심 작업</td>
-              </tr>
-              <tr className="bg-slate-850">
-                <td className="px-4 py-3 font-medium text-cyan-300">Gemini</td>
-                <td className="px-4 py-3">멀티모달·Google 생태계 통합</td>
-                <td className="px-4 py-3">이미지/문서/영상 등 다양한 입력을 처리할 때</td>
-              </tr>
-              <tr className="bg-slate-800">
-                <td className="px-4 py-3 font-medium text-indigo-300">Perplexity</td>
-                <td className="px-4 py-3">실시간 검색·리서치 중심 탐색 도구</td>
-                <td className="px-4 py-3">정보 탐색·출처 정리가 중요할 때</td>
-              </tr>
-            </tbody>
-          </table>
+      {/* AI 어시스턴트 비교 카드 형식 시작 */}
+      <section id="comparison-cards" className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+        <h2 className="text-2xl font-semibold tracking-tight text-slate-50 mb-6">AI 어시스턴트 비교 한눈에 보기</h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-lg bg-slate-900 p-5 hover:bg-slate-800 transition">
+            <h3 className="text-lg font-semibold text-emerald-300 mb-2">Claude</h3>
+            <p className="text-sm text-slate-400">정확한 구조화 & 자동화 설계 — 정형화된 문서/코드 중심일 때</p>
+          </div>
+          <div className="rounded-lg bg-slate-900 p-5 hover:bg-slate-800 transition">
+            <h3 className="text-lg font-semibold text-sky-300 mb-2">GPT (ChatGPT)</h3>
+            <p className="text-sm text-slate-400">창의적 아이디어·프롬프트 실험 — 아이디어 발산 중심 작업일 때</p>
+          </div>
+          <div className="rounded-lg bg-slate-900 p-5 hover:bg-slate-800 transition">
+            <h3 className="text-lg font-semibold text-cyan-300 mb-2">Gemini</h3>
+            <p className="text-sm text-slate-400">멀티모달·Google 생태계 통합 — 이미지/영상/문서 다양 입력 처리 시</p>
+          </div>
+          <div className="rounded-lg bg-slate-900 p-5 hover:bg-slate-800 transition">
+            <h3 className="text-lg font-semibold text-indigo-300 mb-2">Perplexity</h3>
+            <p className="text-sm text-slate-400">실시간 검색·리서치 탐색 — 정보 탐색이나 출처 정리가 중요할 때</p>
+          </div>
         </div>
       </section>
-      {/* AI 어시스턴트 비교 표 섹션 끝 */}
+      {/* AI 어시스턴트 비교 카드 형식 끝 */}
 
       {/* Footer */}
       <footer className="border-t bg-muted/50">
