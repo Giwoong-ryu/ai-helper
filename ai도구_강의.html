@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 활용법 마스터클래스 </title>
+    <!-- Font Awesome 아이콘 로드 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- 기본 및 레이아웃 --- */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+        :root {
+            --bg-color: #0f172a; /* Main background */
+            --slide-bg: #1e293b; /* Slide background */
+            --text-color: #e2e8f0; /* Main text */
+            --title-color: #ffffff; /* Titles */
+            --subtitle-color: #94a3b8; /* Subtitles, muted text */
+            --accent-color: #22d3ee; /* Accent (cyan) */
+            --green-accent: #34d399;
+            --red-accent: #f87171;
+            --border-color: #334155;
+            
+            --font-main: 'Noto Sans KR', sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- 슬라이드 쇼 래퍼 --- */
+        #slideshow-wrapper {
+            width: 1600px;
+            height: 900px;
+            max-width: 100vw;
+            max-height: 100vh;
+            position: relative;
+            background-color: var(--bg-color);
+            transform: scale(var(--scale-factor, 1));
+            transform-origin: center center;
+            overflow: hidden; /* 슬라이드 전환용 */
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- 개별 슬라이드 --- */
+        .slide-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            box-sizing: border-box;
+            background-color: var(--bg-color);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            transform: translateX(100%); /* 기본적으로 오른쪽 밖에 */
+        }
+
+        .slide-container.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0); /* 활성 슬라이드는 제자리로 */
+        }
+
+        .slide-container:not(.active) {
+            transform: translateX(-100%); /* 이전 슬라이드는 왼쪽으로 */
+        }
+        
+        /* 활성 슬라이드의 이전/다음 상태 관리 (JS에서 제어) */
+        .slide-container.prev {
+             transform: translateX(-100%);
+             opacity: 0;
+             visibility: hidden;
+         }
+        .slide-container.next {
+             transform: translateX(100%);
+             opacity: 0;
+             visibility: hidden;
+         }
+
+        /* --- 슬라이드 공통 요소 --- */
+        .slide-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--title-color);
+            padding: 10px 30px;
+            border-bottom: 3px solid var(--accent-color);
+            margin: 0 0 40px 0;
+            position: absolute;
+            top: 60px;
+            left: 80px;
+        }
+
+        .content-area {
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px; /* 슬라이드 제목 높이만큼 확보 */
+            flex-direction: column;
+        }
+
+        /* --- 레이아웃 유형 --- */
+
+        /* 1. 타이틀 레이아웃 */
+        .title-layout {
+            text-align: center;
+        }
+        .title-layout h1 {
+            font-size: 80px;
+            font-weight: 900;
+            color: var(--title-color);
+            margin: 0 0 20px 0;
+        }
+        .title-layout .subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--subtitle-color);
+        }
+
+        /* 2. 섹션 제목 레이아웃 */
+        .section-title-layout {
+            text-align: center;
+        }
+        .section-title-layout h2 {
+            font-size: 72px;
+            font-weight: 800;
+            color: var(--title-color);
+            margin: 20px 0;
+        }
+        .section-title-layout p {
+            font-size: 28px;
+            color: var(--subtitle-color);
+            line-height: 1.6;
+        }
+
+        /* 3. 인용 레이아웃 */
+        .quote-layout {
+            width: 90%;
+            max-width: 1100px;
+            text-align: center;
+        }
+        .quote-layout blockquote {
+            font-size: 52px;
+            font-weight: 700;
+            color: var(--title-color);
+            margin: 20px 0;
+            line-height: 1.5;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 20px;
+            text-align: left;
+        }
+        .quote-layout p, .quote-layout cite {
+            font-size: 24px;
+            color: var(--subtitle-color);
+            line-height: 1.6;
+        }
+
+        /* 4. 불렛 리스트 레이아웃 */
+        .bullet-list {
+            width: 90%;
+            max-width: 900px;
+        }
+        .bullet-list ul, .bullet-list ol {
+            list-style: none;
+            padding-left: 0;
+        }
+        .bullet-list li {
+            font-size: 26px;
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .bullet-list li i {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-right: 15px;
+            margin-top: 6px; /* 텍스트와 정렬 */
+            width: 30px; /* 아이콘 정렬 */
+            text-align: center;
+        }
+        .bullet-list .feature-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .bullet-list .feature-text strong {
+            display: block;
+            margin-bottom: 16px;
+            font-size: 28px;
+            color: var(--title-color);
+        }
+        .bullet-list h3 {
+            font-size: 32px;
+            color: var(--title-color);
+            margin-bottom: 20px;
+        }
+        .bullet-list p {
+            font-size: 20px;
+            color: var(--subtitle-color);
+            margin-top: 5px; /* 불렛 텍스트 하단 마진 */
+        }
+        .example-box {
+            margin-top: 30px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 18px;
+            font-size: 22px;
+            color: #94a3b8;
+        }
+        .example-box strong {
+            color: #ffffff;
+        }
+        .flow-diagram {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .flow-diagram .diagram-step {
+            min-width: 180px;
+            flex: 1;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px 18px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .flow-diagram .diagram-step span {
+            display: block;
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        .flow-diagram .diagram-arrow {
+            font-size: 36px;
+            color: #22d3ee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .diagram-grid {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .diagram-card {
+            flex: 1 1 280px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 18px;
+        }
+        .diagram-card h4 {
+            margin: 0 0 12px 0;
+            font-size: 20px;
+            color: #22d3ee;
+        }
+        .diagram-card h4.warning {
+            color: #f97316;
+        }
+
+        /* 5. 2단 레이아웃 */
+        .two-column {
+            width: 100%;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .two-column > div {
+            flex: 1;
+            background: var(--slide-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .two-column h3 {
+            font-size: 28px;
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .two-column p {
+            font-size: 20px;
+            line-height: 1.7;
+        }
+        .two-column .bullet-list {
+             width: 100%;
+             max-width: 100%;
+         }
+        .two-column .bullet-list li {
+            font-size: 22px;
+        }
+
+        /* 6. 타일 레이아웃 (2단 변형) */
+        .two-column.tiled {
+            align-items: stretch;
+        }
+        .two-column.tiled > div {
+            flex: 1;
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .two-column.tiled h3 {
+            margin-bottom: 15px;
+        }
+        .two-column.tiled p {
+            font-size: 22px;
+            line-height: 1.6;
+        }
+        
+        /* 7. 3단 타일 레이아웃 */
+        .tiled-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+        .tiled-content .tile {
+            background: var(--slide-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .tiled-content .tile:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+        }
+        .tiled-content .icon {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        .tiled-content h3 {
+            font-size: 32px;
+            color: var(--title-color);
+            margin: 0 0 10px 0;
+        }
+        .tiled-content p {
+            font-size: 22px;
+            color: var(--subtitle-color);
+            margin: 0;
+        }
+        
+        /* 8. 테이블 레이아웃 */
+        .table-layout {
+            width: 100%;
+            max-height: 550px; /* 스크롤 */
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        .table-layout table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-layout th, .table-layout td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .table-layout thead th {
+            background-color: var(--slide-bg);
+            color: var(--accent-color);
+            font-size: 20px;
+            font-weight: 700;
+            position: sticky;
+            top: 0;
+        }
+        .table-layout tbody tr:nth-child(even) {
+            background-color: rgba(30, 41, 59, 0.5); /* var(--slide-bg) 50% */
+        }
+        .table-layout tbody tr:hover {
+            background-color: var(--border-color);
+        }
+        .table-layout td:first-child {
+            font-weight: 700;
+            color: var(--title-color);
+            width: 80px;
+            text-align: center;
+        }
+        
+        /* 테이블 컬럼 너비 (22번 슬라이드) */
+        .table-layout .col-model { width: 15%; }
+        .table-layout .col-type { width: 25%; }
+        .table-layout .col-desc { width: 60%; }
+
+        /* 9. 아이콘 레이아웃 (25번 슬라이드) */
+        .icon-wrapper-large {
+            font-size: 180px;
+            color: var(--accent-color);
+            text-align: center;
+        }
+        
+        /* --- 공통 유틸리티 --- */
+        strong, b {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        /* --- 하단 네비게이션 및 카운터 --- */
+        #navigation-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        #navigation-controls button {
+            background-color: var(--slide-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-family: var(--font-main);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #navigation-controls button:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+        }
+
+        #navigation-controls button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: var(--slide-bg);
+            color: var(--text-color);
+        }
+
+        #slide-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            background-color: var(--slide-bg);
+            color: var(--subtitle-color);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!--
+        [복구된 슬라이드 데이터]
+        사용자가 recovery_data.html에 붙여넣은 코드가
+        아래 #slideshow-wrapper 내부에 그대로 삽입되었습니다.
+    -->
+    <div id="slideshow-wrapper" style="--scale-factor: 0.9444444444444444;"><div class="slide-container active" id="slide1">
+
+    <div class="content-area" style="margin-top: 60px;">
+
+        <div class="title-layout">
+
+            <h1 style="font-size: 80px;">AI 활용법 마스터클래스</h1>
+
+            <p class="subtitle" style="font-size: 28px; color: #cbd5e1;">생성형 AI 시대, 압도적인 생산성을 위한 실전 가이드</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide2">
+
+    <h2 class="slide-title">오늘의 목표</h2>
+
+    <div class="content-area" style="margin-top: 60px;">
+
+        <div class="bullet-list" style="max-width: 800px;">
+
+            <ul>
+
+                <li><i class="fa-solid fa-bullseye"></i><strong>나에게 맞는 AI 도구는 무엇인가?</strong></li>
+
+                <li><i class="fa-solid fa-bullseye"></i><strong>그 도구를 ‘잘’ 쓰는 방법은 무엇인가?</strong></li>
+
+                <li style="list-style: none; padding-left: 0; margin-top: 40px; font-size: 22px; text-align: center; color: #ffffff;">이 두 가지만 알고 가면 완벽히 성공입니다.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide3">
+
+    <h2 class="slide-title">왜 우리는 AI를 사용할까?</h2>
+
+    <div class="content-area">
+
+        <div class="quote-layout">
+
+            <blockquote>우리가 AI를 사용하는 이유는 결국<br><strong style="color: #22d3ee;">스스로 해야 하는 ‘생각’을 대신 해주길</strong><br>바라기 때문입니다.</blockquote>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide4">
+
+    <div class="content-area" style="margin-top: 0; justify-content: center;">
+
+        <div class="section-title-layout">
+
+            <p style="font-size: 28px;">그렇다면 자연스럽게 다음 질문이 생깁니다.</p>
+
+            <h2>“AI는 정말 생각을 할까?”</h2>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide5">
+
+    <h2 class="slide-title">‘생각’이란 무엇인가?</h2>
+
+    <div class="content-area">
+
+        <div class="quote-layout" style="max-width: 1100px;">
+
+            <p style="font-size: 24px; color: #94a3b8;">‘생각’은 복잡해 보이지만 구조는 단순합니다.</p>
+
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 40px;">
+                <div style="flex: 1; background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 30px; text-align: center;">
+                    <p style="font-size: 22px; color: #94a3b8; margin-bottom: 10px;">질문</p>
+                    <strong style="font-size: 36px; color: #ffffff;">현재 정보</strong>
+                </div>
+
+                <span style="font-size: 48px; color: #22d3ee;">+</span>
+
+                <div style="flex: 1; background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 30px; text-align: center;">
+                    <p style="font-size: 22px; color: #94a3b8; margin-bottom: 10px;">내가 가진 정보</p>
+                    <strong style="font-size: 36px; color: #ffffff;">경험 · 기억 · 성향</strong>
+                </div>
+            </div>
+
+            <p style="font-size: 28px; color: #ffffff; margin-top: 40px; text-align: center;">→ 이 두 가지가 연결될 때 <strong style="color: #22d3ee;">‘생각’</strong>이 탄생합니다.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide6">
+
+    <h2 class="slide-title">생각의 과정 (사람)</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list" style="width: 100%; max-width: 1200px;">
+
+            <ul>
+
+                <li style="font-size: 24px;"><i class="fa-solid fa-1"></i>상대가 나에게 질문을 던집니다.</li>
+
+                <li style="font-size: 24px;"><i class="fa-solid fa-2"></i>나는 과거에 쌓아온 경험·기억·성향을 꺼냅니다.</li>
+
+                <li style="font-size: 24px;"><i class="fa-solid fa-3"></i>이 두 요소를 조율하며 답을 만듭니다.</li>
+
+                <li style="font-size: 24px; margin-top: 40px;"><i class="fa-solid fa-check-double"></i>이게 바로 <strong style="color: #22d3ee;">생각</strong>입니다.</li>
+
+            </ul>
+
+            <div class="example-box">
+                <p style="margin: 0 0 10px 0;"><strong>예시: “오늘 뭐 먹지?”</strong></p>
+                <div class="flow-diagram">
+                    <div class="diagram-step">
+                        <span>Step 1</span>
+                        어제 저녁·오늘 점심 메뉴 떠올리기
+                    </div>
+                    <span class="diagram-arrow">→</span>
+                    <div class="diagram-step">
+                        <span>Step 2</span>
+                        지금 먹고 싶은 메뉴 점검
+                    </div>
+                    <span class="diagram-arrow">→</span>
+                    <div class="diagram-step">
+                        <span>Step 3</span>
+                        겹치지 않게 오늘 저녁 결정
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide7">
+
+    <h2 class="slide-title">AI도 같은 구조로 판단한다</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list" style="width: 100%; max-width: 1200px;">
+
+            <div style="display: flex; gap: 20px; align-items: center; justify-content: center;">
+                <div style="flex: 1; background: #1e293b; border-radius: 10px; border: 1px solid #334155; padding: 25px; text-align: center;">
+                    <i class="fa-solid fa-question-circle" style="font-size: 32px; color: #22d3ee;"></i>
+                    <p style="margin: 15px 0 0 0; font-size: 22px; color: #ffffff;"><strong>사용자가 던진 질문</strong><br><span style="color: #94a3b8;">(현재 정보)</span></p>
+                </div>
+                <span style="font-size: 48px; color: #22d3ee;">+</span>
+                <div style="flex: 1; background: #1e293b; border-radius: 10px; border: 1px solid #334155; padding: 25px; text-align: center;">
+                    <i class="fa-solid fa-database" style="font-size: 32px; color: #22d3ee;"></i>
+                    <p style="margin: 15px 0 0 0; font-size: 22px; color: #ffffff;"><strong>AI가 학습한 데이터</strong><br><span style="color: #94a3b8;">(기존 지식)</span></p>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 24px; color: #ffffff; margin-top: 30px;">→ 이 두 요소를 <strong style="color: #22d3ee;">연결</strong>하면 AI의 답이 만들어집니다.</p>
+            
+            <div class="diagram-card" style="margin-top: 40px;">
+                <h4 style="margin-bottom: 20px;">AI의 판단 흐름</h4>
+                <div class="flow-diagram" style="width: 100%; align-items: stretch;">
+                    <div class="diagram-step" style="min-width: 200px;">
+                        <span>질문</span>
+                        “오늘 뭐 먹지?”
+                    </div>
+                    <span class="diagram-arrow">→</span>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div class="diagram-step" style="min-width: 220px;">
+                            <span>사용자 정보</span>
+                            <strong style="color: #22d3ee;">기록을 알고 있을 때</strong><br>
+                            식단 데이터 불러오기
+                        </div>
+                        <div class="diagram-step" style="min-width: 220px;">
+                            <span>사용자 정보</span>
+                            <strong style="color: #f97316;">기록을 모를 때</strong><br>
+                            추가 질문으로 정보 수집
+                        </div>
+                    </div>
+                    <span class="diagram-arrow">→</span>
+                    <div class="diagram-step" style="min-width: 200px;">
+                        <span>결정</span>
+                        맞춤 메뉴 vs 일반 메뉴 추천
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide8">
+
+    <h2 class="slide-title">핵심 질문: 모델 선택의 이유</h2>
+
+    <div class="content-area">
+
+        <div class="quote-layout" style="width: 100%; max-width: 1300px; margin: 0 auto;">
+
+            <blockquote>“생각 구조는 같은데…<br><strong style="color: #22d3ee;">왜 GPT·Claude·Gemini는 서로 다르게 생각할까?”</strong></blockquote>
+
+            
+
+            <div class="bullet-list" style="max-width: 1100px; width: 100%; margin: 40px auto 0 auto; text-align: left;">
+
+                <ul>
+
+                    <li><i class="fa-solid fa-link"></i>이 질문이 오늘 강의의 첫 번째 목표와 <strong style="color: #ffffff;">정확히 연결됩니다.</strong></li>
+
+                    <li style="font-size: 22px; margin-top: 30px;"><i class="fa-solid fa-arrow-right"></i>"내가 어떤 AI를 써야 할까?" → 이걸 알려면 각 AI가 어떤 방식으로 판단하고 생각하는지를 알아야 합니다.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide9">
+
+    <h2 class="slide-title">사람과 AI: 판단 방식이 달라지는 이유</h2>
+
+    <div class="content-area">
+
+        <div class="two-column" style="gap: 30px;">
+
+            <div style="background: #1e293b; padding: 30px; border-radius: 8px; border: 1px solid #334155;">
+
+                <h3><i class="fa-solid fa-user" style="margin-right: 10px; color: #22d3ee;"></i> 사람</h3>
+
+                <p style="font-size: 18px;">나의 경험, 내가 본 정보, 내가 중요하게 생각하는 가치, 어떤 목표를 가지고 살아왔는지...<br><strong>→ 이런 요인들이 달라서 사고방식이 달라집니다.</strong></p>
+
+            </div>
+
+            <div style="background: #1e293b; padding: 30px; border-radius: 8px; border: 1px solid #334155;">
+
+                <h3><i class="fa-solid fa-robot" style="margin-right: 10px; color: #22d3ee;"></i> AI</h3>
+
+                <p style="font-size: 18px;"><br><strong>AI도 마찬가지입니다.</strong></p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide10">
+
+    <h2 class="slide-title">AI의 '사고방식'이 달라지는 4요소</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list" style="max-width: 1300px; width: 100%;">
+
+            <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px 60px;">
+
+                <li><i class="fa-solid fa-bullseye"></i><div class="feature-text"><strong>① 개발 목표</strong><p style="font-size: 18px;">어떤 목적을 가지고 설계되었는지</p></div></li>
+
+                <li><i class="fa-solid fa-database"></i><div class="feature-text"><strong>② 학습 데이터</strong><p style="font-size: 18px;">그 목표를 위해 어떤 데이터를 중심으로 학습했는지</p></div></li>
+
+                <li><i class="fa-solid fa-sitemap"></i><div class="feature-text"><strong>③ 모델 아키텍처</strong><p style="font-size: 18px;">판단 방식을 어떤 구조로 설계했는지</p></div></li>
+
+                <li><i class="fa-solid fa-tools"></i><div class="feature-text"><strong>④ 탑재된 도구</strong><p style="font-size: 18px;">그 모델에 어떤 도구·기능이 탑재되었는지</p></div></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide11">
+
+    <h2 class="slide-title">구조는 같지만 스타일이 다르다</h2>
+
+    <div class="content-area">
+
+        <div class="quote-layout">
+
+            <blockquote>즉, AI는 모두 ‘생각의 구조(입력 → 연결 → 출력)’는 같지만,<br><strong style="color: #22d3ee;">‘사고방식(think하는 스타일)’은<br>완전히 다릅니다.</strong></blockquote>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide12">
+
+    <h2 class="slide-title">예시: Anthropic (Claude) vs OpenAI (GPT)</h2>
+
+    <div class="content-area" style="flex-direction: column; justify-content: flex-start;">
+
+        <div class="two-column tiled" style="width: 100%; max-width: 1300px; margin: 40px auto 0 auto;">
+
+            <div>
+
+                <h3>Anthropic (Claude)</h3>
+
+                <p>• “안전하고 통제할 수 있는 AI를 만들겠다”는 목적<br>(안전성 우선).</p>
+
+            </div>
+
+            <div>
+
+                <h3>OpenAI (GPT)</h3>
+
+                <p>• 다양한 용도와 창의성 중심으로 빠르게 확장된 모델 구조<br>(범용성 우선).</p>
+
+            </div>
+
+        </div>
+
+        <!-- ADDED BACKSTORY -->
+
+        <p style="width: 90%; text-align: center; margin-top: 40px; font-size: 22px;">
+
+            Dario Amodei 등이 과거 OpenAI 연구책임자로, “안전하고 통제할 수 있는 AI를 만들겠다”는 목적 아래 회사를 나와 설립.<br><br>
+
+            <strong style="color: #ffffff;">결국 OpenAI에서 시작됐지만 서로 다른 방식으로 발전함.</strong>
+
+        </p>
+
+    </div>
+
+</div><div class="slide-container" id="slide13">
+
+    <h2 class="slide-title">AI 3종 사고방식 (비유)</h2>
+
+    <div class="content-area">
+
+        <div class="tiled-content">
+
+            <div class="tile">
+
+                <div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
+
+                <h3>GPT = 인문대생</h3>
+
+                <p>(관점 중심)</p>
+
+            </div>
+
+            <div class="tile">
+
+                <div class="icon"><i class="fa-solid fa-palette"></i></div>
+
+                <h3>Gemini = 미대생</h3>
+
+                <p>(도구 중심)</p>
+
+            </div>
+
+            <div class="tile">
+
+                <div class="icon"><i class="fa-solid fa-calculator"></i></div>
+
+                <h3>Claude = 공대생</h3>
+
+                <p>(정확성 중심)</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide14">
+
+    <h2 class="slide-title">GPT 상세: 창의적인 인문대생</h2>
+
+    <div class="content-area">
+
+        <div class="two-column">
+
+            <div class="bullet-list">
+
+                <h3><i class="fa-solid fa-lightbulb" style="color: #22d3ee;"></i> GPT (관점 중심)</h3>
+
+                <ul style="padding-left: 0;">
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i><strong>관점·해석</strong>에 따라서 내용이 달라짐</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>같은 질문 → <strong>다른 답</strong> 나옴 (창의성)</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>비유·설명·아이디어·<strong>창의적 사고</strong> 강함</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>방대한 지식 기반으로 **범용성**이 가장 높음</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>**GPTs 생태계**를 통한 강력한 확장성</li>
+
+                </ul>
+
+            </div>
+
+            <div class="bullet-list">
+
+                <h3>주요 강점</h3>
+
+                <p>GPT는 '인문대생'처럼 방대한 지식을 바탕으로 창의적인 해석을 내놓는 데 강합니다.<br>정답이 없는 질문, 새로운 아이디어 기획, 복잡한 개념을 비유로 설명하는 작업에 최적화되어 있습니다.<br><strong>Projects 폴더</strong>에 고객사 정보·샘플 답안을 저장해 두면 어떤 질문이 와도 같은 맥락으로 답할 수 있고,<br><strong>GPTs</strong>를 만들어 버튼 하나로 플레이북·톤·양식을 재사용할 수 있습니다.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide15">
+
+    <h2 class="slide-title">GPT 초급 활용 10가지 (초급)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 사례 (GPT 창의성/종합 능력)</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>1</td><td>가상의 미래 기술에 대한 사업 계획서 초안 작성 (상상력 기반).</td></tr>
+
+                    <tr><td>2</td><td>특정 시기(조선시대) 인물에게 현대 기술을 설명하는 학습 자료 생성 (관점 전환).</td></tr>
+
+                    <tr><td>3</td><td>서로 상반되는 두 개념(물리학, 철학)을 융합하여 새로운 비즈니스 모델 도출.</td></tr>
+
+                    <tr><td>4</td><td>시, 산문, 노래 가사 등 다양한 문학 형식으로 사용자 질문에 대한 답을 변환.</td></tr>
+
+                    <tr><td>5</td><td>특정 브랜드의 10년 후 비전과 핵심 가치를 정의하고, 슬로건 50가지 아이디어 도출.</td></tr>
+
+                    <tr><td>6</td><td>장문 보고서를 초등학생도 이해할 수 있는 비유와 예시로 재구성.</td></tr>
+
+                    <tr><td>7</td><td>3개 키워드(사과, 우주, 고양이)를 엮어 미스터리 단편 소설 초안 작성.</td></tr>
+
+                    <tr><td>8</td><td>특정 페르소나(깐깐한 교수)로 설정하여 질문에 대한 답변을 다양한 어투로 제공.</td></tr>
+
+                    <tr><td>9</td><td>복잡한 사회 현상을 5가지 주요 관점(경제, 사회, 심리)으로 분리하여 심층 분석.</td></tr>
+
+                    <tr><td>10</td><td>토론 주제에 대해 찬성과 반대 양측의 가장 강력한 논거들을 종합 및 반박 논리 구조화.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide16">
+
+    <h2 class="slide-title">Gemini 상세: 다재다능한 미대생</h2>
+
+    <div class="content-area">
+
+        <div class="two-column">
+
+            <div class="bullet-list">
+
+                <h3><i class="fa-solid fa-palette" style="color: #22d3ee;"></i> Gemini (도구 중심)</h3>
+
+                <ul style="padding-left: 0;">
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i><strong>어떤 도구</strong>를 쓰느냐가 중요</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>이미지·영상·<strong>멀티모달</strong> 강점</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i><strong>실시간 Google 검색</strong> 통합</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>**Workspace (Gmail/Drive) 연동**</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>익숙하지 않은 분야는 성능 하락</li>
+
+                </ul>
+
+            </div>
+
+            <div class="bullet-list">
+
+                <h3>주요 강점</h3>
+
+                <p>Gemini는 '미대생'처럼 다양한 크리에이티브·업무 도구를 동시에 다룹니다.<br>Google AI Studio의 <strong>ImageFX(Imagen 3)</strong>, <strong>VideoFX(Veo)</strong>, <strong>MusicFX</strong>와 연결해 이미지·영상·사운드를 바로 생성하고,<br>YouTube 링크만 붙여도 자동 요약·타임라인·하이라이트를 뽑아줍니다.<br>또한 Gmail·Docs·Sheets·Slides·Drive 데이터를 실시간으로 불러오거나,<br>캘린더 일정·알림을 바로 만들고 업데이트하면서 “도구 중심” 워크플로를 완성합니다.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide17">
+
+    <h2 class="slide-title">Gemini 초급 활용 10가지 (초급)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 사례 (Gems, RAG, Search)</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>1</td><td>**Gems 활용:** '주간 목표 달성 Gem'으로 개인 일정 관리.</td></tr>
+
+                    <tr><td>2</td><td>**Gems 활용:** '회사 톤앤매너 Gem'으로 마케팅 메일 작성.</td></tr>
+
+                    <tr><td>3</td><td>**Deep Research:** 항공/호텔 정보 검색하여 '임시' 일정 등록.</td></tr>
+
+                    <tr><td>4</td><td>**멀티모달(OCR):** 영수증 사진을 엑셀 표로 변환 및 합산.</td></tr>
+
+                    <tr><td>5</td><td>**RAG(Drive):** '회사 매뉴얼' 기준으로 다른 문서 스타일 검토.</td></tr>
+
+                    <tr><td>6</td><td>**Gems 활용:** '회의록 정리 Gem'이 특정 포맷으로 요약.</td></tr>
+
+                    <tr><td>7</td><td>**멀티모달(Code):** 인쇄된 코드 사진을 인식하여 텍스트로 변환 및 문법 오류 검토.</td></tr>
+
+                    <tr><td>8</td><td>**RAG(Drive):** Drive 템플릿에 실시간 Search 데이터를 채워 보고서 자동 생성.</td></tr>
+
+                    <tr><td>9</td><td>**RAG(Drive):** Drive 내 2개 파일을 비교하여 공통 키워드 추출.</td></tr>
+
+                    <tr><td>10</td><td>**RAG(Drive):** 계약서 파일에서 '계약 만료일'만 추출하여 표로 정리.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide18">
+
+    <h2 class="slide-title">Claude 상세: 논리적인 공대생</h2>
+
+    <div class="content-area">
+
+        <div class="two-column">
+
+            <div class="bullet-list">
+
+                <h3><i class="fa-solid fa-calculator" style="color: #22d3ee;"></i> Claude (정확성 중심)</h3>
+
+                <ul style="padding-left: 0;">
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i><strong>정확성·구조</strong>가 가장 중요</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>분석·논리·<strong>매뉴얼 제작</strong>에 최강</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>누가 실행해도 <strong>같은 결과</strong> (일관성)</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>**긴 맥락(장문)** 이해력 탁월</li>
+
+                    <li style="padding-left: 35px;"><i class="fa-solid fa-check"></i>**한국어**의 미묘한 뉘앙스 이해도 높음</li>
+
+                </ul>
+
+            </div>
+
+            <div class="bullet-list">
+
+                <h3>주요 강점</h3>
+
+                <p>Claude는 '공대생'처럼 논리와 구조, 정확성을 중시합니다.<br><strong>Artifacts</strong> 화면에서 코드·문서·표를 실시간으로 공유·편집하고,<br><strong>Projects</strong>에 팀 매뉴얼과 예시 답안을 저장해 어떤 사람이 써도 동일한 기준과 톤을 유지하게 합니다.<br><strong>Claude Code</strong> 모드에서는 대규모 코드 리팩터링·테스트·리뷰까지 진행할 수 있습니다.<br>수백 페이지 PDF도 통째로 넣어 섹션별 체크리스트, 절차서, 감사용 질문 리스트로 즉시 구조화합니다.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide19">
+
+    <h2 class="slide-title">Claude 초급 활용 10가지 (초급)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 사례 (장문, 논리, 구조화)</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>1</td><td>**장문(RAG):** 500페이지 분량의 법규 문서를 단일 요청으로 분석.</td></tr>
+
+                    <tr><td>2</td><td>**논리 분석:** 신규 사업 계획서의 '논리적 비약'이나 '모순점' 지적.</td></tr>
+
+                    <tr><td>3</td><td>**구조화:** 복잡한 매뉴얼을 '사용자/관리자/개발자' 3가지 버전으로 분리.</td></tr>
+
+                    <tr><td>4</td><td>**매뉴얼 제작:** 산업 표준 가이드라인(PDF)을 분석하여 '체크리스트' 자동 생성.</td></tr>
+
+                    <tr><td>5</td><td>**대조표:** A, B 두 문서를 'Side-by-Side' 형태로 비교하여 차이점 구조화.</td></tr>
+
+                    <tr><td>6</td><td>**시나리오:** '최악의 시나리오'와 '대응 매뉴얼'을 논리적 단계별로 정리.</td></tr>
+
+                    <tr><td>7</td><td>**중립성:** 감정적 표현을 모두 '객관적/사실적' 표현으로 치환.</td></tr>
+
+                    <tr><td>8</td><td>**논리 비판:** 논문 초록을 입력하고, '연구 방법론'의 타당성을 논리적으로 비판.</td></tr>
+
+                    <tr><td>9</td><td>**분류:** 복잡한 요구사항을 '기능 목록', '우선순위'로 분류하여 정리.</td></tr>
+
+                    <tr><td>10</td><td>**장문(RAG) 분석:** 계약서 핵심 조항 5개를 추출하고, '유리/불리' 여부 분석.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide20">
+
+    <h2 class="slide-title">보너스: Grok 상세 (인플루언서)</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <h3><i class="fa-solid fa-check" style="color: #22d3ee; position: static; font-size: 24px;"></i> <strong>인플루언서</strong> 스타일</h3>
+
+            <ul style="margin-top: 20px;">
+
+                <li><i class="fa-solid fa-check"></i><strong>x (구'트위터') 자료</strong>를 기반으로 트렌드·밈·SNS 분석</li>
+
+                <li><i class="fa-solid fa-check"></i>“요즘 뭐가 유행하는지”를 가장 빨리 캐치</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide21">
+
+    <h2 class="slide-title">보너스: Perplexity 상세 (사서)</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <h3><i class="fa-solid fa-check" style="color: #22d3ee; position: static; font-size: 24px;"></i> <strong>도서관 사서</strong> 스타일</h3>
+
+            <ul style="margin-top: 20px;">
+
+                <li><i class="fa-solid fa-check"></i>정확한 정보 찾아주는 역할</li>
+
+                <li><i class="fa-solid fa-check"></i><strong>출처 기반 검색</strong>·사실 확인에 최적화</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide22">
+
+    <h2 class="slide-title">성능이 아닌 '고유의 한계' 인지하기 (경고)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th class="col-model">AI 모델</th>
+
+                        <th class="col-type">주요 '제한' 사항</th>
+
+                        <th class="col-desc">상세 한계점 (핵심 내용)</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr><td>GPT</td><td>통합/쓰기 한계</td><td>Drive/Notion 파일의 분석만 가능하며, <strong>분석 결과를 해당 파일에 직접 기록/업데이트할 수 없음</strong> (Read-Only).</td></tr>
+
+                    <tr><td>GPT</td><td>코드 환경 제한</td><td>AI 코드 환경이 사용자의 **로컬 네트워크나 사설 저장소에 접근하는 것이 원천 차단**됨.</td></tr>
+
+                    <tr><td>GPT</td><td>파일 입력 수량 제한</td><td>한 번에 분석 가능한 **파일 수량(예: 10개)이 제한**되어 대규모 분석이 어려움.</td></tr>
+
+                    <tr><td>Gemini</td><td>Workspace API 제한</td><td>Gmail/Calendar 연동 시, '읽기'는 가능하나 **'수정/삭제' 등 복잡한 쓰기 작업은 제한**됨. (Gems 규칙 충돌 야기)</td></tr>
+
+                    <tr><td>Gemini</td><td>Gems 외부 연결 한계</td><td>Gems에서 **복잡한 외부 DB 연결**이나 웹 스크래핑 기능이 공식적으로 지원되지 않음.</td></tr>
+
+                    <tr><td>Gemini</td><td>멀티모달 입력 제한</td><td>텍스트와 이미지를 동시에 입력할 수 있으나, **비디오나 오디오의 실시간 '실행'은 제한**됨.</td></tr>
+
+                    <tr><td>Claude</td><td>토큰 비용 문제</td><td>긴 맥락 유지는 탁월하나, 처리하는 **토큰 비용이 비싸서** 수백 페이지 문서를 자주 다룰 경우 비용 관리에 주의해야 함.</td></tr>
+
+                    <tr><td>Claude</td><td>실시간 정보 한계</td><td>웹 브라우징 기능이 GPT/Gemini에 비해 약하거나 제한적이어서 **실시간 정보 반영이 어려움.**</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide23">
+
+    <h2 class="slide-title">결론: '성능'이 아니라 "적합성"</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <ol style="list-style: none; padding-left: 0;">
+
+                <li style="font-size: 28px;"><i class="fa-solid fa-1"></i><strong style="color: #ffffff;">목적이 먼저</strong> 정해져야 합니다.</li>
+
+                <li style="font-size: 28px; margin-top: 30px;"><i class="fa-solid fa-2"></i>그 다음에 그 목적에 맞는 <strong style="color: #ffffff;">사고방식을 가진 AI</strong>를 선택하는 것입니다.</li>
+
+            </ol>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide24">
+
+    <div class="content-area">
+
+        <div class="section-title-layout">
+
+            <h2>Part 2: AI '잘' 쓰는 법</h2>
+
+            <p style="font-size: 28px; margin-top: 20px;">어떤 AI를 쓸지 정했다면,<br>이제 <strong style="color: #ffffff;">'어떻게'</strong> 사용할지 생각해봐야 합니다.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide25">
+
+    <h2 class="slide-title">프롬프트의 본질: '경력직 신입'에게 주는 '작업 지시서'</h2>
+
+    <div class="content-area">
+
+        <div class="two-column">
+
+            <div>
+
+                <p style="font-size: 28px; line-height: 1.7;">AI는 ‘능력 있는 경력직 신입’이지만, <br><strong style="font-size: 40px; color: #22d3ee;">우리 팀의 기준을 모릅니다.</strong></p>
+
+                <br>
+
+                <p style="font-size: 22px;">프롬프트는 질문이 아니라<br>그 '기준'을 알려주는 <strong style="color: #ffffff;">"작업 지시서"</strong>입니다.</p>
+
+            </div>
+
+            <!-- Icon Added Here -->
+
+            <div>
+
+                <div class="icon-wrapper-large">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide26">
+
+    <h2 class="slide-title">어떻게 말해야 보고서를 잘 써올까?</h2>
+
+    <div class="content-area">
+
+        <div class="quote-layout">
+
+            <blockquote>신입에게 보고서 작성을 시킬 때<br>어떻게 시키시나요?</blockquote>
+
+            <cite style="font-size: 24px; margin-top: 30px;">"보고서 써와." 라고만 하면<br>제대로 된 결과물이 나오기 어렵습니다.</cite>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide27">
+
+    <h2 class="slide-title">1) 작업 지시서 (필수 요소)</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <p style="font-size: 24px; color: #ffffff; margin-bottom: 30px;">"필요 없는 건 다 빼고,<br>딱 필요한 수치만 중심으로 적어서,<br>한 장 안에 전부 들어가게 보고서 작성해줘."</p>
+
+            <p style="margin-top: 30px;">여기에는 이미 다음이 포함되어 있습니다:</p>
+
+            <ul>
+
+                <li><i class="fa-solid fa-circle-check"></i>무엇을 중심으로 쓸지 (필요한 수치)</li>
+
+                <li><i class="fa-solid fa-circle-check"></i>무엇을 빼야 할지 (불필요한 내용)</li>
+
+                <li><i class="fa-solid fa-circle-check"></i>길이 제한 (한 장)</li>
+
+            </ul>
+
+            <p style="font-size: 22px; color: #ffffff; margin-top: 30px; text-align: center;">→ 이게 바로 <strong style="color: #22d3ee;">프롬프트 = 작업 지시서</strong>의 최소 형태입니다.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide28">
+
+    <h2 class="slide-title">2) 양식 (있으면 좋은 요소)</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <p style="font-size: 24px; color: #ffffff; margin-bottom: 30px;">"양식 줄 테니까 이거 보고 써와."</p>
+
+            <p style="margin-top: 30px;">양식(Template)이 있으면:</p>
+
+            <ul>
+
+                <li><i class="fa-solid fa-circle-check"></i>제목 위치, 표 구조, 항목 순서</li>
+
+                <li><i class="fa-solid fa-circle-check"></i>하단 메모 등</li>
+
+                <li><i class="fa-solid fa-circle-check"></i>신입이 헤맬 여지가 줄어듭니다.</li>
+
+            </ul>
+
+            <p style="font-size: 22px; color: #ffffff; margin-top: 30px; text-align: center;">→ <strong style="color: #22d3ee;">작업 지시서 + 양식</strong>이 있으면,<br>결과 품질이 훨씬 안정적으로 올라갑니다.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide29">
+
+    <h2 class="slide-title">프롬프트 예시: 브레인스토밍 (Bad 👎)</h2>
+
+    <div class="content-area">
+
+        <div class="two-column tiled" style="gap: 20px;">
+
+            <div style="border: 2px solid #f87171;">
+
+                <h3 style="color: #f87171;">지시</h3>
+
+                <p style="font-size: 22px; color: #ffffff;">“신제품 아이디어 좀 줘.”</p>
+
+            </div>
+
+            <div style="border: 2px solid #f87171;">
+
+                <h3 style="color: #f87171;">문제</h3>
+
+                <p>• 아이디어가 너무 일반적임<br>• 기준이 없음<br>• 비즈니스 활용 불가</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide30">
+
+    <h2 class="slide-title">프롬프트 예시: 브레인스토밍 (Good 👍)</h2>
+
+    <div class="content-area">
+
+        <div class="two-column tiled" style="gap: 20px;">
+
+            <div style="border: 2px solid #34d399; flex: 1;">
+
+                <h3 style="color: #34d399;">개선된 지시</h3>
+
+                <p style="font-size: 20px; color: #ffffff; text-align: left;">“너는 시니어 브랜드 전략가야.<br>① '친환경 포장재'가 주제.<br>② 타겟: 20대 1인 가구.<br>③ 3가지 독창적인 제품 아이디어를 제안하고,<br>④ 각 아이디어의 장/단점을 표로 정리해줘.”</p>
+
+            </div>
+
+            <div style="border: 2px solid #34d399; flex: 1;">
+
+                <h3 style="color: #34d399;">결과</h3>
+
+                <p>• 명확한 타겟/주제<br>• 구체적 아이디어<br>• 비즈니스 논리 확보</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide31">
+
+    <h2 class="slide-title">프롬프트 예시: 이메일 작성 (Bad 👎)</h2>
+
+    <div class="content-area">
+
+        <div class="two-column tiled" style="gap: 20px;">
+
+            <div style="border: 2px solid #f87171;">
+
+                <h3 style="color: #f87171;">지시</h3>
+
+                <p style="font-size: 22px; color: #ffffff;">“팀장님께 메일 좀 써줘.”</p>
+
+            </div>
+
+            <div style="border: 2px solid #f87171;">
+
+                <h3 style="color: #f87171;">문제</h3>
+
+                <p>• 목적이 없음<br>• 어조를 모름<br>• 핵심 내용 누락</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide32">
+
+    <h2 class="slide-title">프롬프트 예시: 이메일 작성 (Good 👍)</h2>
+
+    <div class="content-area">
+
+        <div class="two-column tiled" style="gap: 20px;">
+
+            <div style="border: 2px solid #34d399; flex: 1;">
+
+                <h3 style="color: #34d399;">개선된 지시</h3>
+
+                <p style="font-size: 20px; color: #ffffff; text-align: left;">“너는 '김 대리'야. '박 팀장'님께 메일 쓸 거야.<br>① '3분기 보고서' 마감일 연장 요청.<br>② 사유: 갑작스러운 클라이언트 이슈.<br>③ 새로운 마감일: 내일 오후 5시.<br>④ 톤앤매너: 정중하지만 긴급하게.”</p>
+
+            </div>
+
+            <div style="border: 2px solid #34d399; flex: 1;">
+
+                <h3 style="color: #34d399;">결과</h3>
+
+                <p>• 명확한 역할/목적<br>• 핵심 내용 포함<br>• 적절한 톤앤매너</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide33">
+
+    <h2 class="slide-title">프롬프트 정리</h2>
+
+    <div class="content-area">
+
+        <div class="quote-layout">
+
+            <blockquote>프롬프트는 <strong style="color: #22d3ee;">작업지시서</strong>입니다.</blockquote>
+
+            <cite style="font-size: 24px; margin-top: 30px;">잡담·간단 질문에는 없어도 되지만,<br><strong style="color: #ffffff;">일을 시킬 때는 반드시 필요합니다.</strong></cite>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide34">
+
+    <div class="content-area">
+
+        <div class="section-title-layout">
+
+            <!-- Text Updated -->
+
+            <h2><strong style="color: #22d3ee;">하지만</strong> 매번 프롬프트를 쓰는 게<br>현실적으로 가능할까?</h2>
+
+            <p style="font-size: 24px; margin-top: 20px;">그래서 각 AI별로 '프롬프트 저장 도구'를 만들어 놨습니다.<br><br>이 도구를 잘 사용하는 것이,<br>AI를 '잘' 쓰는 두 번째 핵심입니다.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide3ROW_INSERTED_AFTER">
+
+    <h2 class="slide-title">GPT 도구 (1): 심층 리서치</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <h3><i class="fa-solid fa-search-plus" style="color: #22d3ee; position: static; font-size: 24px;"></i> 심층 리서치 (Deep Research)</h3>
+
+            <p>“해당 사항에 대해 전문적인 자료들을 기반으로, 타당성을 검증하면서, 최대한 상세히 보고서를 써달라”는 복잡한 리서치용 프롬프트를 버튼 하나로 묶어둔 기능입니다.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: 신사업 검토 회의 전, 시장 규모·경쟁사 비교·법적 리스크까지 한 번에 요약 보고서를 뽑을 때 사용.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide36">
+
+    <h2 class="slide-title">GPT 도구 (2): 프로젝트</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <h3><i class="fa-solid fa-folder-open" style="color: #22d3ee; position: static; font-size: 24px;"></i> 프로젝트 (Projects)</h3>
+
+            <p>• 특정 주제(예: 카페 창업, AI 강의준비)를 하나의 작업실처럼 관리합니다.<br>• 기본 프롬프트·자료·이전 대화 맥락을 통합하여 효율을 높입니다.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: 'A사 제안서' 프로젝트에 고객 미팅 메모·필수 문구·디자인 지침을 저장해 두고, 팀원이 바뀌어도 동일한 컨텍스트로 후속 문서를 작성.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide37">
+
+    <h2 class="slide-title">GPT 도구 (3): GPTs (AI Builder)</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <h3><i class="fa-solid fa-user-astronaut" style="color: #22d3ee; position: static; font-size: 24px;"></i> GPTs (AI Builder를 통한 맞춤형 비서)</h3>
+
+            <p>• <strong>AI Builder</strong> 인터페이스를 통해 복잡한 프롬프트, 지식 파일, 외부 API까지 연결하여 특정 업무에 완벽하게 특화된 <strong>전담 AI 비서</strong>를 직접 구축합니다.<br>• 역할, 말투, 스타일 등을 저장하여 재사용합니다.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: “브랜드 톤 감수 GPT”를 만들어, 슬랙 채널에 올라오는 초안 문장을 붙여 넣으면 즉시 교정·표현 제안·금칙어 검수까지 자동 수행.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide38">
+
+    <h2 class="slide-title">GPT 중급 활용법 10가지 (1/3)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 시나리오 (GPTs, Actions, Code)</th><th>설명 및 결과</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>1</td><td>캠페인 블로그 자동 업로드</td><td>주간 마케팅 메모만 입력하면 GPT가 블로그 관리 화면에 초안을 올리고, 태그·카테고리·발행 시간까지 채워 준다.</td></tr>
+
+                    <tr><td>2</td><td>사내 규정 Q&A 비서</td><td>회사 인사 규정 PDF를 넣어 만든 GPT에 “휴가 이월 가능?”처럼 물으면 해당 조항과 요약 답변을 바로 알려 준다.</td></tr>
+
+                    <tr><td>3</td><td>매출 엑셀 자동 분석</td><td>월별 매출 파일을 업로드하면 GPT가 성장률을 계산하고 차트를 그려, 보고서에 바로 붙일 이미지를 만들어 준다.</td></tr>
+
+                    <tr><td>4</td><td>홈페이지 오류 점검</td><td>웹사이트 코드를 압축해 올리면 접근성·링크 깨짐 같은 문제를 찾아내고, 어느 파일을 어떻게 고치면 되는지 알려 준다.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide39">
+
+    <h2 class="slide-title">GPT 중급 활용법 10가지 (2/3)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 시나리오 (GPTs, Actions, Code)</th><th>설명 및 결과</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>5</td><td>일정 도우미</td><td>“내일 2시에 고객 미팅 잡아줘”라고 말하면 GPT가 빈 시간을 찾아 캘린더 일정과 알림을 자동으로 만든다.</td></tr>
+
+                    <tr><td>6</td><td>로고 아이디어 생성</td><td>제품 콘셉트를 두세 줄로 설명하면 썸네일 5개를 한 번에 만들어 비교할 수 있게 보여 준다.</td></tr>
+
+                    <tr><td>7</td><td>판례 찾아주는 변호사봇</td><td>판례 자료를 넣어둔 GPT에 사건 내용을 설명하면 비슷한 판례와 핵심 문장을 바로 찾아 준다.</td></tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide40">
+
+    <h2 class="slide-title">GPT 중급 활용법 10가지 (3/3)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 시나리오 (GPTs, Actions, Code)</th><th>설명 및 결과</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>8</td><td>사진 일괄 편집</td><td>촬영 사진 여러 장을 올리면 원하는 크기·흑백 변환·워터마크 삽입을 한 번에 처리하고 압축 파일로 돌려준다.</td></tr>
+
+                    <tr><td>9</td><td>버그 티켓 자동 작성</td><td>버그 증상과 스크린샷을 붙여 넣으면 GPT가 티켓 제목·내용·우선순위를 정리해 이슈 추적 도구에 올려 준다.</td></tr>
+
+                    <tr><td>10</td><td>재고 확인 + 발주</td><td>“A제품 남은 수량 확인하고 부족하면 발주서 써줘”라고 하면, 재고를 확인한 뒤 발주 문서와 안내 메일까지 작성해 준다.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide41">
+
+    <h2 class="slide-title">Gemini 도구 (1): 딥 리서치</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <h3><i class="fa-solid fa-search-location" style="color: #22d3ee; position: static; font-size: 24px;"></i> 딥 리서치 (Deep Research)</h3>
+
+            <p>• 인터넷 기반 자료 조사 + 요약 + 비교 + 결론까지 한 번에 처리하는 연구용 기능입니다.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: "일본 전기차 충전 시장"을 조사할 때, 기사·보고서·정부 통계를 모아 표/차트/시사점까지 자동 추출.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide42">
+
+    <h2 class="slide-title">Gemini 도구 (2): Gems</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <h3><i class="fa-solid fa-gem" style="color: #22d3ee; position: static; font-size: 24px;"></i> Gems (젬스)</h3>
+
+            <p>• 자주 쓰는 작업 방식을 저장하는 ‘작은 GPTs’ 개념입니다.<br>• 역할 기반 프리셋을 만들어 재사용 가능합니다. (초급 활용의 핵심)</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: “영업 후속 메일 Gem”을 만들어, 미팅 요약·다음 단계·감사 인사를 3초 만에 완성하고 Gmail로 곧바로 전송.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide43">
+
+    <h2 class="slide-title">Gemini 중급 활용법 10가지 (1/3)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 시나리오 (Workspace, Gems, Search)</th><th>설명 및 결과</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>1</td><td>주간 일정 블록</td><td>“이번 주 목표는 OO”라고 말하면 Gem이 필요한 시간대를 캘린더에 채워 넣고 요약 메일을 보내 준다.</td></tr>
+
+                    <tr><td>2</td><td>브랜드 메일 초안</td><td>타깃과 목적만 적어 넣으면 회사 말투에 맞춘 마케팅 메일을 작성해 Gmail 초안으로 저장한다.</td></tr>
+
+                    <tr><td>3</td><td>예약 메일 → 캘린더</td><td>호텔·항공 확정 메일을 읽어 날짜와 장소를 뽑아 일정과 출발 전 알림을 자동으로 만들어 준다.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide44">
+
+    <h2 class="slide-title">Gemini 중급 활용법 10가지 (2/3)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 시나리오 (Workspace, Gems, Search)</th><th>설명 및 결과</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>4</td><td>임시 출장 일정 정리</td><td>항공권을 찾는 동안에도 여행 정보를 캘린더에 “가안”으로 올려 두고, 날짜가 확정되면 자동으로 업데이트한다.</td></tr>
+
+                    <tr><td>5</td><td>회의록 자동 요약</td><td>회의 녹취나 메모를 넣으면 할 일·담당자·마감일을 표로 정리해 Google Sheet에 적어 준다.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide45">
+
+    <h2 class="slide-title">Gemini 중급 활용법 10가지 (3/3)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 시나리오 (Workspace, Gems, Search)</th><th>설명 및 결과</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>6</td><td>영수증 정산</td><td>영수증 사진을 올리면 글자를 읽어 비용 보고서 표에 자동으로 채우고, 결재 요청 메일까지 써 준다.</td></tr>
+
+                    <tr><td>7</td><td>백서 수치 검증</td><td>문서 초안에 나온 숫자를 실시간 검색으로 다시 확인하고, 근거 링크를 주석으로 추가해 팀원에게 알려 준다.</td></tr>
+
+                    <tr><td>8</td><td>재무 시트 도우미</td><td>복잡한 예산 시트를 검토해 계산 오류가 있는 셀을 표시하고, 필요한 자동화 스크립트 예시를 제안해 준다.</td></tr>
+
+                    <tr><td>9</td><td>슬라이드 초안 만들기</td><td>전하고 싶은 메시지를 적으면 슬라이드 제목, 추천 이미지 설명, 핵심 문장을 포함한 발표 자료 초안을 만들어 준다.</td></tr>
+
+                    <tr><td>10</td><td>현장 음성 → 요약 배포</td><td>현장에서 휴대폰으로 말한 내용을 텍스트로 바꾸고, 요약을 이메일·캘린더 알림·채팅방에 동시에 공유한다.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide46">
+
+    <h2 class="slide-title">Claude 도구 (1): 프로젝트 & 에이전트</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <h3><i class="fa-solid fa-diagram-project" style="color: #22d3ee; position: static; font-size: 24px;"></i> 프로젝트 (Projects)</h3>
+
+            <p>• Claude Projects는 GPT Projects와 동일한 개념으로, 고객사별 프롬프트·참고 문서·톤을 묶어 저장합니다.<br>• 추가 지침(필수 문장, 금칙어, 문단 길이)을 세밀하게 걸어 두면 팀원이 바뀌어도 동일한 품질을 유지합니다.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: 'B은행 보고서' 프로젝트를 만들어 규제 문서, 표준 목차, 브랜드 톤을 저장하고 누구나 같은 스타일로 주간 브리핑 작성.</p>
+
+        </div>
+
+        <div class="bullet-list" style="margin-top: 40px;">
+
+            <h3><i class="fa-solid fa-user-tie" style="color: #22d3ee; position: static; font-size: 24px;"></i> 에이전트 (Agent)</h3>
+
+            <p>• 특정 페르소나(예: 금융 컨설턴트, DevOps 리더)를 설정해 전문 용어·시각·우선순위를 고정합니다.<br>• 동일 채널에서 여러 에이전트를 두고, 상황에 맞게 호출해 대답의 깊이와 관점을 전환합니다.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: '규제 자문 에이전트'로 전환하면 법령 인용·위험 경고를 중심으로 답하고, '제품 매니저 에이전트'는 실행 계획 위주로 답변.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide47">
+
+    <h2 class="slide-title">Claude 도구 (2): 슬래시 커맨드 & 스킬셋</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <h3><i class="fa-solid fa-slash" style="color: #22d3ee; position: static; font-size: 24px;"></i> 슬래시 커맨드 (Slash Command)</h3>
+
+            <p>• 자주 쓰는 루틴을 /summary, /translate 식으로 등록해 단축어만 입력하면 프롬프트가 자동 실행됩니다.<br>• 팀 채팅방에서 모두가 같은 커맨드를 공유하면, 업무 지시가 똑같이 내려갑니다.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: /brief 명령을 치면 AI가 기사 링크를 받아 5줄 요약 + 두 가지 인사이트를 반환.</p>
+
+        </div>
+
+        <div class="bullet-list" style="margin-top: 40px;">
+
+            <h3><i class="fa-solid fa-layer-group" style="color: #22d3ee; position: static; font-size: 24px;"></i> 스킬셋 (Skill Set)</h3>
+
+            <p>• AI 답변의 스타일(폰트, 색상, 글자 크기)부터 파일 구조, 표 서식까지 세부 매뉴얼을 저장합니다.<br>• 프로젝트별로 스킬셋을 바꿔 끼우면 디자인 가이드나 보고서 템플릿을 자동으로 적용할 수 있습니다.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: 'IR 스킬셋'을 선택하면, 요약 → 핵심 수치 표 → 리스크 섹션 순서로, 지정된 색상표와 표 스타일을 유지.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide48">
+
+    <h2 class="slide-title">Claude 도구 (3): 플러그인 & Claude Code</h2>
+
+    <div class="content-area">
+
+        <div class="bullet-list">
+
+            <h3><i class="fa-solid fa-plug" style="color: #22d3ee; position: static; font-size: 24px;"></i> 플러그인 (Plugin)</h3>
+
+            <p>• 다수의 에이전트와 스킬셋을 한 채널에 배치해, 상황별로 자동 호출되게 만드는 반자동 매뉴얼입니다.<br>• CRM, 데이터 웨어하우스, 디자인 시스템 등 외부 SaaS와 연결해 복합 시나리오를 실행합니다.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: '세일즈 플러그인'에서 리드 정보가 들어오면, 고객 분석 → 제안 템플릿 생성 → 후속 일정 예약까지 연속 실행.</p>
+
+        </div>
+
+        <div class="bullet-list" style="margin-top: 40px;">
+
+            <h3><i class="fa-solid fa-code" style="color: #22d3ee; position: static; font-size: 24px;"></i> Claude Code (CLI · Desktop)</h3>
+
+            <p>• CLI 모드: VS Code / Cursor 등 터미널 환경에서 로컬 파일을 읽고, 테스트·리팩터링·커밋 메시지 작성까지 지원합니다.<br>• Desktop 모드: 웹 UI에서 GitHub 리포를 불러와 코드 리뷰·수정·PR 초안 작성이 가능합니다.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">예: CLI에서 `/claudecode fix-bug`를 실행해 오류 로그를 분석하고, 수정 패치와 유닛 테스트를 함께 제안.</p>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide49">
+
+    <h2 class="slide-title">Claude 중급 활용법 10가지 (1/3)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 시나리오 (Projects, Artifacts, RAG)</th><th>설명 및 결과</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>1</td><td>주간 브리핑 초안</td><td>규제 관련 자료를 프로젝트에 저장해 두고, 새 기사 요약을 붙이면 Claude가 “이번 주 이슈·영향·다음 행동”을 갖춘 브리핑 글을 써 준다.</td></tr>
+
+                    <tr><td>2</td><td>긴 문서 질문</td><td>수백 쪽짜리 가이드라인 PDF를 올린 뒤 “8조 3항 의무만 알려줘”라고 하면 관련 문장과 페이지를 인용해 답변한다.</td></tr>
+
+                    <tr><td>3</td><td>감사 체크리스트 만들기</td><td>내부 통제 문서와 지난 지적 사항을 묶어 “자체 점검 항목 20개”를 요청하면 필요한 증빙과 담당 부서를 표로 정리해 준다.</td></tr>
+
+                    <tr><td>4</td><td>보고서 공동 편집</td><td>Artifacts 문서에서 팀원들이 쓴 단락을 합쳐 놓고 “겹치는 내용 제거하고 빠진 데이터 채워줘”라고 하면, 같은 화면에서 정리본을 제시한다.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide50">
+
+    <h2 class="slide-title">Claude 중급 활용법 10가지 (2/3)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 시나리오 (Claude Code, CLI, Artifacts)</th><th>설명 및 결과</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>5</td><td>코드 리뷰 도우미</td><td>GitHub 저장소를 불러 와서 “결제 모듈 다듬어 줘”라고 하면 바꿔야 할 파일, 수정된 코드, 테스트 방법을 문서로 정리해 준다.</td></tr>
+
+                    <tr><td>6</td><td>터미널에서 오류 잡기</td><td>VS Code 터미널에서 로그 파일을 함께 보내면, 문제 원인과 수정 방법을 제안하고 필요한 경우 새 테스트 코드도 만들어 준다.</td></tr>
+
+                    <tr><td>7</td><td>정책 비교표</td><td>두 문서를 나란히 띄워 “무엇이 달라졌는지 알려줘”라고 하면 추가/삭제/수정된 항목을 표로 정리한다.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div><div class="slide-container" id="slide51">
+
+    <h2 class="slide-title">Claude 중급 활용법 10가지 (3/3)</h2>
+
+    <div class="content-area">
+
+        <div class="table-layout" style="max-height: 520px;">
+
+            <table>
+
+                <thead><tr><th>번호</th><th>활용 시나리오 (Projects, Artifacts, Code)</th><th>설명 및 결과</th></tr></thead>
+
+                <tbody>
+
+                    <tr><td>8</td><td>비상 대응 시나리오</td><td>위험 보고서와 대응 지침을 묶어 “이번 분기 걱정되는 3가지 상황과 대응 절차”를 요청하면 단계별 체크리스트를 만들어 준다.</td></tr>
+
+                    <tr><td>9</td><td>번역 품질 검사</td><td>한국어 원문과 영어 번역본을 올려 “말투와 용어가 같은지 확인해줘”라고 하면, 어색한 부분과 수정 제안을 표시해 준다.</td></tr>
+
+                    <tr><td>10</td><td>데이터 흐름 문서화</td><td>로그나 CSV를 주고 “개인정보가 어떻게 이동하는지 단계별로 설명해줘”라고 하면, 수집→저장→삭제 흐름을 글과 표로 정리한다.</td></tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div></div>
+    
+    <!-- 하단 컨트롤 버튼 -->
+    <div id="navigation-controls">
+        <button id="prev-slide-btn"><i class="fa-solid fa-arrow-left"></i> 이전</button>
+        <button id="next-slide-btn">다음 <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+    <!-- 슬라이드 카운터 -->
+    <div id="slide-counter">1 / 44</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide-container');
+            const nextBtn = document.getElementById('next-slide-btn');
+            const prevBtn = document.getElementById('prev-slide-btn');
+            const counter = document.getElementById('slide-counter');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function updateSlideCounter() {
+                counter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+            }
+
+            function updateNavButtons() {
+                prevBtn.disabled = (currentSlide === 0);
+                nextBtn.disabled = (currentSlide === totalSlides - 1);
+            }
+
+            function showSlide(index) {
+                if (index < 0 || index >= totalSlides) return;
+
+                const oldSlideIndex = currentSlide;
+                currentSlide = index;
+
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active', 'prev', 'next');
+                    if (i === currentSlide) {
+                        slide.classList.add('active');
+                    } else if (i < currentSlide) {
+                        slide.classList.add('prev');
+                    } else {
+                        slide.classList.add('next');
+                    }
+                });
+                
+                updateSlideCounter();
+                updateNavButtons();
+                // URL hash 업데이트 (선택 사항)
+                // window.location.hash = slides[currentSlide].id;
+            }
+
+            // --- 이벤트 리스너 ---
+
+            nextBtn.addEventListener('click', () => {
+                showSlide(currentSlide + 1);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                showSlide(currentSlide - 1);
+            });
+
+            // 키보드 네비게이션 (좌/우 화살표)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                    if (currentSlide < totalSlides - 1) {
+                         showSlide(currentSlide + 1);
+                    }
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                     if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                     }
+                }
+            });
+
+            // 창 크기 조절 시 스케일 팩터 동적 계산
+            function resizeSlideshow() {
+                const wrapper = document.getElementById('slideshow-wrapper');
+                const desiredWidth = 1600;
+                const desiredHeight = 900;
+                
+                const scaleX = window.innerWidth / desiredWidth;
+                const scaleY = window.innerHeight / desiredHeight;
+                
+                const scaleFactor = Math.min(1, scaleX, scaleY);
+                
+                wrapper.style.setProperty('--scale-factor', scaleFactor);
+            }
+
+            window.addEventListener('resize', resizeSlideshow);
+            
+            // --- 초기화 ---
+            // URL 해시로 특정 슬라이드 이동 (선택 사항)
+            // const hash = window.location.hash.substring(1);
+            // const initialSlideIndex = hash ? Array.from(slides).findIndex(s => s.id === hash) : 0;
+            // showSlide(initialSlideIndex > 0 ? initialSlideIndex : 0);
+            
+            showSlide(0); // 항상 첫 번째 슬라이드에서 시작
+            resizeSlideshow(); // 초기 로드 시 크기 조절
+        });
+    </script>
+
+</body>
+</html>
