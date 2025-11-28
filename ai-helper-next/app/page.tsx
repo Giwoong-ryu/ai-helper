@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FileText, Search, Zap, Image, Code, MessageSquare, BarChart3, Video, Mic, Presentation, AlertTriangle, Lightbulb, Wrench } from "lucide-react";
 
-// Custom SVG Icons for each AI tool - Clean geometric designs
+// Custom SVG Icons for each AI tool - Pure geometric designs
 const ClaudeLogo = () => (
   <svg viewBox="0 0 100 100" className="w-12 h-12">
     <defs>
@@ -10,11 +10,9 @@ const ClaudeLogo = () => (
         <stop offset="100%" stopColor="#D97706" />
       </linearGradient>
     </defs>
-    <circle cx="50" cy="50" r="46" fill="url(#claudeGrad)" />
-    {/* Stylized C letter */}
-    <path d="M58 30 C38 30 28 40 28 50 C28 60 38 70 58 70" stroke="white" strokeWidth="8" strokeLinecap="round" fill="none" />
-    <circle cx="58" cy="35" r="4" fill="white" />
-    <circle cx="58" cy="65" r="4" fill="white" />
+    {/* Rounded square with inner diamond cutout */}
+    <rect x="8" y="8" width="84" height="84" rx="20" fill="url(#claudeGrad)" />
+    <rect x="28" y="28" width="44" height="44" rx="8" transform="rotate(45 50 50)" fill="white" opacity="0.95" />
   </svg>
 );
 
@@ -26,10 +24,9 @@ const ChatGPTLogo = () => (
         <stop offset="100%" stopColor="#047857" />
       </linearGradient>
     </defs>
-    <circle cx="50" cy="50" r="46" fill="url(#gptGrad)" />
-    {/* Hexagon pattern representing neural network */}
-    <path d="M50 25 L68 35 L68 55 L50 65 L32 55 L32 35 Z" stroke="white" strokeWidth="5" fill="none" strokeLinejoin="round" />
-    <circle cx="50" cy="45" r="8" fill="white" />
+    {/* Hexagon shape */}
+    <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#gptGrad)" />
+    <polygon points="50,25 73,38.5 73,61.5 50,75 27,61.5 27,38.5" fill="white" opacity="0.95" />
   </svg>
 );
 
@@ -42,12 +39,10 @@ const GeminiLogo = () => (
         <stop offset="100%" stopColor="#D96570" />
       </linearGradient>
     </defs>
-    <circle cx="50" cy="50" r="46" fill="url(#geminiGrad)" />
-    {/* Twin stars representing Gemini */}
-    <path d="M35 50 L40 40 L45 50 L40 60 Z" fill="white" />
-    <path d="M55 50 L60 40 L65 50 L60 60 Z" fill="white" />
-    <circle cx="50" cy="32" r="5" fill="white" opacity="0.9" />
-    <circle cx="50" cy="68" r="5" fill="white" opacity="0.9" />
+    {/* Two overlapping circles - Gemini twins */}
+    <circle cx="35" cy="50" r="32" fill="url(#geminiGrad)" />
+    <circle cx="65" cy="50" r="32" fill="url(#geminiGrad)" />
+    <path d="M50 22 Q35 50 50 78 Q65 50 50 22" fill="white" opacity="0.95" />
   </svg>
 );
 
@@ -59,11 +54,9 @@ const PerplexityLogo = () => (
         <stop offset="100%" stopColor="#0891B2" />
       </linearGradient>
     </defs>
-    <circle cx="50" cy="50" r="46" fill="url(#perplexityGrad)" />
-    {/* Magnifying glass with sparkle - search */}
-    <circle cx="45" cy="42" r="14" stroke="white" strokeWidth="5" fill="none" />
-    <line x1="55" y1="52" x2="70" y2="67" stroke="white" strokeWidth="6" strokeLinecap="round" />
-    <circle cx="45" cy="42" r="4" fill="white" />
+    {/* Triangle pointing up */}
+    <polygon points="50,5 95,85 5,85" fill="url(#perplexityGrad)" />
+    <polygon points="50,30 75,70 25,70" fill="white" opacity="0.95" />
   </svg>
 );
 
