@@ -22,7 +22,7 @@ const ChatGPTLogo = () => (
 
 export const metadata = {
   title: "ChatGPT 가이드 - AI Helper",
-  description: "ChatGPT 도구별 사용법, GPT-4o/Sora 2/Canvas/GPTs 활용 완벽 가이드 (2025년 11월)",
+  description: "ChatGPT 도구별 사용법, GPT-5.1/Sora 2/Canvas/GPTs 활용 완벽 가이드 (2025년 11월)",
 };
 
 export default function ChatGPTPage() {
@@ -64,7 +64,7 @@ export default function ChatGPTPage() {
               <ul className="text-sm text-slate-700 space-y-2">
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 대화 길어지면 앞에서 한 말 까먹음 (갑자기 다른 얘기 함)</li>
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> &quot;모르겠습니다&quot; 안 하고 자신있게 거짓말함 (환각)</li>
-                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 무료 플랜은 GPT-4o 몇 번 쓰면 3시간 대기</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 무료 플랜은 GPT-5.1 몇 번 쓰면 3시간 대기</li>
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 피크 시간에 서버 느려지거나 먹통</li>
               </ul>
             </div>
@@ -156,7 +156,7 @@ export default function ChatGPTPage() {
             </CardContent>
           </Card>
 
-          {/* GPT-4o 이미지 */}
+          {/* GPT-5.1 이미지 */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
               <div className="flex items-start justify-between mb-4">
@@ -165,7 +165,7 @@ export default function ChatGPTPage() {
                 </div>
                 <Badge variant="secondary">이미지 생성</Badge>
               </div>
-              <CardTitle>GPT-4o 이미지 / DALL-E 3</CardTitle>
+              <CardTitle>GPT-5.1 이미지 생성</CardTitle>
               <CardDescription>텍스트로 이미지 생성</CardDescription>
             </CardHeader>
             <CardContent>
@@ -437,7 +437,7 @@ export default function ChatGPTPage() {
               </thead>
               <tbody>
                 <tr className="border-b">
-                  <td className="py-3 px-4 font-medium">GPT-4o</td>
+                  <td className="py-3 px-4 font-medium">GPT-5.1</td>
                   <td className="py-3 px-4 text-slate-500">제한적</td>
                   <td className="py-3 px-4 text-green-600">무제한</td>
                   <td className="py-3 px-4 text-purple-600">무제한</td>

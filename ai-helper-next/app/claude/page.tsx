@@ -96,7 +96,7 @@ export default function ClaudePage() {
               <p className="text-xs text-slate-600">코딩 벤치마크 1위! 일반 작업에 최적</p>
             </div>
             <div className="bg-white rounded-lg p-3 border border-orange-100">
-              <h4 className="font-medium text-purple-700 mb-1">Claude Opus 4.1</h4>
+              <h4 className="font-medium text-purple-700 mb-1">Claude Opus 4.5</h4>
               <p className="text-xs text-slate-600">가장 강력한 모델, 복잡한 추론</p>
             </div>
             <div className="bg-white rounded-lg p-3 border border-orange-100">
@@ -433,7 +433,7 @@ export default function ClaudePage() {
                   <td className="py-3 px-4 text-green-600">무제한</td>
                 </tr>
                 <tr className="border-b">
-                  <td className="py-3 px-4 font-medium">Opus 4.1</td>
+                  <td className="py-3 px-4 font-medium">Opus 4.5</td>
                   <td className="py-3 px-4 text-slate-500">X</td>
                   <td className="py-3 px-4 text-green-600">O</td>
                   <td className="py-3 px-4 text-green-600">O</td>

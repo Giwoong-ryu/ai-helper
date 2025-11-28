@@ -111,7 +111,7 @@ export default function Home() {
               <h3 className="text-2xl font-semibold text-slate-900">ChatGPT</h3>
               <p className="text-base text-slate-600">만능 도구 + 영상 생성</p>
               <ul className="list-disc list-inside text-sm text-slate-500 space-y-1">
-                <li>GPT-4o + o4-mini 추론 모델</li>
+                <li>GPT-5.1 - 최신 모델</li>
                 <li>Sora 2 영상 생성 (신규!)</li>
                 <li>GPTs 커스텀 봇</li>
                 <li>Canvas 문서/코드 편집</li>
@@ -195,7 +195,7 @@ export default function Home() {
               <ul className="text-sm text-slate-700 space-y-2">
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 대화 길어지면 앞 내용 까먹음</li>
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 없는 정보 자신있게 지어냄</li>
-                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 무료는 GPT-4o 사용량 제한 심함</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 무료는 GPT-5.1 사용량 제한 심함</li>
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> DALL-E 이미지가 원하는대로 안나옴</li>
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> GPTs 품질 천차만별</li>
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> Sora 영상 생성 대기 시간 김</li>
@@ -313,7 +313,7 @@ export default function Home() {
                   </h4>
                   <ul className="text-sm text-slate-600 space-y-1">
                     <li><strong>Sora 2:</strong> 텍스트로 영상 생성 (12초, 1080p)</li>
-                    <li><strong>DALL-E / 4o:</strong> 이미지 생성 (GPT-4o 이미지 생성 추가됨)</li>
+                    <li><strong>GPT-5.1 이미지:</strong> 네이티브 이미지 생성 기능</li>
                     <li><strong>Canvas:</strong> 문서/코드를 옆 패널에서 직접 수정</li>
                     <li><strong>GPTs:</strong> 특정 용도 맞춤 봇 (번역봇, 논문봇 등)</li>
                     <li><strong>o4-mini:</strong> 수학/코딩 추론 특화 모델</li>
