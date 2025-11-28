@@ -1,61 +1,62 @@
+import Link from "next/link";
 import { FileText, Search, Zap, Image, Code, MessageSquare, BarChart3, Video, Mic, Presentation, AlertTriangle, Lightbulb, Wrench } from "lucide-react";
 
-// Custom SVG Icons for each AI tool
+// Custom SVG Icons for each AI tool - Pure geometric designs
 const ClaudeLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-10 h-10">
+  <svg viewBox="0 0 100 100" className="w-12 h-12">
     <defs>
       <linearGradient id="claudeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#D97706" />
-        <stop offset="100%" stopColor="#EA580C" />
+        <stop offset="0%" stopColor="#F59E0B" />
+        <stop offset="100%" stopColor="#D97706" />
       </linearGradient>
     </defs>
-    <circle cx="50" cy="50" r="45" fill="url(#claudeGrad)" />
-    <path d="M35 40 Q50 25 65 40 Q70 50 65 60 Q50 75 35 60 Q30 50 35 40" fill="white" opacity="0.9" />
-    <circle cx="50" cy="50" r="8" fill="white" />
+    {/* Rounded square with inner diamond cutout */}
+    <rect x="8" y="8" width="84" height="84" rx="20" fill="url(#claudeGrad)" />
+    <rect x="28" y="28" width="44" height="44" rx="8" transform="rotate(45 50 50)" fill="white" opacity="0.95" />
   </svg>
 );
 
 const ChatGPTLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-10 h-10">
+  <svg viewBox="0 0 100 100" className="w-12 h-12">
     <defs>
       <linearGradient id="gptGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#10B981" />
-        <stop offset="100%" stopColor="#059669" />
+        <stop offset="100%" stopColor="#047857" />
       </linearGradient>
     </defs>
-    <circle cx="50" cy="50" r="45" fill="url(#gptGrad)" />
-    <path d="M30 50 L45 35 L45 45 L70 45 L70 55 L45 55 L45 65 Z" fill="white" opacity="0.9" />
-    <circle cx="60" cy="35" r="6" fill="white" opacity="0.7" />
-    <circle cx="65" cy="65" r="4" fill="white" opacity="0.5" />
+    {/* Hexagon shape */}
+    <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#gptGrad)" />
+    <polygon points="50,25 73,38.5 73,61.5 50,75 27,61.5 27,38.5" fill="white" opacity="0.95" />
   </svg>
 );
 
 const GeminiLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-10 h-10">
+  <svg viewBox="0 0 100 100" className="w-12 h-12">
     <defs>
       <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#3B82F6" />
-        <stop offset="50%" stopColor="#8B5CF6" />
-        <stop offset="100%" stopColor="#EC4899" />
+        <stop offset="0%" stopColor="#4285F4" />
+        <stop offset="50%" stopColor="#9B72CB" />
+        <stop offset="100%" stopColor="#D96570" />
       </linearGradient>
     </defs>
-    <circle cx="50" cy="50" r="45" fill="url(#geminiGrad)" />
-    <path d="M50 20 L60 40 L80 40 L65 55 L70 75 L50 62 L30 75 L35 55 L20 40 L40 40 Z" fill="white" opacity="0.9" />
+    {/* Two overlapping circles - Gemini twins */}
+    <circle cx="35" cy="50" r="32" fill="url(#geminiGrad)" />
+    <circle cx="65" cy="50" r="32" fill="url(#geminiGrad)" />
+    <path d="M50 22 Q35 50 50 78 Q65 50 50 22" fill="white" opacity="0.95" />
   </svg>
 );
 
 const PerplexityLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-10 h-10">
+  <svg viewBox="0 0 100 100" className="w-12 h-12">
     <defs>
       <linearGradient id="perplexityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#14B8A6" />
+        <stop offset="0%" stopColor="#22D3EE" />
         <stop offset="100%" stopColor="#0891B2" />
       </linearGradient>
     </defs>
-    <circle cx="50" cy="50" r="45" fill="url(#perplexityGrad)" />
-    <circle cx="50" cy="45" r="15" fill="none" stroke="white" strokeWidth="4" />
-    <line x1="60" y1="56" x2="72" y2="72" stroke="white" strokeWidth="5" strokeLinecap="round" />
-    <circle cx="50" cy="45" r="5" fill="white" />
+    {/* Triangle pointing up */}
+    <polygon points="50,5 95,85 5,85" fill="url(#perplexityGrad)" />
+    <polygon points="50,30 75,70 25,70" fill="white" opacity="0.95" />
   </svg>
 );
 
@@ -85,7 +86,7 @@ export default function Home() {
       {/* 주요 AI 도구 카드 시작 */}
       <section id="ai-tools" className="mx-auto w-full max-w-screen-xl px-4 py-8">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50">
+          <Link href="/ai-helper/claude/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-orange-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-orange-50 to-orange-100">
               <ClaudeLogo />
             </div>
@@ -99,11 +100,11 @@ export default function Home() {
                 <li>Projects로 맥락 저장</li>
                 <li>Artifacts로 실시간 미리보기</li>
               </ul>
-              <a href="/ai-helper/claude/" className="inline-flex items-center text-indigo-500 hover:underline">자세히 보기 →</a>
+              <span className="inline-flex items-center text-indigo-500">자세히 보기 →</span>
             </div>
-          </div>
+          </Link>
 
-          <div className="w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50">
+          <Link href="/ai-helper/chatgpt/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-green-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-green-50 to-green-100">
               <ChatGPTLogo />
             </div>
@@ -117,11 +118,11 @@ export default function Home() {
                 <li>Canvas 문서/코드 편집</li>
                 <li>가장 큰 커뮤니티</li>
               </ul>
-              <a href="/ai-helper/chatgpt/" className="inline-flex items-center text-indigo-500 hover:underline">자세히 보기 →</a>
+              <span className="inline-flex items-center text-indigo-500">자세히 보기 →</span>
             </div>
-          </div>
+          </Link>
 
-          <div className="w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50">
+          <Link href="/ai-helper/gemini/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-blue-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-blue-50 to-purple-100">
               <GeminiLogo />
             </div>
@@ -135,11 +136,11 @@ export default function Home() {
                 <li>Canvas로 PT 즉석 생성</li>
                 <li>Gemini Agent 자동화</li>
               </ul>
-              <a href="/ai-helper/gemini/" className="inline-flex items-center text-indigo-500 hover:underline">자세히 보기 →</a>
+              <span className="inline-flex items-center text-indigo-500">자세히 보기 →</span>
             </div>
-          </div>
+          </Link>
 
-          <div className="w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50">
+          <Link href="/ai-helper/perplexity/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-teal-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-teal-50 to-teal-100">
               <PerplexityLogo />
             </div>
@@ -153,9 +154,9 @@ export default function Home() {
                 <li>Deep Research 심층 분석</li>
                 <li>특허 검색 Patents 출시</li>
               </ul>
-              <a href="/ai-helper/perplexity/" className="inline-flex items-center text-indigo-500 hover:underline">자세히 보기 →</a>
+              <span className="inline-flex items-center text-indigo-500">자세히 보기 →</span>
             </div>
-          </div>
+          </Link>
         </div>
       </section>
       {/* 주요 AI 도구 카드 끝 */}
