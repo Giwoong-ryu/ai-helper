@@ -1,4 +1,63 @@
-import { Zap, Clock, Sparkles } from "lucide-react";
+import { FileText, Search, Zap, Image, Code, MessageSquare, BarChart3, Video, Mic, Presentation, AlertTriangle, Lightbulb, Wrench } from "lucide-react";
+
+// Custom SVG Icons for each AI tool
+const ClaudeLogo = () => (
+  <svg viewBox="0 0 100 100" className="w-10 h-10">
+    <defs>
+      <linearGradient id="claudeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#D97706" />
+        <stop offset="100%" stopColor="#EA580C" />
+      </linearGradient>
+    </defs>
+    <circle cx="50" cy="50" r="45" fill="url(#claudeGrad)" />
+    <path d="M35 40 Q50 25 65 40 Q70 50 65 60 Q50 75 35 60 Q30 50 35 40" fill="white" opacity="0.9" />
+    <circle cx="50" cy="50" r="8" fill="white" />
+  </svg>
+);
+
+const ChatGPTLogo = () => (
+  <svg viewBox="0 0 100 100" className="w-10 h-10">
+    <defs>
+      <linearGradient id="gptGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#10B981" />
+        <stop offset="100%" stopColor="#059669" />
+      </linearGradient>
+    </defs>
+    <circle cx="50" cy="50" r="45" fill="url(#gptGrad)" />
+    <path d="M30 50 L45 35 L45 45 L70 45 L70 55 L45 55 L45 65 Z" fill="white" opacity="0.9" />
+    <circle cx="60" cy="35" r="6" fill="white" opacity="0.7" />
+    <circle cx="65" cy="65" r="4" fill="white" opacity="0.5" />
+  </svg>
+);
+
+const GeminiLogo = () => (
+  <svg viewBox="0 0 100 100" className="w-10 h-10">
+    <defs>
+      <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#3B82F6" />
+        <stop offset="50%" stopColor="#8B5CF6" />
+        <stop offset="100%" stopColor="#EC4899" />
+      </linearGradient>
+    </defs>
+    <circle cx="50" cy="50" r="45" fill="url(#geminiGrad)" />
+    <path d="M50 20 L60 40 L80 40 L65 55 L70 75 L50 62 L30 75 L35 55 L20 40 L40 40 Z" fill="white" opacity="0.9" />
+  </svg>
+);
+
+const PerplexityLogo = () => (
+  <svg viewBox="0 0 100 100" className="w-10 h-10">
+    <defs>
+      <linearGradient id="perplexityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#14B8A6" />
+        <stop offset="100%" stopColor="#0891B2" />
+      </linearGradient>
+    </defs>
+    <circle cx="50" cy="50" r="45" fill="url(#perplexityGrad)" />
+    <circle cx="50" cy="45" r="15" fill="none" stroke="white" strokeWidth="4" />
+    <line x1="60" y1="56" x2="72" y2="72" stroke="white" strokeWidth="5" strokeLinecap="round" />
+    <circle cx="50" cy="45" r="5" fill="white" />
+  </svg>
+);
 
 export default function Home() {
   return (
@@ -9,7 +68,7 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-slate-900">AI 도구 활용법</h1>
-              <p className="text-sm text-slate-600 mt-1">실사용자 관점에서 정리한 AI 도구 비교 가이드</p>
+              <p className="text-sm text-slate-600 mt-1">2025년 11월 기준 실사용자 관점 AI 도구 비교 가이드</p>
             </div>
             <a
               href="https://github.com/Giwoong-ryu"
@@ -28,15 +87,15 @@ export default function Home() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <div className="w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-orange-50 to-orange-100">
-              <div className="w-16 h-16 rounded-full bg-orange-500 flex items-center justify-center text-white text-2xl font-bold">C</div>
+              <ClaudeLogo />
             </div>
             <div className="p-6 space-y-4">
               <h3 className="text-2xl font-semibold text-slate-900">Claude</h3>
               <p className="text-base text-slate-600">긴 문서 작업의 최강자</p>
               <ul className="list-disc list-inside text-sm text-slate-500 space-y-1">
                 <li>200K 토큰 (책 1권 분량)</li>
+                <li>Sonnet 4.5 - 최고 코딩 모델</li>
                 <li>지시사항 준수력 최고</li>
-                <li>코드 리팩토링 특화</li>
                 <li>Projects로 맥락 저장</li>
                 <li>Artifacts로 실시간 미리보기</li>
               </ul>
@@ -46,16 +105,16 @@ export default function Home() {
 
           <div className="w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-green-50 to-green-100">
-              <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white text-2xl font-bold">G</div>
+              <ChatGPTLogo />
             </div>
             <div className="p-6 space-y-4">
               <h3 className="text-2xl font-semibold text-slate-900">ChatGPT</h3>
-              <p className="text-base text-slate-600">만능 도구 + 이미지 생성</p>
+              <p className="text-base text-slate-600">만능 도구 + 영상 생성</p>
               <ul className="list-disc list-inside text-sm text-slate-500 space-y-1">
-                <li>DALL-E 이미지 생성</li>
+                <li>GPT-4o + o4-mini 추론 모델</li>
+                <li>Sora 2 영상 생성 (신규!)</li>
                 <li>GPTs 커스텀 봇</li>
                 <li>Canvas 문서/코드 편집</li>
-                <li>음성 대화 지원</li>
                 <li>가장 큰 커뮤니티</li>
               </ul>
               <a href="/ai-helper/chatgpt/" className="inline-flex items-center text-indigo-500 hover:underline">자세히 보기 →</a>
@@ -63,18 +122,18 @@ export default function Home() {
           </div>
 
           <div className="w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50">
-            <div className="flex items-center justify-center py-8 bg-gradient-to-br from-blue-50 to-blue-100">
-              <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-white text-2xl font-bold">G</div>
+            <div className="flex items-center justify-center py-8 bg-gradient-to-br from-blue-50 to-purple-100">
+              <GeminiLogo />
             </div>
             <div className="p-6 space-y-4">
               <h3 className="text-2xl font-semibold text-slate-900">Gemini</h3>
-              <p className="text-base text-slate-600">Google 생태계 + 무료 혜자</p>
+              <p className="text-base text-slate-600">Gemini 3 + 이미지 혁신</p>
               <ul className="list-disc list-inside text-sm text-slate-500 space-y-1">
-                <li>무료로 거의 무제한</li>
-                <li>Google 문서/시트 연동</li>
-                <li>실시간 웹 검색 내장</li>
+                <li>Gemini 3 - 최신 모델 출시!</li>
+                <li>Imagen 3 - 이미지 품질 1위</li>
+                <li>월 6.5억 사용자</li>
                 <li>Canvas로 PT 즉석 생성</li>
-                <li>YouTube 영상 요약</li>
+                <li>Gemini Agent 자동화</li>
               </ul>
               <a href="/ai-helper/gemini/" className="inline-flex items-center text-indigo-500 hover:underline">자세히 보기 →</a>
             </div>
@@ -82,17 +141,17 @@ export default function Home() {
 
           <div className="w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-teal-50 to-teal-100">
-              <div className="w-16 h-16 rounded-full bg-teal-500 flex items-center justify-center text-white text-2xl font-bold">P</div>
+              <PerplexityLogo />
             </div>
             <div className="p-6 space-y-4">
               <h3 className="text-2xl font-semibold text-slate-900">Perplexity</h3>
-              <p className="text-base text-slate-600">검색 특화 + 출처 명시</p>
+              <p className="text-base text-slate-600">검색 특화 + Comet 브라우저</p>
               <ul className="list-disc list-inside text-sm text-slate-500 space-y-1">
                 <li>모든 답변에 출처 링크</li>
+                <li>Comet 브라우저 (신규!)</li>
+                <li>Sora 2 Pro 영상 생성</li>
                 <li>Deep Research 심층 분석</li>
-                <li>실시간 최신 정보</li>
-                <li>학술/뉴스 검색 특화</li>
-                <li>Pro Search 심층 검색</li>
+                <li>특허 검색 Patents 출시</li>
               </ul>
               <a href="/ai-helper/perplexity/" className="inline-flex items-center text-indigo-500 hover:underline">자세히 보기 →</a>
             </div>
@@ -104,59 +163,74 @@ export default function Home() {
       {/* 실사용자 불만사항 섹션 */}
       <section id="user-frustrations" className="mx-auto w-full max-w-screen-xl px-4 pb-8">
         <div className="rounded-2xl border bg-red-50/50 p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-slate-900 mb-4">😤 실사용자가 겪는 답답한 점</h2>
+          <div className="flex items-center gap-2 mb-4">
+            <AlertTriangle className="w-5 h-5 text-red-500" />
+            <h2 className="text-xl font-semibold text-slate-900">실사용자가 겪는 답답한 점</h2>
+          </div>
           <p className="text-sm text-slate-600 mb-6">성능 수치가 아닌, 실제로 사용할 때 부딪히는 문제들</p>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {/* Claude 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
-              <h3 className="font-semibold text-orange-600 mb-3">Claude</h3>
+              <h3 className="font-semibold text-orange-600 mb-3 flex items-center gap-2">
+                <div className="w-5 h-5"><ClaudeLogo /></div>
+                Claude
+              </h3>
               <ul className="text-sm text-slate-700 space-y-2">
-                <li>😩 &quot;짧게 써달라&quot;고 해도 또 길게 씀</li>
-                <li>😩 갑자기 &quot;제가 할 수 없습니다&quot; 거부</li>
-                <li>😩 무료 플랜 메시지 한도 금방 참</li>
-                <li>😩 이미지 생성 기능 없음</li>
-                <li>😩 웹 검색 기능 없음 (Pro도)</li>
-                <li>😩 한국 결제 불편 (해외결제 필요)</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> &quot;짧게 써달라&quot;고 해도 또 길게 씀</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 갑자기 &quot;제가 할 수 없습니다&quot; 거부</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 무료 플랜 메시지 한도 금방 참</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 이미지 생성 기능 없음</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 웹 검색 기능 없음 (Pro도)</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 한국 결제 불편 (해외결제 필요)</li>
               </ul>
             </div>
 
             {/* ChatGPT 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
-              <h3 className="font-semibold text-green-600 mb-3">ChatGPT</h3>
+              <h3 className="font-semibold text-green-600 mb-3 flex items-center gap-2">
+                <div className="w-5 h-5"><ChatGPTLogo /></div>
+                ChatGPT
+              </h3>
               <ul className="text-sm text-slate-700 space-y-2">
-                <li>😩 대화 길어지면 앞 내용 까먹음</li>
-                <li>😩 없는 정보 자신있게 지어냄</li>
-                <li>😩 무료는 GPT-4 사용량 제한 심함</li>
-                <li>😩 DALL-E 이미지가 원하는대로 안나옴</li>
-                <li>😩 GPTs 품질 천차만별</li>
-                <li>😩 가끔 서버 느려지거나 다운</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 대화 길어지면 앞 내용 까먹음</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 없는 정보 자신있게 지어냄</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 무료는 GPT-4o 사용량 제한 심함</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> DALL-E 이미지가 원하는대로 안나옴</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> GPTs 품질 천차만별</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> Sora 영상 생성 대기 시간 김</li>
               </ul>
             </div>
 
             {/* Gemini 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
-              <h3 className="font-semibold text-blue-600 mb-3">Gemini</h3>
+              <h3 className="font-semibold text-blue-600 mb-3 flex items-center gap-2">
+                <div className="w-5 h-5"><GeminiLogo /></div>
+                Gemini
+              </h3>
               <ul className="text-sm text-slate-700 space-y-2">
-                <li>😩 창의적인 글쓰기 밋밋함</li>
-                <li>😩 복잡한 지시 이해 못할 때 많음</li>
-                <li>😩 코딩은 Claude/GPT보다 약함</li>
-                <li>😩 한국어 답변이 부자연스러울 때</li>
-                <li>😩 이미지 생성 품질 불안정</li>
-                <li>😩 캔버스 기능 아직 초기 단계</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 창의적인 글쓰기 밋밋함</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 복잡한 지시 이해 못할 때 많음</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 코딩은 Claude/GPT보다 약함</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 한국어 답변이 부자연스러울 때</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> Gemini Agent 아직 미국만</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> AI Ultra 구독료 비쌈</li>
               </ul>
             </div>
 
             {/* Perplexity 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
-              <h3 className="font-semibold text-teal-600 mb-3">Perplexity</h3>
+              <h3 className="font-semibold text-teal-600 mb-3 flex items-center gap-2">
+                <div className="w-5 h-5"><PerplexityLogo /></div>
+                Perplexity
+              </h3>
               <ul className="text-sm text-slate-700 space-y-2">
-                <li>😩 창작/글쓰기는 거의 못함</li>
-                <li>😩 코딩 도움은 기대하지 말 것</li>
-                <li>😩 무료 Pro Search 횟수 적음</li>
-                <li>😩 한국어 소스 검색 약함</li>
-                <li>😩 출처가 가끔 관련없는 링크</li>
-                <li>😩 복잡한 분석/추론은 부족</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 창작/글쓰기는 거의 못함</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 코딩 도움은 기대하지 말 것</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 무료 Pro Search 횟수 적음</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 한국어 소스 검색 약함</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 출처가 가끔 관련없는 링크</li>
+                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> Comet 브라우저 아직 초기 단계</li>
               </ul>
             </div>
           </div>
@@ -166,16 +240,25 @@ export default function Home() {
       {/* 도구 사용법 섹션 */}
       <section id="tools-usage" className="mx-auto w-full max-w-screen-xl px-4 pb-8">
         <div className="rounded-2xl border bg-blue-50/50 p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-slate-900 mb-4">🛠️ 도구별 사용법: 기본 vs 도구 활용</h2>
+          <div className="flex items-center gap-2 mb-4">
+            <Wrench className="w-5 h-5 text-blue-500" />
+            <h2 className="text-xl font-semibold text-slate-900">도구별 사용법: 기본 vs 도구 활용</h2>
+          </div>
           <p className="text-sm text-slate-600 mb-6">각 AI의 내장 도구를 활용하면 할 수 있는 작업이 크게 달라집니다</p>
 
           <div className="space-y-6">
             {/* Claude 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
-              <h3 className="font-semibold text-orange-600 mb-4 text-lg">Claude 도구 활용</h3>
+              <h3 className="font-semibold text-orange-600 mb-4 text-lg flex items-center gap-2">
+                <div className="w-6 h-6"><ClaudeLogo /></div>
+                Claude 도구 활용
+              </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-medium text-slate-800 mb-2">📝 기본 대화만 사용할 때</h4>
+                  <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-slate-500" />
+                    기본 대화만 사용할 때
+                  </h4>
                   <ul className="text-sm text-slate-600 space-y-1">
                     <li>• 문서 요약, 번역, 교정</li>
                     <li>• 코드 작성 및 설명</li>
@@ -184,7 +267,10 @@ export default function Home() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium text-slate-800 mb-2">🚀 도구 활용할 때</h4>
+                  <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-orange-500" />
+                    도구 활용할 때
+                  </h4>
                   <ul className="text-sm text-slate-600 space-y-1">
                     <li><strong>Projects:</strong> 파일 업로드 후 맥락 유지하며 작업 (매번 설명 안해도 됨)</li>
                     <li><strong>Artifacts:</strong> HTML/코드/다이어그램 실시간 미리보기</li>
@@ -194,18 +280,25 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-4 p-3 bg-orange-50 rounded-lg">
-                <p className="text-sm text-orange-800">
-                  <strong>💡 꿀팁:</strong> Projects에 회사 스타일 가이드 올려두면, 매번 &quot;우리 회사 톤앤매너로&quot; 안 해도 됨
+                <p className="text-sm text-orange-800 flex items-start gap-2">
+                  <Lightbulb className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span><strong>꿀팁:</strong> Sonnet 4.5가 코딩 1위! Projects에 코드베이스 올려두고 리팩토링 시키면 진짜 좋음</span>
                 </p>
               </div>
             </div>
 
             {/* ChatGPT 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
-              <h3 className="font-semibold text-green-600 mb-4 text-lg">ChatGPT 도구 활용</h3>
+              <h3 className="font-semibold text-green-600 mb-4 text-lg flex items-center gap-2">
+                <div className="w-6 h-6"><ChatGPTLogo /></div>
+                ChatGPT 도구 활용
+              </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-medium text-slate-800 mb-2">📝 기본 대화만 사용할 때</h4>
+                  <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-slate-500" />
+                    기본 대화만 사용할 때
+                  </h4>
                   <ul className="text-sm text-slate-600 space-y-1">
                     <li>• 질문 답변, 글쓰기</li>
                     <li>• 간단한 코드 작성</li>
@@ -214,30 +307,40 @@ export default function Home() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium text-slate-800 mb-2">🚀 도구 활용할 때</h4>
+                  <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-green-500" />
+                    도구 활용할 때
+                  </h4>
                   <ul className="text-sm text-slate-600 space-y-1">
-                    <li><strong>DALL-E:</strong> &quot;~한 이미지 그려줘&quot; → 이미지 즉시 생성</li>
+                    <li><strong>Sora 2:</strong> 텍스트로 영상 생성 (12초, 1080p)</li>
+                    <li><strong>DALL-E / 4o:</strong> 이미지 생성 (GPT-4o 이미지 생성 추가됨)</li>
                     <li><strong>Canvas:</strong> 문서/코드를 옆 패널에서 직접 수정</li>
-                    <li><strong>GPTs:</strong> 특정 용도 맞춤 봇 (번역봇, 논문봇, 마케팅봇 등)</li>
-                    <li><strong>웹 브라우징:</strong> 실시간 정보 검색 (최신 뉴스, 가격 등)</li>
-                    <li><strong>Code Interpreter:</strong> 엑셀/CSV 파일 분석, 그래프 생성</li>
+                    <li><strong>GPTs:</strong> 특정 용도 맞춤 봇 (번역봇, 논문봇 등)</li>
+                    <li><strong>o4-mini:</strong> 수학/코딩 추론 특화 모델</li>
                     <li><strong>음성 대화:</strong> 말로 대화하며 실시간 통역</li>
                   </ul>
                 </div>
               </div>
               <div className="mt-4 p-3 bg-green-50 rounded-lg">
-                <p className="text-sm text-green-800">
-                  <strong>💡 꿀팁:</strong> GPT Store에서 &quot;논문 요약&quot; 검색하면 학술 논문 전용 GPTs 바로 사용 가능
+                <p className="text-sm text-green-800 flex items-start gap-2">
+                  <Lightbulb className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span><strong>꿀팁:</strong> Sora 2로 12초 영상 생성 가능! Plus는 50회/월, Pro는 무제한</span>
                 </p>
               </div>
             </div>
 
             {/* Gemini 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
-              <h3 className="font-semibold text-blue-600 mb-4 text-lg">Gemini 도구 활용</h3>
+              <h3 className="font-semibold text-blue-600 mb-4 text-lg flex items-center gap-2">
+                <div className="w-6 h-6"><GeminiLogo /></div>
+                Gemini 도구 활용
+              </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-medium text-slate-800 mb-2">📝 기본 대화만 사용할 때</h4>
+                  <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-slate-500" />
+                    기본 대화만 사용할 때
+                  </h4>
                   <ul className="text-sm text-slate-600 space-y-1">
                     <li>• 일반 질문 답변</li>
                     <li>• 실시간 웹 검색 (기본 내장)</li>
@@ -246,30 +349,40 @@ export default function Home() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium text-slate-800 mb-2">🚀 도구 활용할 때</h4>
+                  <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-blue-500" />
+                    도구 활용할 때
+                  </h4>
                   <ul className="text-sm text-slate-600 space-y-1">
+                    <li><strong>Imagen 3:</strong> 사진급 이미지 생성 (현재 품질 1위!)</li>
                     <li><strong>Canvas:</strong> PPT 슬라이드 즉석 생성 → Google Slides로 내보내기</li>
+                    <li><strong>Gemini Agent:</strong> 복잡한 작업 자동화 (웹 브라우징 포함)</li>
                     <li><strong>Gems:</strong> 나만의 커스텀 AI (글쓰기 코치, 코딩 튜터 등)</li>
-                    <li><strong>Google 확장:</strong> Gmail 요약, YouTube 영상 요약</li>
-                    <li><strong>Docs/Sheets 연동:</strong> 문서 안에서 바로 AI 활용</li>
-                    <li><strong>이미지 생성:</strong> Imagen 모델로 이미지 생성</li>
-                    <li><strong>Deep Research:</strong> 주제 심층 분석 보고서 생성</li>
+                    <li><strong>Deep Think:</strong> 복잡한 추론 문제 해결</li>
+                    <li><strong>YouTube 확장:</strong> 영상 링크만 주면 요약</li>
                   </ul>
                 </div>
               </div>
               <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                <p className="text-sm text-blue-800">
-                  <strong>💡 꿀팁:</strong> YouTube 영상 링크 붙여넣고 &quot;이 영상 3줄 요약해줘&quot; → 영상 안 봐도 핵심 파악
+                <p className="text-sm text-blue-800 flex items-start gap-2">
+                  <Lightbulb className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span><strong>꿀팁:</strong> Imagen 3가 사진 퀄리티 최고! &quot;사실적인 스타일로&quot; 붙이면 DALL-E보다 훨씬 좋음</span>
                 </p>
               </div>
             </div>
 
             {/* Perplexity 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
-              <h3 className="font-semibold text-teal-600 mb-4 text-lg">Perplexity 도구 활용</h3>
+              <h3 className="font-semibold text-teal-600 mb-4 text-lg flex items-center gap-2">
+                <div className="w-6 h-6"><PerplexityLogo /></div>
+                Perplexity 도구 활용
+              </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-medium text-slate-800 mb-2">📝 기본 검색만 사용할 때</h4>
+                  <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-slate-500" />
+                    기본 검색만 사용할 때
+                  </h4>
                   <ul className="text-sm text-slate-600 space-y-1">
                     <li>• 빠른 정보 검색 + 출처 확인</li>
                     <li>• 최신 뉴스/이벤트 검색</li>
@@ -278,19 +391,23 @@ export default function Home() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium text-slate-800 mb-2">🚀 도구 활용할 때</h4>
+                  <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-teal-500" />
+                    도구 활용할 때
+                  </h4>
                   <ul className="text-sm text-slate-600 space-y-1">
-                    <li><strong>Pro Search:</strong> 여러 단계 추론 필요한 복잡한 질문</li>
-                    <li><strong>Deep Research:</strong> 30+ 소스 분석한 심층 보고서 (5-10분 소요)</li>
-                    <li><strong>Focus 모드:</strong> Academic(학술), Writing(글쓰기), YouTube 등 선택</li>
-                    <li><strong>Collections:</strong> 주제별 검색 결과 정리/저장</li>
-                    <li><strong>Pages:</strong> 검색 결과로 공유 가능한 문서 생성</li>
+                    <li><strong>Comet 브라우저:</strong> AI 기반 웹 브라우저 + 멀티탭 작업</li>
+                    <li><strong>Sora 2 Pro:</strong> 영상 생성 (Max 구독자)</li>
+                    <li><strong>Deep Research:</strong> 30+ 소스 분석한 심층 보고서</li>
+                    <li><strong>Patents:</strong> AI 특허 검색 에이전트 (신규!)</li>
+                    <li><strong>Sports/Finance:</strong> 실시간 스포츠/주식/정치인 거래 추적</li>
                   </ul>
                 </div>
               </div>
               <div className="mt-4 p-3 bg-teal-50 rounded-lg">
-                <p className="text-sm text-teal-800">
-                  <strong>💡 꿀팁:</strong> Deep Research로 &quot;2024 전기차 시장 동향&quot; 검색하면 보고서급 문서가 나옴
+                <p className="text-sm text-teal-800 flex items-start gap-2">
+                  <Lightbulb className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span><strong>꿀팁:</strong> Max 구독하면 Sora 2 Pro로 영상 생성 + GPT-5.1 접근 가능!</span>
                 </p>
               </div>
             </div>
@@ -303,9 +420,12 @@ export default function Home() {
         <div className="rounded-2xl border bg-card/50 p-6 shadow-sm backdrop-blur">
           <div className="mb-4 flex items-center justify-between gap-4">
             <div>
-              <h2 className="text-xl font-semibold text-slate-900">📊 한눈에 비교: 어떤 AI를 언제 쓸까?</h2>
+              <div className="flex items-center gap-2 mb-1">
+                <BarChart3 className="w-5 h-5 text-purple-500" />
+                <h2 className="text-xl font-semibold text-slate-900">한눈에 비교: 어떤 AI를 언제 쓸까?</h2>
+              </div>
               <p className="mt-1 text-sm text-slate-600">
-                작업 유형별 추천 AI와 사용할 도구
+                작업 유형별 추천 AI와 사용할 도구 (2025년 11월 기준)
               </p>
             </div>
           </div>
@@ -331,7 +451,10 @@ export default function Home() {
               <tbody>
                 <tr>
                   <td className="border-t px-4 py-3 text-sm font-semibold text-slate-900 align-top">
-                    📄 긴 문서 작업
+                    <div className="flex items-center gap-2">
+                      <FileText className="w-4 h-4 text-slate-500" />
+                      긴 문서 작업
+                    </div>
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
                     <span className="text-orange-600 font-medium">Claude</span> 1순위<br />
@@ -347,23 +470,48 @@ export default function Home() {
 
                 <tr className="bg-muted/40">
                   <td className="border-t px-4 py-3 text-sm font-semibold text-slate-900 align-top">
-                    🎨 이미지 생성
+                    <div className="flex items-center gap-2">
+                      <Image className="w-4 h-4 text-slate-500" />
+                      이미지 생성
+                    </div>
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
-                    <span className="text-green-600 font-medium">ChatGPT</span> 1순위<br />
-                    <span className="text-xs text-slate-500">DALL-E 3 품질 가장 좋음</span>
+                    <span className="text-blue-600 font-medium">Gemini</span> 1순위<br />
+                    <span className="text-xs text-slate-500">Imagen 3 - 사실적 이미지 최고</span>
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
-                    DALL-E
+                    Imagen 3
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
-                    블로그 썸네일, SNS 이미지, 로고 시안, 제품 목업
+                    사진급 이미지, 제품 목업, 인물 사진 (DALL-E보다 사실적)
                   </td>
                 </tr>
 
                 <tr>
                   <td className="border-t px-4 py-3 text-sm font-semibold text-slate-900 align-top">
-                    🔍 정보 검색
+                    <div className="flex items-center gap-2">
+                      <Video className="w-4 h-4 text-slate-500" />
+                      영상 생성
+                    </div>
+                  </td>
+                  <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
+                    <span className="text-green-600 font-medium">ChatGPT</span> / <span className="text-teal-600 font-medium">Perplexity</span><br />
+                    <span className="text-xs text-slate-500">Sora 2 Pro (1080p, 12초)</span>
+                  </td>
+                  <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
+                    Sora 2 / Sora 2 Pro
+                  </td>
+                  <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
+                    숏폼 영상, 제품 홍보 클립, SNS 콘텐츠
+                  </td>
+                </tr>
+
+                <tr className="bg-muted/40">
+                  <td className="border-t px-4 py-3 text-sm font-semibold text-slate-900 align-top">
+                    <div className="flex items-center gap-2">
+                      <Search className="w-4 h-4 text-slate-500" />
+                      정보 검색
+                    </div>
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
                     <span className="text-teal-600 font-medium">Perplexity</span> 1순위<br />
@@ -377,9 +525,12 @@ export default function Home() {
                   </td>
                 </tr>
 
-                <tr className="bg-muted/40">
+                <tr>
                   <td className="border-t px-4 py-3 text-sm font-semibold text-slate-900 align-top">
-                    📊 PPT 만들기
+                    <div className="flex items-center gap-2">
+                      <Presentation className="w-4 h-4 text-slate-500" />
+                      PPT 만들기
+                    </div>
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
                     <span className="text-blue-600 font-medium">Gemini</span> 1순위<br />
@@ -393,25 +544,31 @@ export default function Home() {
                   </td>
                 </tr>
 
-                <tr>
+                <tr className="bg-muted/40">
                   <td className="border-t px-4 py-3 text-sm font-semibold text-slate-900 align-top">
-                    💻 코드 작성
+                    <div className="flex items-center gap-2">
+                      <Code className="w-4 h-4 text-slate-500" />
+                      코드 작성
+                    </div>
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
                     <span className="text-orange-600 font-medium">Claude</span> 1순위<br />
-                    <span className="text-xs text-slate-500">GPT도 준수함</span>
+                    <span className="text-xs text-slate-500">Sonnet 4.5 - 코딩 벤치마크 1위</span>
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
-                    Artifacts / Canvas
+                    Artifacts / Claude Code
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
                     함수 작성, 버그 수정, 리팩토링, 테스트 코드 생성
                   </td>
                 </tr>
 
-                <tr className="bg-muted/40">
+                <tr>
                   <td className="border-t px-4 py-3 text-sm font-semibold text-slate-900 align-top">
-                    🤖 반복 업무 자동화
+                    <div className="flex items-center gap-2">
+                      <MessageSquare className="w-4 h-4 text-slate-500" />
+                      반복 업무 자동화
+                    </div>
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
                     <span className="text-green-600 font-medium">ChatGPT</span> GPTs<br />
@@ -425,9 +582,12 @@ export default function Home() {
                   </td>
                 </tr>
 
-                <tr>
+                <tr className="bg-muted/40">
                   <td className="border-t px-4 py-3 text-sm font-semibold text-slate-900 align-top">
-                    📈 데이터 분석
+                    <div className="flex items-center gap-2">
+                      <BarChart3 className="w-4 h-4 text-slate-500" />
+                      데이터 분석
+                    </div>
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
                     <span className="text-green-600 font-medium">ChatGPT</span> 1순위<br />
@@ -441,25 +601,12 @@ export default function Home() {
                   </td>
                 </tr>
 
-                <tr className="bg-muted/40">
-                  <td className="border-t px-4 py-3 text-sm font-semibold text-slate-900 align-top">
-                    🎥 영상 요약
-                  </td>
-                  <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
-                    <span className="text-blue-600 font-medium">Gemini</span> 1순위<br />
-                    <span className="text-xs text-slate-500">YouTube 링크만 주면 됨</span>
-                  </td>
-                  <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
-                    YouTube 확장
-                  </td>
-                  <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
-                    강의 영상 요약, 컨퍼런스 핵심 정리, 리뷰 영상 요점 파악
-                  </td>
-                </tr>
-
                 <tr>
                   <td className="border-t px-4 py-3 text-sm font-semibold text-slate-900 align-top">
-                    🗣️ 실시간 통역
+                    <div className="flex items-center gap-2">
+                      <Mic className="w-4 h-4 text-slate-500" />
+                      실시간 통역
+                    </div>
                   </td>
                   <td className="border-t px-4 py-3 align-top text-sm text-slate-800">
                     <span className="text-green-600 font-medium">ChatGPT</span> 1순위<br />
@@ -482,7 +629,8 @@ export default function Home() {
       <footer className="border-t bg-muted/50">
         <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
           <p>
-            Made with 💜 by{" "}
+            Made with{" "}
+            <span className="text-purple-500">♥</span> by{" "}
             <a
               href="https://github.com/Giwoong-ryu"
               target="_blank"
