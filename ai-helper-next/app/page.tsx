@@ -1,62 +1,98 @@
 import Link from "next/link";
 import { FileText, Search, Zap, Image, Code, MessageSquare, BarChart3, Video, Mic, Presentation, AlertTriangle, Lightbulb, Wrench } from "lucide-react";
 
-// Custom SVG Icons for each AI tool - Pure geometric designs
+// Small icons for inline use
+const ClaudeIconSmall = () => (
+  <svg viewBox="0 0 100 100" className="w-5 h-5">
+    <defs><linearGradient id="claudeSmall" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#A855F7" /><stop offset="100%" stopColor="#7C3AED" /></linearGradient></defs>
+    <circle cx="50" cy="50" r="46" fill="url(#claudeSmall)" />
+  </svg>
+);
+const ChatGPTIconSmall = () => (
+  <svg viewBox="0 0 100 100" className="w-5 h-5">
+    <defs><linearGradient id="gptSmall" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#34D399" /><stop offset="100%" stopColor="#10B981" /></linearGradient></defs>
+    <circle cx="50" cy="50" r="46" fill="url(#gptSmall)" />
+  </svg>
+);
+const GeminiIconSmall = () => (
+  <svg viewBox="0 0 100 100" className="w-5 h-5">
+    <defs><linearGradient id="gemSmall" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#60A5FA" /><stop offset="100%" stopColor="#A855F7" /></linearGradient></defs>
+    <circle cx="50" cy="50" r="46" fill="url(#gemSmall)" />
+  </svg>
+);
+const PerplexityIconSmall = () => (
+  <svg viewBox="0 0 100 100" className="w-5 h-5">
+    <defs><linearGradient id="perpSmall" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#22D3EE" /><stop offset="100%" stopColor="#06B6D4" /></linearGradient></defs>
+    <circle cx="50" cy="50" r="46" fill="url(#perpSmall)" />
+  </svg>
+);
+
+// Custom SVG Icons for each AI tool - Circular with inner designs (Large)
 const ClaudeLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-12 h-12">
+  <svg viewBox="0 0 100 100" className="w-14 h-14">
     <defs>
       <linearGradient id="claudeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#F59E0B" />
-        <stop offset="100%" stopColor="#D97706" />
+        <stop offset="0%" stopColor="#A855F7" />
+        <stop offset="100%" stopColor="#7C3AED" />
       </linearGradient>
     </defs>
-    {/* Rounded square with inner diamond cutout */}
-    <rect x="8" y="8" width="84" height="84" rx="20" fill="url(#claudeGrad)" />
-    <rect x="28" y="28" width="44" height="44" rx="8" transform="rotate(45 50 50)" fill="white" opacity="0.95" />
+    <circle cx="50" cy="50" r="46" fill="url(#claudeGrad)" />
+    {/* Stylized brain/thought symbol */}
+    <path d="M35 55 Q30 45 40 40 Q45 35 55 38 Q65 35 68 45 Q72 55 65 60 Q58 68 50 65 Q42 68 35 55"
+          fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" />
+    <circle cx="45" cy="48" r="3" fill="white" />
+    <circle cx="58" cy="50" r="2.5" fill="white" />
   </svg>
 );
 
 const ChatGPTLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-12 h-12">
+  <svg viewBox="0 0 100 100" className="w-14 h-14">
     <defs>
       <linearGradient id="gptGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#10B981" />
-        <stop offset="100%" stopColor="#047857" />
+        <stop offset="0%" stopColor="#34D399" />
+        <stop offset="100%" stopColor="#10B981" />
       </linearGradient>
     </defs>
-    {/* Hexagon shape */}
-    <polygon points="50,5 93,27.5 93,72.5 50,95 7,72.5 7,27.5" fill="url(#gptGrad)" />
-    <polygon points="50,25 73,38.5 73,61.5 50,75 27,61.5 27,38.5" fill="white" opacity="0.95" />
+    <circle cx="50" cy="50" r="46" fill="url(#gptGrad)" />
+    {/* Simple chat bubble / spark design */}
+    <circle cx="50" cy="50" r="20" fill="none" stroke="white" strokeWidth="4" />
+    <circle cx="50" cy="50" r="8" fill="white" />
   </svg>
 );
 
 const GeminiLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-12 h-12">
+  <svg viewBox="0 0 100 100" className="w-14 h-14">
     <defs>
-      <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#4285F4" />
-        <stop offset="50%" stopColor="#9B72CB" />
-        <stop offset="100%" stopColor="#D96570" />
+      <linearGradient id="geminiGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#60A5FA" />
+        <stop offset="100%" stopColor="#3B82F6" />
+      </linearGradient>
+      <linearGradient id="geminiGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#C084FC" />
+        <stop offset="100%" stopColor="#A855F7" />
       </linearGradient>
     </defs>
-    {/* Two overlapping circles - Gemini twins */}
-    <circle cx="35" cy="50" r="32" fill="url(#geminiGrad)" />
-    <circle cx="65" cy="50" r="32" fill="url(#geminiGrad)" />
-    <path d="M50 22 Q35 50 50 78 Q65 50 50 22" fill="white" opacity="0.95" />
+    {/* Two overlapping circles - Gemini style */}
+    <circle cx="38" cy="50" r="30" fill="url(#geminiGrad1)" />
+    <circle cx="62" cy="50" r="30" fill="url(#geminiGrad2)" opacity="0.85" />
+    <ellipse cx="50" cy="50" rx="8" ry="20" fill="white" opacity="0.9" />
   </svg>
 );
 
 const PerplexityLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-12 h-12">
+  <svg viewBox="0 0 100 100" className="w-14 h-14">
     <defs>
       <linearGradient id="perplexityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#22D3EE" />
-        <stop offset="100%" stopColor="#0891B2" />
+        <stop offset="100%" stopColor="#06B6D4" />
       </linearGradient>
     </defs>
-    {/* Triangle pointing up */}
-    <polygon points="50,5 95,85 5,85" fill="url(#perplexityGrad)" />
-    <polygon points="50,30 75,70 25,70" fill="white" opacity="0.95" />
+    <circle cx="50" cy="50" r="46" fill="url(#perplexityGrad)" />
+    {/* Magnifying glass */}
+    <circle cx="45" cy="45" r="16" fill="none" stroke="white" strokeWidth="4" />
+    <line x1="56" y1="56" x2="68" y2="68" stroke="white" strokeWidth="5" strokeLinecap="round" />
+    {/* Sparkle */}
+    <circle cx="40" cy="40" r="3" fill="white" opacity="0.8" />
   </svg>
 );
 
@@ -174,7 +210,7 @@ export default function Home() {
             {/* Claude 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
               <h3 className="font-semibold text-orange-600 mb-3 flex items-center gap-2">
-                <div className="w-5 h-5"><ClaudeLogo /></div>
+                <ClaudeIconSmall />
                 Claude
               </h3>
               <ul className="text-sm text-slate-700 space-y-2">
@@ -190,7 +226,7 @@ export default function Home() {
             {/* ChatGPT 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
               <h3 className="font-semibold text-green-600 mb-3 flex items-center gap-2">
-                <div className="w-5 h-5"><ChatGPTLogo /></div>
+                <ChatGPTIconSmall />
                 ChatGPT
               </h3>
               <ul className="text-sm text-slate-700 space-y-2">
@@ -206,7 +242,7 @@ export default function Home() {
             {/* Gemini 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
               <h3 className="font-semibold text-blue-600 mb-3 flex items-center gap-2">
-                <div className="w-5 h-5"><GeminiLogo /></div>
+                <GeminiIconSmall />
                 Gemini
               </h3>
               <ul className="text-sm text-slate-700 space-y-2">
@@ -222,7 +258,7 @@ export default function Home() {
             {/* Perplexity 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
               <h3 className="font-semibold text-teal-600 mb-3 flex items-center gap-2">
-                <div className="w-5 h-5"><PerplexityLogo /></div>
+                <PerplexityIconSmall />
                 Perplexity
               </h3>
               <ul className="text-sm text-slate-700 space-y-2">
@@ -251,7 +287,7 @@ export default function Home() {
             {/* Claude 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
               <h3 className="font-semibold text-orange-600 mb-4 text-lg flex items-center gap-2">
-                <div className="w-6 h-6"><ClaudeLogo /></div>
+                <ClaudeIconSmall />
                 Claude 도구 활용
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
@@ -291,7 +327,7 @@ export default function Home() {
             {/* ChatGPT 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
               <h3 className="font-semibold text-green-600 mb-4 text-lg flex items-center gap-2">
-                <div className="w-6 h-6"><ChatGPTLogo /></div>
+                <ChatGPTIconSmall />
                 ChatGPT 도구 활용
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
@@ -333,7 +369,7 @@ export default function Home() {
             {/* Gemini 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
               <h3 className="font-semibold text-blue-600 mb-4 text-lg flex items-center gap-2">
-                <div className="w-6 h-6"><GeminiLogo /></div>
+                <GeminiIconSmall />
                 Gemini 도구 활용
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
@@ -375,7 +411,7 @@ export default function Home() {
             {/* Perplexity 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
               <h3 className="font-semibold text-teal-600 mb-4 text-lg flex items-center gap-2">
-                <div className="w-6 h-6"><PerplexityLogo /></div>
+                <PerplexityIconSmall />
                 Perplexity 도구 활용
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
