@@ -27,73 +27,94 @@ const PerplexityIconSmall = () => (
   </svg>
 );
 
-// Custom SVG Icons for each AI tool - Circular with inner designs (Large)
+// Custom SVG Icons for each AI tool - 3D rotating animated icons
 const ClaudeLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-14 h-14">
-    <defs>
-      <linearGradient id="claudeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#A855F7" />
-        <stop offset="100%" stopColor="#7C3AED" />
-      </linearGradient>
-    </defs>
-    <circle cx="50" cy="50" r="46" fill="url(#claudeGrad)" />
-    {/* Stylized brain/thought symbol */}
-    <path d="M35 55 Q30 45 40 40 Q45 35 55 38 Q65 35 68 45 Q72 55 65 60 Q58 68 50 65 Q42 68 35 55"
-          fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" />
-    <circle cx="45" cy="48" r="3" fill="white" />
-    <circle cx="58" cy="50" r="2.5" fill="white" />
-  </svg>
+  <div className="w-16 h-16 animate-spin-slow" style={{ perspective: '200px' }}>
+    <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg" style={{ transform: 'rotateY(10deg)' }}>
+      <defs>
+        <linearGradient id="claudeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#C084FC" />
+          <stop offset="50%" stopColor="#A855F7" />
+          <stop offset="100%" stopColor="#7C3AED" />
+        </linearGradient>
+        <filter id="claudeShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#7C3AED" floodOpacity="0.4"/>
+        </filter>
+      </defs>
+      <circle cx="50" cy="50" r="44" fill="url(#claudeGrad)" filter="url(#claudeShadow)" />
+      <circle cx="50" cy="50" r="36" fill="none" stroke="white" strokeWidth="2" opacity="0.3" />
+      <path d="M35 50 Q35 35 50 35 Q65 35 65 50 Q65 65 50 65 Q35 65 35 50" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" />
+      <circle cx="50" cy="50" r="6" fill="white" />
+    </svg>
+  </div>
 );
 
 const ChatGPTLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-14 h-14">
-    <defs>
-      <linearGradient id="gptGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#34D399" />
-        <stop offset="100%" stopColor="#10B981" />
-      </linearGradient>
-    </defs>
-    <circle cx="50" cy="50" r="46" fill="url(#gptGrad)" />
-    {/* Simple chat bubble / spark design */}
-    <circle cx="50" cy="50" r="20" fill="none" stroke="white" strokeWidth="4" />
-    <circle cx="50" cy="50" r="8" fill="white" />
-  </svg>
+  <div className="w-16 h-16 animate-spin-slow" style={{ perspective: '200px' }}>
+    <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg" style={{ transform: 'rotateY(-10deg)' }}>
+      <defs>
+        <linearGradient id="gptGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#6EE7B7" />
+          <stop offset="50%" stopColor="#34D399" />
+          <stop offset="100%" stopColor="#10B981" />
+        </linearGradient>
+        <filter id="gptShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#10B981" floodOpacity="0.4"/>
+        </filter>
+      </defs>
+      <circle cx="50" cy="50" r="44" fill="url(#gptGrad)" filter="url(#gptShadow)" />
+      {/* Hexagon pattern - OpenAI style */}
+      <path d="M50 25 L70 38 L70 62 L50 75 L30 62 L30 38 Z" fill="none" stroke="white" strokeWidth="3" opacity="0.9" />
+      <path d="M50 35 L62 43 L62 57 L50 65 L38 57 L38 43 Z" fill="none" stroke="white" strokeWidth="2" opacity="0.6" />
+      <circle cx="50" cy="50" r="5" fill="white" />
+    </svg>
+  </div>
 );
 
 const GeminiLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-14 h-14">
-    <defs>
-      <linearGradient id="geminiGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#60A5FA" />
-        <stop offset="100%" stopColor="#3B82F6" />
-      </linearGradient>
-      <linearGradient id="geminiGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#C084FC" />
-        <stop offset="100%" stopColor="#A855F7" />
-      </linearGradient>
-    </defs>
-    {/* Two overlapping circles - Gemini style */}
-    <circle cx="38" cy="50" r="30" fill="url(#geminiGrad1)" />
-    <circle cx="62" cy="50" r="30" fill="url(#geminiGrad2)" opacity="0.85" />
-    <ellipse cx="50" cy="50" rx="8" ry="20" fill="white" opacity="0.9" />
-  </svg>
+  <div className="w-16 h-16 animate-pulse-slow" style={{ perspective: '200px' }}>
+    <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg">
+      <defs>
+        <linearGradient id="geminiGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#93C5FD" />
+          <stop offset="100%" stopColor="#3B82F6" />
+        </linearGradient>
+        <linearGradient id="geminiGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#F0ABFC" />
+          <stop offset="100%" stopColor="#A855F7" />
+        </linearGradient>
+        <filter id="geminiShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#6366F1" floodOpacity="0.4"/>
+        </filter>
+      </defs>
+      <circle cx="38" cy="50" r="28" fill="url(#geminiGrad1)" filter="url(#geminiShadow)" />
+      <circle cx="62" cy="50" r="28" fill="url(#geminiGrad2)" filter="url(#geminiShadow)" opacity="0.9" />
+      <ellipse cx="50" cy="50" rx="6" ry="18" fill="white" opacity="0.95" />
+    </svg>
+  </div>
 );
 
 const PerplexityLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-14 h-14">
-    <defs>
-      <linearGradient id="perplexityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#22D3EE" />
-        <stop offset="100%" stopColor="#06B6D4" />
-      </linearGradient>
-    </defs>
-    <circle cx="50" cy="50" r="46" fill="url(#perplexityGrad)" />
-    {/* Magnifying glass */}
-    <circle cx="45" cy="45" r="16" fill="none" stroke="white" strokeWidth="4" />
-    <line x1="56" y1="56" x2="68" y2="68" stroke="white" strokeWidth="5" strokeLinecap="round" />
-    {/* Sparkle */}
-    <circle cx="40" cy="40" r="3" fill="white" opacity="0.8" />
-  </svg>
+  <div className="w-16 h-16 animate-bounce-slow" style={{ perspective: '200px' }}>
+    <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg" style={{ transform: 'rotateX(10deg)' }}>
+      <defs>
+        <linearGradient id="perplexityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#67E8F9" />
+          <stop offset="50%" stopColor="#22D3EE" />
+          <stop offset="100%" stopColor="#06B6D4" />
+        </linearGradient>
+        <filter id="perpShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#0891B2" floodOpacity="0.4"/>
+        </filter>
+      </defs>
+      <circle cx="50" cy="50" r="44" fill="url(#perplexityGrad)" filter="url(#perpShadow)" />
+      {/* Magnifying glass with glow */}
+      <circle cx="44" cy="44" r="14" fill="none" stroke="white" strokeWidth="4" />
+      <line x1="54" y1="54" x2="66" y2="66" stroke="white" strokeWidth="5" strokeLinecap="round" />
+      <circle cx="44" cy="44" r="6" fill="white" opacity="0.5" />
+      <circle cx="40" cy="40" r="2" fill="white" />
+    </svg>
+  </div>
 );
 
 export default function Home() {
