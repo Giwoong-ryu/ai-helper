@@ -1,67 +1,6 @@
 import Link from "next/link";
 import { FileText, Search, Zap, Image, Code, MessageSquare, BarChart3, Video, Mic, Presentation, AlertTriangle, Lightbulb, Wrench } from "lucide-react";
 
-// Small icons for inline use
-const ClaudeIconSmall = () => (
-  <svg viewBox="0 0 100 100" className="w-5 h-5">
-    <circle cx="50" cy="50" r="46" fill="#A855F7" />
-  </svg>
-);
-const ChatGPTIconSmall = () => (
-  <svg viewBox="0 0 100 100" className="w-5 h-5">
-    <circle cx="50" cy="50" r="46" fill="#10B981" />
-  </svg>
-);
-const GeminiIconSmall = () => (
-  <svg viewBox="0 0 100 100" className="w-5 h-5">
-    <defs><linearGradient id="gemSmall" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3B82F6" /><stop offset="100%" stopColor="#A855F7" /></linearGradient></defs>
-    <circle cx="50" cy="50" r="46" fill="url(#gemSmall)" />
-  </svg>
-);
-const PerplexityIconSmall = () => (
-  <svg viewBox="0 0 100 100" className="w-5 h-5">
-    <circle cx="50" cy="50" r="46" fill="#06B6D4" />
-  </svg>
-);
-
-// Clean vector icons for AI tools
-const ClaudeLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-14 h-14">
-    <circle cx="50" cy="50" r="46" fill="#A855F7" />
-    <circle cx="50" cy="50" r="20" fill="none" stroke="white" strokeWidth="4" />
-    <circle cx="50" cy="50" r="8" fill="white" />
-  </svg>
-);
-
-const ChatGPTLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-14 h-14">
-    <circle cx="50" cy="50" r="46" fill="#10B981" />
-    <path d="M50 25 L70 40 L70 60 L50 75 L30 60 L30 40 Z" fill="none" stroke="white" strokeWidth="4" strokeLinejoin="round" />
-    <circle cx="50" cy="50" r="6" fill="white" />
-  </svg>
-);
-
-const GeminiLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-14 h-14">
-    <defs>
-      <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#3B82F6" />
-        <stop offset="100%" stopColor="#A855F7" />
-      </linearGradient>
-    </defs>
-    <circle cx="38" cy="50" r="28" fill="#3B82F6" />
-    <circle cx="62" cy="50" r="28" fill="#A855F7" opacity="0.85" />
-  </svg>
-);
-
-const PerplexityLogo = () => (
-  <svg viewBox="0 0 100 100" className="w-14 h-14">
-    <circle cx="50" cy="50" r="46" fill="#06B6D4" />
-    <circle cx="44" cy="44" r="14" fill="none" stroke="white" strokeWidth="4" />
-    <line x1="54" y1="54" x2="68" y2="68" stroke="white" strokeWidth="5" strokeLinecap="round" />
-  </svg>
-);
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -85,83 +24,58 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* 주요 AI 도구 카드 시작 */}
+      {/* 주요 AI 도구 카드 - 이미지 제거, 자세히보기 제거 */}
       <section id="ai-tools" className="mx-auto w-full max-w-screen-xl px-4 py-8">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <Link href="/claude/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-orange-300 hover:shadow-lg cursor-pointer">
-            <div className="flex items-center justify-center py-8 bg-gradient-to-br from-orange-50 to-orange-100">
-              <ClaudeLogo />
-            </div>
-            <div className="p-6 space-y-4">
-              <h3 className="text-2xl font-semibold text-slate-900">Claude</h3>
-              <p className="text-base text-slate-600">Claude Code 완전 정복 가이드</p>
-              <ul className="list-disc list-inside text-sm text-slate-500 space-y-1">
-                <li>스킬셋 37개 - AI 자동화 스킬</li>
-                <li>Commands 17개 - 슬래시 커맨드</li>
-                <li>Agents 60개 - 전문 분야별 AI</li>
-                <li>MCP - 외부 시스템 연동</li>
-                <li>Plugins 10개 - 공식 플러그인</li>
-              </ul>
-              <span className="inline-flex items-center text-indigo-500">자세히 보기 →</span>
-            </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Link href="/claude/" className="block bg-white border border-slate-200 rounded-xl p-5 transition hover:border-orange-300 hover:shadow-lg">
+            <h3 className="text-xl font-semibold text-slate-900 mb-2">Claude</h3>
+            <p className="text-sm text-slate-600 mb-3">Claude Code 완전 정복 가이드</p>
+            <ul className="text-xs text-slate-500 space-y-1">
+              <li>• 스킬셋 37개 - AI 자동화 스킬</li>
+              <li>• Commands 17개 - 슬래시 커맨드</li>
+              <li>• Agents 60개 - 전문 분야별 AI</li>
+              <li>• MCP - 외부 시스템 연동</li>
+              <li>• Plugins 10개 - 공식 플러그인</li>
+            </ul>
           </Link>
 
-          <Link href="/chatgpt/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-green-300 hover:shadow-lg cursor-pointer">
-            <div className="flex items-center justify-center py-8 bg-gradient-to-br from-green-50 to-green-100">
-              <ChatGPTLogo />
-            </div>
-            <div className="p-6 space-y-4">
-              <h3 className="text-2xl font-semibold text-slate-900">ChatGPT</h3>
-              <p className="text-base text-slate-600">만능 도구 + 영상 생성</p>
-              <ul className="list-disc list-inside text-sm text-slate-500 space-y-1">
-                <li>GPT-5.1 - 최신 모델</li>
-                <li>Sora 2 영상 생성 (신규!)</li>
-                <li>GPTs 커스텀 봇</li>
-                <li>Canvas 문서/코드 편집</li>
-                <li>가장 큰 커뮤니티</li>
-              </ul>
-              <span className="inline-flex items-center text-indigo-500">자세히 보기 →</span>
-            </div>
+          <Link href="/chatgpt/" className="block bg-white border border-slate-200 rounded-xl p-5 transition hover:border-green-300 hover:shadow-lg">
+            <h3 className="text-xl font-semibold text-slate-900 mb-2">ChatGPT</h3>
+            <p className="text-sm text-slate-600 mb-3">만능 도구 + 영상 생성</p>
+            <ul className="text-xs text-slate-500 space-y-1">
+              <li>• GPT-5.1 - 최신 모델</li>
+              <li>• Sora 2 영상 생성 (신규!)</li>
+              <li>• GPTs 커스텀 봇</li>
+              <li>• Canvas 문서/코드 편집</li>
+              <li>• 가장 큰 커뮤니티</li>
+            </ul>
           </Link>
 
-          <Link href="/gemini/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-blue-300 hover:shadow-lg cursor-pointer">
-            <div className="flex items-center justify-center py-8 bg-gradient-to-br from-blue-50 to-purple-100">
-              <GeminiLogo />
-            </div>
-            <div className="p-6 space-y-4">
-              <h3 className="text-2xl font-semibold text-slate-900">Gemini</h3>
-              <p className="text-base text-slate-600">Gemini 3 + 이미지 혁신</p>
-              <ul className="list-disc list-inside text-sm text-slate-500 space-y-1">
-                <li>Gemini 3 - 최신 모델 출시!</li>
-                <li>Imagen 3 - 이미지 품질 1위</li>
-                <li>월 6.5억 사용자</li>
-                <li>Canvas로 PT 즉석 생성</li>
-                <li>Gemini Agent 자동화</li>
-              </ul>
-              <span className="inline-flex items-center text-indigo-500">자세히 보기 →</span>
-            </div>
+          <Link href="/gemini/" className="block bg-white border border-slate-200 rounded-xl p-5 transition hover:border-blue-300 hover:shadow-lg">
+            <h3 className="text-xl font-semibold text-slate-900 mb-2">Gemini</h3>
+            <p className="text-sm text-slate-600 mb-3">Gemini 3 + 이미지 혁신</p>
+            <ul className="text-xs text-slate-500 space-y-1">
+              <li>• Gemini 3 - 최신 모델 출시!</li>
+              <li>• Imagen 3 - 이미지 품질 1위</li>
+              <li>• 월 6.5억 사용자</li>
+              <li>• Canvas로 PT 즉석 생성</li>
+              <li>• Gemini Agent 자동화</li>
+            </ul>
           </Link>
 
-          <Link href="/perplexity/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-teal-300 hover:shadow-lg cursor-pointer">
-            <div className="flex items-center justify-center py-8 bg-gradient-to-br from-teal-50 to-teal-100">
-              <PerplexityLogo />
-            </div>
-            <div className="p-6 space-y-4">
-              <h3 className="text-2xl font-semibold text-slate-900">Perplexity</h3>
-              <p className="text-base text-slate-600">검색 특화 + Comet 브라우저</p>
-              <ul className="list-disc list-inside text-sm text-slate-500 space-y-1">
-                <li>모든 답변에 출처 링크</li>
-                <li>Comet 브라우저 (신규!)</li>
-                <li>Sora 2 Pro 영상 생성</li>
-                <li>Deep Research 심층 분석</li>
-                <li>특허 검색 Patents 출시</li>
-              </ul>
-              <span className="inline-flex items-center text-indigo-500">자세히 보기 →</span>
-            </div>
+          <Link href="/perplexity/" className="block bg-white border border-slate-200 rounded-xl p-5 transition hover:border-teal-300 hover:shadow-lg">
+            <h3 className="text-xl font-semibold text-slate-900 mb-2">Perplexity</h3>
+            <p className="text-sm text-slate-600 mb-3">검색 특화 + Comet 브라우저</p>
+            <ul className="text-xs text-slate-500 space-y-1">
+              <li>• 모든 답변에 출처 링크</li>
+              <li>• Comet 브라우저 (신규!)</li>
+              <li>• Sora 2 Pro 영상 생성</li>
+              <li>• Deep Research 심층 분석</li>
+              <li>• 특허 검색 Patents 출시</li>
+            </ul>
           </Link>
         </div>
       </section>
-      {/* 주요 AI 도구 카드 끝 */}
 
       {/* 실사용자 불만사항 섹션 */}
       <section id="user-frustrations" className="mx-auto w-full max-w-screen-xl px-4 pb-8">
@@ -175,10 +89,7 @@ export default function Home() {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {/* Claude 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
-              <h3 className="font-semibold text-orange-600 mb-3 flex items-center gap-2">
-                <ClaudeIconSmall />
-                Claude
-              </h3>
+              <h3 className="font-semibold text-orange-600 mb-3">Claude</h3>
               <ul className="text-sm text-slate-700 space-y-2">
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> &quot;짧게 써달라&quot;고 해도 또 길게 씀</li>
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 갑자기 &quot;제가 할 수 없습니다&quot; 거부</li>
@@ -191,10 +102,7 @@ export default function Home() {
 
             {/* ChatGPT 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
-              <h3 className="font-semibold text-green-600 mb-3 flex items-center gap-2">
-                <ChatGPTIconSmall />
-                ChatGPT
-              </h3>
+              <h3 className="font-semibold text-green-600 mb-3">ChatGPT</h3>
               <ul className="text-sm text-slate-700 space-y-2">
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 대화 길어지면 앞 내용 까먹음</li>
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 없는 정보 자신있게 지어냄</li>
@@ -207,10 +115,7 @@ export default function Home() {
 
             {/* Gemini 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
-              <h3 className="font-semibold text-blue-600 mb-3 flex items-center gap-2">
-                <GeminiIconSmall />
-                Gemini
-              </h3>
+              <h3 className="font-semibold text-blue-600 mb-3">Gemini</h3>
               <ul className="text-sm text-slate-700 space-y-2">
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 창의적인 글쓰기 밋밋함</li>
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 복잡한 지시 이해 못할 때 많음</li>
@@ -223,10 +128,7 @@ export default function Home() {
 
             {/* Perplexity 불만사항 */}
             <div className="bg-white rounded-xl p-4 border border-red-100">
-              <h3 className="font-semibold text-teal-600 mb-3 flex items-center gap-2">
-                <PerplexityIconSmall />
-                Perplexity
-              </h3>
+              <h3 className="font-semibold text-teal-600 mb-3">Perplexity</h3>
               <ul className="text-sm text-slate-700 space-y-2">
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 창작/글쓰기는 거의 못함</li>
                 <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">•</span> 코딩 도움은 기대하지 말 것</li>
@@ -252,10 +154,7 @@ export default function Home() {
           <div className="space-y-6">
             {/* Claude 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
-              <h3 className="font-semibold text-orange-600 mb-4 text-lg flex items-center gap-2">
-                <ClaudeIconSmall />
-                Claude 도구 활용
-              </h3>
+              <h3 className="font-semibold text-orange-600 mb-4 text-lg">Claude 도구 활용</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
@@ -292,10 +191,7 @@ export default function Home() {
 
             {/* ChatGPT 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
-              <h3 className="font-semibold text-green-600 mb-4 text-lg flex items-center gap-2">
-                <ChatGPTIconSmall />
-                ChatGPT 도구 활용
-              </h3>
+              <h3 className="font-semibold text-green-600 mb-4 text-lg">ChatGPT 도구 활용</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
@@ -334,10 +230,7 @@ export default function Home() {
 
             {/* Gemini 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
-              <h3 className="font-semibold text-blue-600 mb-4 text-lg flex items-center gap-2">
-                <GeminiIconSmall />
-                Gemini 도구 활용
-              </h3>
+              <h3 className="font-semibold text-blue-600 mb-4 text-lg">Gemini 도구 활용</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
@@ -376,10 +269,7 @@ export default function Home() {
 
             {/* Perplexity 도구 */}
             <div className="bg-white rounded-xl p-5 border border-blue-100">
-              <h3 className="font-semibold text-teal-600 mb-4 text-lg flex items-center gap-2">
-                <PerplexityIconSmall />
-                Perplexity 도구 활용
-              </h3>
+              <h3 className="font-semibold text-teal-600 mb-4 text-lg">Perplexity 도구 활용</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <h4 className="font-medium text-slate-800 mb-2 flex items-center gap-2">
