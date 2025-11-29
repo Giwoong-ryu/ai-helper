@@ -93,16 +93,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI 비교표 - claude-tips 레포 기준 */}
+      {/* AI 비교표 - claude-tips 레포 기준 (10줄 이상) */}
       <section id="ai-comparison" className="mx-auto w-full max-w-screen-xl px-4 pb-8">
         <div className="rounded-2xl border bg-card/50 p-6 shadow-sm backdrop-blur">
-          <h2 className="text-xl font-semibold text-slate-900 mb-4">🤖 AI 어시스턴트 비교</h2>
-          <p className="text-sm text-slate-600 mb-4">Claude vs ChatGPT vs Gemini - 나에게 맞는 AI 도구 찾기</p>
+          <h2 className="text-xl font-semibold text-slate-900 mb-4">🤖 AI 어시스턴트 상세 비교</h2>
+          <p className="text-sm text-slate-600 mb-4">Claude vs ChatGPT vs Gemini - 11개 항목 완벽 비교</p>
           <div className="overflow-x-auto rounded-xl border bg-background/60">
             <table className="min-w-full border-collapse text-sm">
               <thead className="bg-muted/60">
                 <tr>
-                  <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-slate-500 w-24">항목</th>
+                  <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-slate-500 w-28">항목</th>
                   <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-orange-600">Claude</th>
                   <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-green-600">ChatGPT</th>
                   <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-blue-600">Gemini</th>
@@ -112,8 +112,8 @@ export default function Home() {
                 <tr>
                   <td className="border-t px-4 py-2 font-medium text-slate-700">가격</td>
                   <td className="border-t px-4 py-2 text-slate-600">Free / Pro(3만원) / Max(14만원)</td>
-                  <td className="border-t px-4 py-2 text-slate-600">Free / Plus(3만원)</td>
-                  <td className="border-t px-4 py-2 text-slate-600">Free / Advanced(3만원)</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Free / Plus(3만원) / Team(4.2만원)</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Free / Advanced(3만원) / Ultra</td>
                 </tr>
                 <tr className="bg-muted/40">
                   <td className="border-t px-4 py-2 font-medium text-slate-700">강점</td>
@@ -126,6 +126,60 @@ export default function Home() {
                   <td className="border-t px-4 py-2 text-slate-600">토큰비용높음, 플러그인부족</td>
                   <td className="border-t px-4 py-2 text-slate-600">맥락유지약함, 환각빈번</td>
                   <td className="border-t px-4 py-2 text-slate-600">창의성부족, API불안정</td>
+                </tr>
+                <tr className="bg-muted/40">
+                  <td className="border-t px-4 py-2 font-medium text-slate-700">주요 사용처</td>
+                  <td className="border-t px-4 py-2 text-slate-600">복잡한 문서, 긴 대화, 코드 리팩토링</td>
+                  <td className="border-t px-4 py-2 text-slate-600">빠른 응답, 간단한 작업, 이미지 생성</td>
+                  <td className="border-t px-4 py-2 text-slate-600">최신 정보, 리서치, Google 연동</td>
+                </tr>
+                <tr>
+                  <td className="border-t px-4 py-2 font-medium text-slate-700">자동화 도구</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Projects, Skills, Agents, Commands, MCP</td>
+                  <td className="border-t px-4 py-2 text-slate-600">GPTs, Plugins, DALL-E, Sora</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Gems, Extensions, Docs/Sheets 연동</td>
+                </tr>
+                <tr className="bg-muted/40">
+                  <td className="border-t px-4 py-2 font-medium text-slate-700">일일 토큰</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Free: 50K-100K / Pro: 250K-500K</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Free: 제한적 / Plus: 무제한</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Free: 거의 무제한 / Advanced: 무제한</td>
+                </tr>
+                <tr>
+                  <td className="border-t px-4 py-2 font-medium text-slate-700">맥락 유지</td>
+                  <td className="border-t px-4 py-2 text-green-600 font-medium">최고 (200K 토큰)</td>
+                  <td className="border-t px-4 py-2 text-yellow-600">중간 (대화 길어지면 까먹음)</td>
+                  <td className="border-t px-4 py-2 text-yellow-600">중간 (1M 토큰이지만 활용도 낮음)</td>
+                </tr>
+                <tr className="bg-muted/40">
+                  <td className="border-t px-4 py-2 font-medium text-slate-700">이미지 생성</td>
+                  <td className="border-t px-4 py-2 text-red-500">없음</td>
+                  <td className="border-t px-4 py-2 text-green-600 font-medium">DALL-E + GPT-5.1 네이티브</td>
+                  <td className="border-t px-4 py-2 text-green-600 font-medium">Imagen 3 (품질 1위)</td>
+                </tr>
+                <tr>
+                  <td className="border-t px-4 py-2 font-medium text-slate-700">영상 생성</td>
+                  <td className="border-t px-4 py-2 text-red-500">없음</td>
+                  <td className="border-t px-4 py-2 text-green-600 font-medium">Sora 2 (12초, 1080p)</td>
+                  <td className="border-t px-4 py-2 text-yellow-600">Veo 2 (제한적)</td>
+                </tr>
+                <tr className="bg-muted/40">
+                  <td className="border-t px-4 py-2 font-medium text-slate-700">코딩 능력</td>
+                  <td className="border-t px-4 py-2 text-green-600 font-medium">1위 (Sonnet 4.5 벤치마크 최고)</td>
+                  <td className="border-t px-4 py-2 text-slate-600">2위</td>
+                  <td className="border-t px-4 py-2 text-slate-600">3위</td>
+                </tr>
+                <tr>
+                  <td className="border-t px-4 py-2 font-medium text-slate-700">웹 검색</td>
+                  <td className="border-t px-4 py-2 text-red-500">없음 (Pro도 없음)</td>
+                  <td className="border-t px-4 py-2 text-green-600">Bing 연동</td>
+                  <td className="border-t px-4 py-2 text-green-600 font-medium">기본 내장 (Google 검색)</td>
+                </tr>
+                <tr className="bg-muted/40">
+                  <td className="border-t px-4 py-2 font-medium text-slate-700">한국어</td>
+                  <td className="border-t px-4 py-2 text-green-600 font-medium">최고 (자연스러움)</td>
+                  <td className="border-t px-4 py-2 text-slate-600">좋음</td>
+                  <td className="border-t px-4 py-2 text-yellow-600">보통 (부자연스러울 때 있음)</td>
                 </tr>
               </tbody>
             </table>
