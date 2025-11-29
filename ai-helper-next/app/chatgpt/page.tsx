@@ -88,13 +88,11 @@ export default function ChatGPTPage() {
           {/* Sora 2 - 신규! */}
           <Card className="group hover:shadow-lg transition-all border-green-200 bg-green-50/30">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white shadow-lg">
-                  <Video className="w-6 h-6" />
-                </div>
-                <Badge className="bg-green-500 text-white">NEW!</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Video className="w-5 h-5 text-purple-500" />
+                <CardTitle>Sora 2</CardTitle>
+                <Badge className="ml-auto bg-green-500 text-white">NEW!</Badge>
               </div>
-              <CardTitle>Sora 2</CardTitle>
               <CardDescription>텍스트로 영상 생성 (1080p)</CardDescription>
             </CardHeader>
             <CardContent>
@@ -125,13 +123,11 @@ export default function ChatGPTPage() {
           {/* o4-mini 추론 모델 */}
           <Card className="group hover:shadow-lg transition-all border-blue-200 bg-blue-50/30">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-lg">
-                  <Brain className="w-6 h-6" />
-                </div>
-                <Badge className="bg-blue-500 text-white">추론 특화</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Brain className="w-5 h-5 text-blue-500" />
+                <CardTitle>o4-mini / o3</CardTitle>
+                <Badge className="ml-auto bg-blue-500 text-white">추론 특화</Badge>
               </div>
-              <CardTitle>o4-mini / o3</CardTitle>
               <CardDescription>복잡한 추론 문제 해결</CardDescription>
             </CardHeader>
             <CardContent>
@@ -159,13 +155,11 @@ export default function ChatGPTPage() {
           {/* GPT-5.1 이미지 */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-white shadow-lg">
-                  <Image className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">이미지 생성</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Image className="w-5 h-5 text-pink-500" />
+                <CardTitle>GPT-5.1 이미지 생성</CardTitle>
+                <Badge variant="secondary" className="ml-auto">이미지 생성</Badge>
               </div>
-              <CardTitle>GPT-5.1 이미지 생성</CardTitle>
               <CardDescription>텍스트로 이미지 생성</CardDescription>
             </CardHeader>
             <CardContent>
@@ -193,13 +187,11 @@ export default function ChatGPTPage() {
           {/* GPTs */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white shadow-lg">
-                  <MessageSquare className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">커스텀 봇</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <MessageSquare className="w-5 h-5 text-purple-500" />
+                <CardTitle>GPTs (GPT Store)</CardTitle>
+                <Badge variant="secondary" className="ml-auto">커스텀 봇</Badge>
               </div>
-              <CardTitle>GPTs (GPT Store)</CardTitle>
               <CardDescription>용도별 맞춤 AI 봇</CardDescription>
             </CardHeader>
             <CardContent>
@@ -227,13 +219,11 @@ export default function ChatGPTPage() {
           {/* Canvas */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white shadow-lg">
-                  <Wrench className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">문서 편집</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Wrench className="w-5 h-5 text-blue-500" />
+                <CardTitle>Canvas</CardTitle>
+                <Badge variant="secondary" className="ml-auto">문서 편집</Badge>
               </div>
-              <CardTitle>Canvas</CardTitle>
               <CardDescription>문서/코드 실시간 편집</CardDescription>
             </CardHeader>
             <CardContent>
@@ -261,13 +251,11 @@ export default function ChatGPTPage() {
           {/* Voice Mode */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white shadow-lg">
-                  <Mic className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">음성 대화</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Mic className="w-5 h-5 text-orange-500" />
+                <CardTitle>Voice Mode</CardTitle>
+                <Badge variant="secondary" className="ml-auto">음성 대화</Badge>
               </div>
-              <CardTitle>Voice Mode</CardTitle>
               <CardDescription>음성으로 실시간 대화</CardDescription>
             </CardHeader>
             <CardContent>
@@ -295,13 +283,11 @@ export default function ChatGPTPage() {
           {/* Code Interpreter */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white shadow-lg">
-                  <FileSpreadsheet className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">데이터 분석</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <FileSpreadsheet className="w-5 h-5 text-green-500" />
+                <CardTitle>Code Interpreter</CardTitle>
+                <Badge variant="secondary" className="ml-auto">데이터 분석</Badge>
               </div>
-              <CardTitle>Code Interpreter</CardTitle>
               <CardDescription>파일 분석 + 코드 실행</CardDescription>
             </CardHeader>
             <CardContent>
@@ -329,13 +315,11 @@ export default function ChatGPTPage() {
           {/* Web Browsing */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white shadow-lg">
-                  <Globe className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">웹 검색</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Globe className="w-5 h-5 text-teal-500" />
+                <CardTitle>Web Browsing</CardTitle>
+                <Badge variant="secondary" className="ml-auto">웹 검색</Badge>
               </div>
-              <CardTitle>Web Browsing</CardTitle>
               <CardDescription>실시간 인터넷 검색</CardDescription>
             </CardHeader>
             <CardContent>
