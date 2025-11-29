@@ -67,37 +67,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-/* Custom 3D animations for AI icons */
-@keyframes spin-slow {
-  0% { transform: rotateY(0deg); }
-  100% { transform: rotateY(360deg); }
-}
-
-@keyframes pulse-slow {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.9; }
-}
-
-@keyframes bounce-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotateY(0deg); }
-  25% { transform: translateY(-3px) rotateY(5deg); }
-  75% { transform: translateY(3px) rotateY(-5deg); }
-}
-
-.animate-spin-slow {
-  animation: float 4s ease-in-out infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 3s ease-in-out infinite;
-}
-
-.animate-bounce-slow {
-  animation: bounce-slow 2.5s ease-in-out infinite;
-}

@@ -4,117 +4,62 @@ import { FileText, Search, Zap, Image, Code, MessageSquare, BarChart3, Video, Mi
 // Small icons for inline use
 const ClaudeIconSmall = () => (
   <svg viewBox="0 0 100 100" className="w-5 h-5">
-    <defs><linearGradient id="claudeSmall" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#A855F7" /><stop offset="100%" stopColor="#7C3AED" /></linearGradient></defs>
-    <circle cx="50" cy="50" r="46" fill="url(#claudeSmall)" />
+    <circle cx="50" cy="50" r="46" fill="#A855F7" />
   </svg>
 );
 const ChatGPTIconSmall = () => (
   <svg viewBox="0 0 100 100" className="w-5 h-5">
-    <defs><linearGradient id="gptSmall" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#34D399" /><stop offset="100%" stopColor="#10B981" /></linearGradient></defs>
-    <circle cx="50" cy="50" r="46" fill="url(#gptSmall)" />
+    <circle cx="50" cy="50" r="46" fill="#10B981" />
   </svg>
 );
 const GeminiIconSmall = () => (
   <svg viewBox="0 0 100 100" className="w-5 h-5">
-    <defs><linearGradient id="gemSmall" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#60A5FA" /><stop offset="100%" stopColor="#A855F7" /></linearGradient></defs>
+    <defs><linearGradient id="gemSmall" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3B82F6" /><stop offset="100%" stopColor="#A855F7" /></linearGradient></defs>
     <circle cx="50" cy="50" r="46" fill="url(#gemSmall)" />
   </svg>
 );
 const PerplexityIconSmall = () => (
   <svg viewBox="0 0 100 100" className="w-5 h-5">
-    <defs><linearGradient id="perpSmall" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#22D3EE" /><stop offset="100%" stopColor="#06B6D4" /></linearGradient></defs>
-    <circle cx="50" cy="50" r="46" fill="url(#perpSmall)" />
+    <circle cx="50" cy="50" r="46" fill="#06B6D4" />
   </svg>
 );
 
-// Custom SVG Icons for each AI tool - 3D rotating animated icons
+// Clean vector icons for AI tools
 const ClaudeLogo = () => (
-  <div className="w-16 h-16 animate-spin-slow" style={{ perspective: '200px' }}>
-    <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg" style={{ transform: 'rotateY(10deg)' }}>
-      <defs>
-        <linearGradient id="claudeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#C084FC" />
-          <stop offset="50%" stopColor="#A855F7" />
-          <stop offset="100%" stopColor="#7C3AED" />
-        </linearGradient>
-        <filter id="claudeShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#7C3AED" floodOpacity="0.4"/>
-        </filter>
-      </defs>
-      <circle cx="50" cy="50" r="44" fill="url(#claudeGrad)" filter="url(#claudeShadow)" />
-      <circle cx="50" cy="50" r="36" fill="none" stroke="white" strokeWidth="2" opacity="0.3" />
-      <path d="M35 50 Q35 35 50 35 Q65 35 65 50 Q65 65 50 65 Q35 65 35 50" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" />
-      <circle cx="50" cy="50" r="6" fill="white" />
-    </svg>
-  </div>
+  <svg viewBox="0 0 100 100" className="w-14 h-14">
+    <circle cx="50" cy="50" r="46" fill="#A855F7" />
+    <circle cx="50" cy="50" r="20" fill="none" stroke="white" strokeWidth="4" />
+    <circle cx="50" cy="50" r="8" fill="white" />
+  </svg>
 );
 
 const ChatGPTLogo = () => (
-  <div className="w-16 h-16 animate-spin-slow" style={{ perspective: '200px' }}>
-    <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg" style={{ transform: 'rotateY(-10deg)' }}>
-      <defs>
-        <linearGradient id="gptGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#6EE7B7" />
-          <stop offset="50%" stopColor="#34D399" />
-          <stop offset="100%" stopColor="#10B981" />
-        </linearGradient>
-        <filter id="gptShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#10B981" floodOpacity="0.4"/>
-        </filter>
-      </defs>
-      <circle cx="50" cy="50" r="44" fill="url(#gptGrad)" filter="url(#gptShadow)" />
-      {/* Hexagon pattern - OpenAI style */}
-      <path d="M50 25 L70 38 L70 62 L50 75 L30 62 L30 38 Z" fill="none" stroke="white" strokeWidth="3" opacity="0.9" />
-      <path d="M50 35 L62 43 L62 57 L50 65 L38 57 L38 43 Z" fill="none" stroke="white" strokeWidth="2" opacity="0.6" />
-      <circle cx="50" cy="50" r="5" fill="white" />
-    </svg>
-  </div>
+  <svg viewBox="0 0 100 100" className="w-14 h-14">
+    <circle cx="50" cy="50" r="46" fill="#10B981" />
+    <path d="M50 25 L70 40 L70 60 L50 75 L30 60 L30 40 Z" fill="none" stroke="white" strokeWidth="4" strokeLinejoin="round" />
+    <circle cx="50" cy="50" r="6" fill="white" />
+  </svg>
 );
 
 const GeminiLogo = () => (
-  <div className="w-16 h-16 animate-pulse-slow" style={{ perspective: '200px' }}>
-    <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg">
-      <defs>
-        <linearGradient id="geminiGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#93C5FD" />
-          <stop offset="100%" stopColor="#3B82F6" />
-        </linearGradient>
-        <linearGradient id="geminiGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#F0ABFC" />
-          <stop offset="100%" stopColor="#A855F7" />
-        </linearGradient>
-        <filter id="geminiShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#6366F1" floodOpacity="0.4"/>
-        </filter>
-      </defs>
-      <circle cx="38" cy="50" r="28" fill="url(#geminiGrad1)" filter="url(#geminiShadow)" />
-      <circle cx="62" cy="50" r="28" fill="url(#geminiGrad2)" filter="url(#geminiShadow)" opacity="0.9" />
-      <ellipse cx="50" cy="50" rx="6" ry="18" fill="white" opacity="0.95" />
-    </svg>
-  </div>
+  <svg viewBox="0 0 100 100" className="w-14 h-14">
+    <defs>
+      <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#3B82F6" />
+        <stop offset="100%" stopColor="#A855F7" />
+      </linearGradient>
+    </defs>
+    <circle cx="38" cy="50" r="28" fill="#3B82F6" />
+    <circle cx="62" cy="50" r="28" fill="#A855F7" opacity="0.85" />
+  </svg>
 );
 
 const PerplexityLogo = () => (
-  <div className="w-16 h-16 animate-bounce-slow" style={{ perspective: '200px' }}>
-    <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-lg" style={{ transform: 'rotateX(10deg)' }}>
-      <defs>
-        <linearGradient id="perplexityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#67E8F9" />
-          <stop offset="50%" stopColor="#22D3EE" />
-          <stop offset="100%" stopColor="#06B6D4" />
-        </linearGradient>
-        <filter id="perpShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#0891B2" floodOpacity="0.4"/>
-        </filter>
-      </defs>
-      <circle cx="50" cy="50" r="44" fill="url(#perplexityGrad)" filter="url(#perpShadow)" />
-      {/* Magnifying glass with glow */}
-      <circle cx="44" cy="44" r="14" fill="none" stroke="white" strokeWidth="4" />
-      <line x1="54" y1="54" x2="66" y2="66" stroke="white" strokeWidth="5" strokeLinecap="round" />
-      <circle cx="44" cy="44" r="6" fill="white" opacity="0.5" />
-      <circle cx="40" cy="40" r="2" fill="white" />
-    </svg>
-  </div>
+  <svg viewBox="0 0 100 100" className="w-14 h-14">
+    <circle cx="50" cy="50" r="46" fill="#06B6D4" />
+    <circle cx="44" cy="44" r="14" fill="none" stroke="white" strokeWidth="4" />
+    <line x1="54" y1="54" x2="68" y2="68" stroke="white" strokeWidth="5" strokeLinecap="round" />
+  </svg>
 );
 
 export default function Home() {
@@ -143,7 +88,7 @@ export default function Home() {
       {/* 주요 AI 도구 카드 시작 */}
       <section id="ai-tools" className="mx-auto w-full max-w-screen-xl px-4 py-8">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <Link href="/ai-helper/claude/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-orange-300 hover:shadow-lg cursor-pointer">
+          <Link href="/claude/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-orange-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-orange-50 to-orange-100">
               <ClaudeLogo />
             </div>
@@ -161,7 +106,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <Link href="/ai-helper/chatgpt/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-green-300 hover:shadow-lg cursor-pointer">
+          <Link href="/chatgpt/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-green-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-green-50 to-green-100">
               <ChatGPTLogo />
             </div>
@@ -179,7 +124,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <Link href="/ai-helper/gemini/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-blue-300 hover:shadow-lg cursor-pointer">
+          <Link href="/gemini/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-blue-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-blue-50 to-purple-100">
               <GeminiLogo />
             </div>
@@ -197,7 +142,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <Link href="/ai-helper/perplexity/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-teal-300 hover:shadow-lg cursor-pointer">
+          <Link href="/perplexity/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-teal-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-teal-50 to-teal-100">
               <PerplexityLogo />
             </div>
