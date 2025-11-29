@@ -94,13 +94,13 @@ export default function Home() {
             </div>
             <div className="p-6 space-y-4">
               <h3 className="text-2xl font-semibold text-slate-900">Claude</h3>
-              <p className="text-base text-slate-600">긴 문서 작업의 최강자</p>
+              <p className="text-base text-slate-600">Claude Code 완전 정복 가이드</p>
               <ul className="list-disc list-inside text-sm text-slate-500 space-y-1">
-                <li>200K 토큰 (책 1권 분량)</li>
-                <li>Sonnet 4.5 - 최고 코딩 모델</li>
-                <li>지시사항 준수력 최고</li>
-                <li>Projects로 맥락 저장</li>
-                <li>Artifacts로 실시간 미리보기</li>
+                <li>스킬셋 37개 - AI 자동화 스킬</li>
+                <li>Commands 17개 - 슬래시 커맨드</li>
+                <li>Agents 60개 - 전문 분야별 AI</li>
+                <li>MCP - 외부 시스템 연동</li>
+                <li>Plugins 10개 - 공식 플러그인</li>
               </ul>
               <span className="inline-flex items-center text-indigo-500">자세히 보기 →</span>
             </div>
