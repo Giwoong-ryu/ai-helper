@@ -95,11 +95,13 @@ export default function ClaudePage() {
 
         {/* Projects - LEVEL 0 */}
         <div className="flex items-center gap-2 mb-4">
-          <FolderOpen className="w-5 h-5 text-orange-600" />
-          <h2 className="text-xl font-semibold text-slate-900">Projects (LEVEL 0)</h2>
+          <div className="bg-orange-100 p-2 rounded-lg">
+            <FolderOpen className="w-5 h-5 text-orange-600" />
+          </div>
+          <h2 className="text-xl font-bold text-orange-700">Projects (LEVEL 0)</h2>
           <Badge className="bg-orange-100 text-orange-700 border border-orange-300">기본</Badge>
         </div>
-        <Card className="mb-8 border-orange-200 bg-orange-50/30">
+        <Card className="mb-8 border-l-4 border-l-orange-500 border-orange-200 bg-orange-50/50">
           <CardContent className="p-6">
             <p className="text-slate-600 mb-4">작업규칙을 Custom Instructions에 저장하여 반복 설명 방지</p>
             <div className="grid md:grid-cols-2 gap-6">
@@ -131,11 +133,13 @@ export default function ClaudePage() {
 
         {/* Commands - LEVEL 1 */}
         <div className="flex items-center gap-2 mb-4">
-          <Terminal className="w-5 h-5 text-blue-600" />
-          <h2 className="text-xl font-semibold text-slate-900">슬래시 커맨드 17개 (LEVEL 1)</h2>
+          <div className="bg-blue-100 p-2 rounded-lg">
+            <Terminal className="w-5 h-5 text-blue-600" />
+          </div>
+          <h2 className="text-xl font-bold text-blue-700">슬래시 커맨드 17개 (LEVEL 1)</h2>
           <Badge className="bg-blue-100 text-blue-700 border border-blue-300">자동화</Badge>
         </div>
-        <Card className="mb-8 border-blue-200 bg-blue-50/30">
+        <Card className="mb-8 border-l-4 border-l-blue-500 border-blue-200 bg-blue-50/50">
           <CardContent className="p-6">
             <p className="text-slate-600 mb-4">슬래시(/) 명령어로 반복 작업을 한 번에 처리</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
@@ -176,11 +180,13 @@ export default function ClaudePage() {
 
         {/* Agents - LEVEL 2 */}
         <div className="flex items-center gap-2 mb-4">
-          <Bot className="w-5 h-5 text-emerald-600" />
-          <h2 className="text-xl font-semibold text-slate-900">전문 AI 에이전트 60개 (LEVEL 2)</h2>
+          <div className="bg-emerald-100 p-2 rounded-lg">
+            <Bot className="w-5 h-5 text-emerald-600" />
+          </div>
+          <h2 className="text-xl font-bold text-emerald-700">전문 AI 에이전트 60개 (LEVEL 2)</h2>
           <Badge className="bg-emerald-100 text-emerald-700 border border-emerald-300">전문가</Badge>
         </div>
-        <Card className="mb-8 border-emerald-200 bg-emerald-50/30">
+        <Card className="mb-8 border-l-4 border-l-emerald-500 border-emerald-200 bg-emerald-50/50">
           <CardContent className="p-6">
             <p className="text-slate-600 mb-4">복잡한 다단계 작업을 각 분야 전문가 AI가 자율적으로 실행</p>
 
@@ -259,11 +265,13 @@ export default function ClaudePage() {
         {/* Skills + MCP + Plugins 카드 그리드 */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {/* Skills */}
-          <Card className="border-purple-200 bg-purple-50/30">
+          <Card className="border-l-4 border-l-purple-500 border-purple-200 bg-purple-50/50">
             <CardHeader>
               <div className="flex items-center gap-2">
-                <Zap className="w-5 h-5 text-purple-600" />
-                <CardTitle className="text-lg">37개 스킬 (LEVEL 3)</CardTitle>
+                <div className="bg-purple-100 p-1.5 rounded-lg">
+                  <Zap className="w-4 h-4 text-purple-600" />
+                </div>
+                <CardTitle className="text-lg text-purple-700">37개 스킬 (LEVEL 3)</CardTitle>
               </div>
               <CardDescription>전문 분야별 지식 자동 적용</CardDescription>
             </CardHeader>
@@ -282,11 +290,13 @@ export default function ClaudePage() {
           </Card>
 
           {/* MCP */}
-          <Card className="border-pink-200 bg-pink-50/30">
+          <Card className="border-l-4 border-l-pink-500 border-pink-200 bg-pink-50/50">
             <CardHeader>
               <div className="flex items-center gap-2">
-                <Plug className="w-5 h-5 text-pink-600" />
-                <CardTitle className="text-lg">MCP 연동</CardTitle>
+                <div className="bg-pink-100 p-1.5 rounded-lg">
+                  <Plug className="w-4 h-4 text-pink-600" />
+                </div>
+                <CardTitle className="text-lg text-pink-700">MCP 연동</CardTitle>
               </div>
               <CardDescription>외부 데이터 실시간 연결</CardDescription>
             </CardHeader>
@@ -304,11 +314,13 @@ export default function ClaudePage() {
           </Card>
 
           {/* Plugins */}
-          <Card className="border-amber-200 bg-amber-50/30">
+          <Card className="border-l-4 border-l-amber-500 border-amber-200 bg-amber-50/50">
             <CardHeader>
               <div className="flex items-center gap-2">
-                <Package className="w-5 h-5 text-amber-600" />
-                <CardTitle className="text-lg">플러그인 10개</CardTitle>
+                <div className="bg-amber-100 p-1.5 rounded-lg">
+                  <Package className="w-4 h-4 text-amber-600" />
+                </div>
+                <CardTitle className="text-lg text-amber-700">플러그인 10개</CardTitle>
               </div>
               <CardDescription>Claude Code 기능 확장</CardDescription>
             </CardHeader>
@@ -327,11 +339,13 @@ export default function ClaudePage() {
 
         {/* 토큰 & 구독 플랜 */}
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <Card className="border-slate-200">
+          <Card className="border-l-4 border-l-yellow-500 border-slate-200">
             <CardHeader>
               <div className="flex items-center gap-2">
-                <Lightbulb className="w-5 h-5 text-yellow-500" />
-                <CardTitle className="text-lg">토큰 사용량 예시</CardTitle>
+                <div className="bg-yellow-100 p-1.5 rounded-lg">
+                  <Lightbulb className="w-4 h-4 text-yellow-600" />
+                </div>
+                <CardTitle className="text-lg text-slate-800">토큰 사용량 예시</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
@@ -360,11 +374,13 @@ export default function ClaudePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-slate-200">
+          <Card className="border-l-4 border-l-green-500 border-slate-200">
             <CardHeader>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500" />
-                <CardTitle className="text-lg">구독 플랜 비교</CardTitle>
+                <div className="bg-green-100 p-1.5 rounded-lg">
+                  <CheckCircle className="w-4 h-4 text-green-600" />
+                </div>
+                <CardTitle className="text-lg text-slate-800">구독 플랜 비교</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
