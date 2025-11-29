@@ -101,7 +101,7 @@ export default function ClaudePage() {
           <h2 className="text-xl font-bold text-orange-700">Projects (LEVEL 0)</h2>
           <Badge className="bg-orange-100 text-orange-700 border border-orange-300">기본</Badge>
         </div>
-        <Card className="mb-8 border-l-4 border-l-orange-500 border-orange-200 bg-orange-50/50">
+        <Card className="mb-8 border-l-4 border-l-orange-500 border-slate-300 bg-white">
           <CardContent className="p-6">
             <p className="text-slate-600 mb-4">작업규칙을 Custom Instructions에 저장하여 반복 설명 방지</p>
             <div className="grid md:grid-cols-2 gap-6">
@@ -118,7 +118,7 @@ export default function ClaudePage() {
                   <li>• 코드베이스 전체 리팩토링</li>
                 </ul>
               </div>
-              <div className="bg-white rounded-xl p-4 border border-orange-200">
+              <div className="bg-white rounded-xl p-4 border border-slate-300">
                 <h4 className="font-bold text-orange-700 mb-2">토큰 절약 효과</h4>
                 <p className="text-sm text-slate-600 mb-2">주간 보고서 작성 시:</p>
                 <ul className="text-sm text-slate-600 space-y-1">
@@ -139,7 +139,7 @@ export default function ClaudePage() {
           <h2 className="text-xl font-bold text-blue-700">슬래시 커맨드 17개 (LEVEL 1)</h2>
           <Badge className="bg-blue-100 text-blue-700 border border-blue-300">자동화</Badge>
         </div>
-        <Card className="mb-8 border-l-4 border-l-blue-500 border-blue-200 bg-blue-50/50">
+        <Card className="mb-8 border-l-4 border-l-blue-500 border-slate-300 bg-white">
           <CardContent className="p-6">
             <p className="text-slate-600 mb-4">슬래시(/) 명령어로 반복 작업을 한 번에 처리</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
@@ -162,7 +162,7 @@ export default function ClaudePage() {
                 { cmd: "/troubleshoot", desc: "문제 해결", detail: "버그 진단, 로그 분석" },
                 { cmd: "/workflow", desc: "워크플로우", detail: "CI/CD, GitHub Actions" },
               ].map((item) => (
-                <div key={item.cmd} className="bg-white rounded-lg p-3 border border-blue-100 hover:border-blue-300 transition-colors">
+                <div key={item.cmd} className="bg-white rounded-lg p-3 border border-slate-300 hover:border-slate-400 transition-colors">
                   <div className="flex items-center gap-2 mb-1">
                     <code className="text-blue-600 font-bold text-sm">{item.cmd}</code>
                     <span className="text-slate-700 font-medium text-sm">{item.desc}</span>
@@ -186,7 +186,7 @@ export default function ClaudePage() {
           <h2 className="text-xl font-bold text-emerald-700">전문 AI 에이전트 60개 (LEVEL 2)</h2>
           <Badge className="bg-emerald-100 text-emerald-700 border border-emerald-300">전문가</Badge>
         </div>
-        <Card className="mb-8 border-l-4 border-l-emerald-500 border-emerald-200 bg-emerald-50/50">
+        <Card className="mb-8 border-l-4 border-l-emerald-500 border-slate-300 bg-white">
           <CardContent className="p-6">
             <p className="text-slate-600 mb-4">복잡한 다단계 작업을 각 분야 전문가 AI가 자율적으로 실행</p>
 
@@ -198,7 +198,7 @@ export default function ClaudePage() {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {["c-pro", "cpp-pro", "csharp-pro", "dart-pro", "go-pro", "java-pro", "javascript-pro", "kotlin-pro", "php-pro", "python-pro", "ruby-pro", "rust-pro", "scala-pro", "swift-pro", "typescript-pro", "zig-pro"].map((agent) => (
-                  <span key={agent} className="bg-white text-slate-700 px-3 py-1 rounded-full text-sm border border-emerald-200">{agent}</span>
+                  <span key={agent} className="bg-white text-slate-700 px-3 py-1 rounded-full text-sm border border-slate-300">{agent}</span>
                 ))}
               </div>
             </div>
@@ -220,7 +220,7 @@ export default function ClaudePage() {
                   { name: "microservices-expert", desc: "마이크로서비스" },
                   { name: "database-design", desc: "DB 설계" },
                 ].map((agent) => (
-                  <div key={agent.name} className="bg-white rounded-lg p-2 border border-emerald-100">
+                  <div key={agent.name} className="bg-white rounded-lg p-2 border border-slate-300">
                     <span className="text-sm font-medium text-slate-800 block">{agent.name}</span>
                     <span className="text-xs text-slate-500">{agent.desc}</span>
                   </div>
@@ -230,27 +230,27 @@ export default function ClaudePage() {
 
             {/* DevOps + 기타 */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-              <div className="bg-white rounded-xl p-4 border border-emerald-100">
+              <div className="bg-white rounded-xl p-4 border border-slate-300">
                 <h5 className="font-bold text-slate-800 mb-2">DevOps & 배포 (6개)</h5>
                 <p className="text-sm text-slate-600">devops-engineer, ci-cd-specialist, docker-expert, kubernetes-expert, cloud-architect, infrastructure-specialist</p>
               </div>
-              <div className="bg-white rounded-xl p-4 border border-emerald-100">
+              <div className="bg-white rounded-xl p-4 border border-slate-300">
                 <h5 className="font-bold text-slate-800 mb-2">디버깅 & 테스트 (5개)</h5>
                 <p className="text-sm text-slate-600">debugger, test-engineer, qa-specialist, performance-optimizer, security-auditor</p>
               </div>
-              <div className="bg-white rounded-xl p-4 border border-emerald-100">
+              <div className="bg-white rounded-xl p-4 border border-slate-300">
                 <h5 className="font-bold text-slate-800 mb-2">데이터 & AI/ML (4개)</h5>
                 <p className="text-sm text-slate-600">data-engineer, ml-engineer, ai-researcher, data-scientist</p>
               </div>
-              <div className="bg-white rounded-xl p-4 border border-emerald-100">
+              <div className="bg-white rounded-xl p-4 border border-slate-300">
                 <h5 className="font-bold text-slate-800 mb-2">디자인 & UX (3개)</h5>
                 <p className="text-sm text-slate-600">ux-designer, ui-designer, design-system-architect</p>
               </div>
-              <div className="bg-white rounded-xl p-4 border border-emerald-100">
+              <div className="bg-white rounded-xl p-4 border border-slate-300">
                 <h5 className="font-bold text-slate-800 mb-2">문서화 (5개)</h5>
                 <p className="text-sm text-slate-600">technical-writer, api-documenter, readme-generator, changelog-writer, tutorial-creator</p>
               </div>
-              <div className="bg-white rounded-xl p-4 border border-emerald-100">
+              <div className="bg-white rounded-xl p-4 border border-slate-300">
                 <h5 className="font-bold text-slate-800 mb-2">비즈니스 (7개) + 기타 (6개)</h5>
                 <p className="text-sm text-slate-600">product-manager, business-analyst, scrum-master 등 13개</p>
               </div>
@@ -265,7 +265,7 @@ export default function ClaudePage() {
         {/* Skills + MCP + Plugins 카드 그리드 */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {/* Skills */}
-          <Card className="border-l-4 border-l-purple-500 border-purple-200 bg-purple-50/50">
+          <Card className="border-l-4 border-l-purple-500 border-slate-300 bg-white">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <div className="bg-purple-100 p-1.5 rounded-lg">
@@ -290,7 +290,7 @@ export default function ClaudePage() {
           </Card>
 
           {/* MCP */}
-          <Card className="border-l-4 border-l-pink-500 border-pink-200 bg-pink-50/50">
+          <Card className="border-l-4 border-l-pink-500 border-slate-300 bg-white">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <div className="bg-pink-100 p-1.5 rounded-lg">
@@ -314,7 +314,7 @@ export default function ClaudePage() {
           </Card>
 
           {/* Plugins */}
-          <Card className="border-l-4 border-l-amber-500 border-amber-200 bg-amber-50/50">
+          <Card className="border-l-4 border-l-amber-500 border-slate-300 bg-white">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <div className="bg-amber-100 p-1.5 rounded-lg">
