@@ -88,7 +88,7 @@ export default function Home() {
       {/* 주요 AI 도구 카드 시작 */}
       <section id="ai-tools" className="mx-auto w-full max-w-screen-xl px-4 py-8">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <Link href="/ai-helper/claude/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-orange-300 hover:shadow-lg cursor-pointer">
+          <Link href="/claude/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-orange-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-orange-50 to-orange-100">
               <ClaudeLogo />
             </div>
@@ -106,7 +106,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <Link href="/ai-helper/chatgpt/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-green-300 hover:shadow-lg cursor-pointer">
+          <Link href="/chatgpt/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-green-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-green-50 to-green-100">
               <ChatGPTLogo />
             </div>
@@ -124,7 +124,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <Link href="/ai-helper/gemini/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-blue-300 hover:shadow-lg cursor-pointer">
+          <Link href="/gemini/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-blue-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-blue-50 to-purple-100">
               <GeminiLogo />
             </div>
@@ -142,7 +142,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <Link href="/ai-helper/perplexity/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-teal-300 hover:shadow-lg cursor-pointer">
+          <Link href="/perplexity/" className="block w-full max-w-lg bg-white border border-slate-200 rounded-xl overflow-hidden transition hover:bg-gray-50 hover:border-teal-300 hover:shadow-lg cursor-pointer">
             <div className="flex items-center justify-center py-8 bg-gradient-to-br from-teal-50 to-teal-100">
               <PerplexityLogo />
             </div>
