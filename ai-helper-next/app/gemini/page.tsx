@@ -103,13 +103,11 @@ export default function GeminiPage() {
           {/* Imagen 3 - 이미지 1위! */}
           <Card className="group hover:shadow-lg transition-all border-pink-200 bg-pink-50/30">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-white shadow-lg">
-                  <Image className="w-6 h-6" />
-                </div>
-                <Badge className="bg-pink-500 text-white">품질 1위!</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Image className="w-5 h-5 text-pink-500" />
+                <CardTitle>Imagen 3</CardTitle>
+                <Badge className="ml-auto bg-pink-500 text-white">품질 1위!</Badge>
               </div>
-              <CardTitle>Imagen 3</CardTitle>
               <CardDescription>사진급 이미지 생성</CardDescription>
             </CardHeader>
             <CardContent>
@@ -137,13 +135,11 @@ export default function GeminiPage() {
           {/* Gemini 3 + Deep Think */}
           <Card className="group hover:shadow-lg transition-all border-purple-200 bg-purple-50/30">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white shadow-lg">
-                  <Brain className="w-6 h-6" />
-                </div>
-                <Badge className="bg-purple-500 text-white">NEW!</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Brain className="w-5 h-5 text-purple-500" />
+                <CardTitle>Gemini 3 + Deep Think</CardTitle>
+                <Badge className="ml-auto bg-purple-500 text-white">NEW!</Badge>
               </div>
-              <CardTitle>Gemini 3 + Deep Think</CardTitle>
               <CardDescription>최신 모델 + 심층 추론</CardDescription>
             </CardHeader>
             <CardContent>
@@ -171,13 +167,11 @@ export default function GeminiPage() {
           {/* Gemini Agent */}
           <Card className="group hover:shadow-lg transition-all border-blue-200 bg-blue-50/30">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white shadow-lg">
-                  <Bot className="w-6 h-6" />
-                </div>
-                <Badge className="bg-blue-500 text-white">AI Ultra</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Bot className="w-5 h-5 text-blue-500" />
+                <CardTitle>Gemini Agent</CardTitle>
+                <Badge className="ml-auto bg-blue-500 text-white">AI Ultra</Badge>
               </div>
-              <CardTitle>Gemini Agent</CardTitle>
               <CardDescription>복잡한 작업 자동화</CardDescription>
             </CardHeader>
             <CardContent>
@@ -205,13 +199,11 @@ export default function GeminiPage() {
           {/* Canvas */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-lg">
-                  <Presentation className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">슬라이드 생성</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Presentation className="w-5 h-5 text-blue-500" />
+                <CardTitle>Canvas</CardTitle>
+                <Badge variant="secondary" className="ml-auto">슬라이드 생성</Badge>
               </div>
-              <CardTitle>Canvas</CardTitle>
               <CardDescription>PPT 슬라이드 즉석 생성</CardDescription>
             </CardHeader>
             <CardContent>
@@ -239,13 +231,11 @@ export default function GeminiPage() {
           {/* Gems */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white shadow-lg">
-                  <Sparkles className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">커스텀 AI</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Sparkles className="w-5 h-5 text-purple-500" />
+                <CardTitle>Gems</CardTitle>
+                <Badge variant="secondary" className="ml-auto">커스텀 AI</Badge>
               </div>
-              <CardTitle>Gems</CardTitle>
               <CardDescription>나만의 맞춤 AI 만들기</CardDescription>
             </CardHeader>
             <CardContent>
@@ -273,13 +263,11 @@ export default function GeminiPage() {
           {/* YouTube 확장 */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center text-white shadow-lg">
-                  <Youtube className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">영상 분석</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Youtube className="w-5 h-5 text-red-500" />
+                <CardTitle>YouTube 확장</CardTitle>
+                <Badge variant="secondary" className="ml-auto">영상 분석</Badge>
               </div>
-              <CardTitle>YouTube 확장</CardTitle>
               <CardDescription>영상 요약 및 분석</CardDescription>
             </CardHeader>
             <CardContent>
@@ -307,13 +295,11 @@ export default function GeminiPage() {
           {/* Google Docs 연동 */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-lg">
-                  <FileText className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">문서 연동</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <FileText className="w-5 h-5 text-blue-500" />
+                <CardTitle>Google Docs/Sheets</CardTitle>
+                <Badge variant="secondary" className="ml-auto">문서 연동</Badge>
               </div>
-              <CardTitle>Google Docs/Sheets</CardTitle>
               <CardDescription>문서 안에서 AI 활용</CardDescription>
             </CardHeader>
             <CardContent>
@@ -341,13 +327,11 @@ export default function GeminiPage() {
           {/* Gmail 확장 */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center text-white shadow-lg">
-                  <Mail className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">이메일</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Mail className="w-5 h-5 text-red-500" />
+                <CardTitle>Gmail 확장</CardTitle>
+                <Badge variant="secondary" className="ml-auto">이메일</Badge>
               </div>
-              <CardTitle>Gmail 확장</CardTitle>
               <CardDescription>이메일 작성 및 요약</CardDescription>
             </CardHeader>
             <CardContent>
@@ -375,13 +359,11 @@ export default function GeminiPage() {
           {/* Deep Research */}
           <Card className="group hover:shadow-lg transition-all">
             <CardHeader>
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white shadow-lg">
-                  <Search className="w-6 h-6" />
-                </div>
-                <Badge variant="secondary">심층 분석</Badge>
+              <div className="flex items-center gap-3 mb-2">
+                <Search className="w-5 h-5 text-teal-500" />
+                <CardTitle>Deep Research</CardTitle>
+                <Badge variant="secondary" className="ml-auto">심층 분석</Badge>
               </div>
-              <CardTitle>Deep Research</CardTitle>
               <CardDescription>주제 심층 조사</CardDescription>
             </CardHeader>
             <CardContent>

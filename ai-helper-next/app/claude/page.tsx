@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Zap, Terminal, Bot, Plug, Star, Lightbulb, AlertTriangle, CheckCircle, Code } from "lucide-react";
 
@@ -54,131 +56,171 @@ export default function ClaudePage() {
           </div>
         </div>
 
-        {/* 주요 기능 카드 - 작은 아이콘 + 제목 한줄 */}
+        {/* 주요 기능 카드 - GPT/Gemini와 동일한 크기 */}
         <div className="flex items-center gap-2 mb-6">
           <Zap className="w-5 h-5 text-orange-600" />
           <h2 className="text-xl font-semibold text-slate-900">Claude Code 주요 기능</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {/* 스킬셋 */}
-          <div className="bg-white rounded-xl p-4 border border-slate-200 hover:border-orange-300 hover:shadow-md transition-all">
-            <div className="flex items-center gap-3 mb-3">
-              <Zap className="w-5 h-5 text-orange-500" />
-              <h3 className="font-semibold text-slate-900">스킬셋</h3>
-              <span className="ml-auto text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">37개</span>
-            </div>
-            <p className="text-sm text-slate-600 mb-2">AI 자동화 스킬 패키지</p>
-            <ul className="text-xs text-slate-500 space-y-1">
-              <li>• n8n 워크플로우, 디자인, 문서처리</li>
-              <li>• 마케팅 콘텐츠, 개발 도구 연동</li>
-            </ul>
-          </div>
+          <Card className="group hover:shadow-lg transition-all border-orange-200 bg-orange-50/30">
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <Zap className="w-5 h-5 text-orange-500" />
+                <CardTitle>스킬셋</CardTitle>
+                <Badge className="ml-auto bg-orange-500 text-white">37개</Badge>
+              </div>
+              <CardDescription>AI 자동화 스킬 패키지</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-medium text-sm text-slate-800 mb-1">포함 내용</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li>• n8n 워크플로우 자동화</li>
+                    <li>• 디자인 작업 자동화</li>
+                    <li>• 문서 처리 및 분석</li>
+                    <li>• 마케팅 콘텐츠 생성</li>
+                    <li>• 개발 도구 연동</li>
+                  </ul>
+                </div>
+                <div className="p-3 bg-orange-50 rounded-lg">
+                  <p className="text-xs text-orange-800 flex items-start gap-2">
+                    <Lightbulb className="w-3 h-3 mt-0.5 flex-shrink-0" />
+                    <span><strong>설치:</strong> .claude/skills/ 폴더에 스킬 파일 추가</span>
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Commands */}
-          <div className="bg-white rounded-xl p-4 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
-            <div className="flex items-center gap-3 mb-3">
-              <Terminal className="w-5 h-5 text-blue-500" />
-              <h3 className="font-semibold text-slate-900">Commands</h3>
-              <span className="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">17개</span>
-            </div>
-            <p className="text-sm text-slate-600 mb-2">슬래시 커맨드로 빠른 실행</p>
-            <ul className="text-xs text-slate-500 space-y-1">
-              <li>• /analyze, /build, /test, /document</li>
-              <li>• 반복 작업 75% 토큰 절약</li>
-            </ul>
-          </div>
+          <Card className="group hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <Terminal className="w-5 h-5 text-blue-500" />
+                <CardTitle>Commands</CardTitle>
+                <Badge variant="secondary" className="ml-auto">17개</Badge>
+              </div>
+              <CardDescription>슬래시 커맨드로 빠른 실행</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-medium text-sm text-slate-800 mb-1">주요 커맨드</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li>• /analyze - 코드/시스템 분석</li>
+                    <li>• /build - 빌드/컴파일 실행</li>
+                    <li>• /document - 문서 자동 생성</li>
+                    <li>• /test - 테스트 생성/실행</li>
+                    <li>• /troubleshoot - 문제 진단</li>
+                  </ul>
+                </div>
+                <div className="p-3 bg-blue-50 rounded-lg">
+                  <p className="text-xs text-blue-800 flex items-start gap-2">
+                    <Lightbulb className="w-3 h-3 mt-0.5 flex-shrink-0" />
+                    <span><strong>사용:</strong> .claude/commands/ 폴더에 mycommand.md 생성 후 /mycommand 사용</span>
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Agents */}
-          <div className="bg-white rounded-xl p-4 border border-slate-200 hover:border-green-300 hover:shadow-md transition-all">
-            <div className="flex items-center gap-3 mb-3">
-              <Bot className="w-5 h-5 text-green-500" />
-              <h3 className="font-semibold text-slate-900">Agents</h3>
-              <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">60개</span>
-            </div>
-            <p className="text-sm text-slate-600 mb-2">전문 분야별 AI 페르소나</p>
-            <ul className="text-xs text-slate-500 space-y-1">
-              <li>• 언어 16개, 아키텍처 8개, DevOps 6개</li>
-              <li>• 멀티스텝 작업 40-50% 절약</li>
-            </ul>
-          </div>
+          <Card className="group hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <Bot className="w-5 h-5 text-green-500" />
+                <CardTitle>Agents</CardTitle>
+                <Badge variant="secondary" className="ml-auto">60개</Badge>
+              </div>
+              <CardDescription>전문 분야별 AI 페르소나</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-medium text-sm text-slate-800 mb-1">에이전트 분류</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li>• 언어 전문가 16개 (python-pro, typescript-pro 등)</li>
+                    <li>• 아키텍처 8개 (backend-architect 등)</li>
+                    <li>• DevOps 6개 (devops-engineer 등)</li>
+                    <li>• 디버깅 & 테스트 5개</li>
+                    <li>• 데이터 & AI/ML 4개</li>
+                  </ul>
+                </div>
+                <div className="p-3 bg-green-50 rounded-lg">
+                  <p className="text-xs text-green-800 flex items-start gap-2">
+                    <Lightbulb className="w-3 h-3 mt-0.5 flex-shrink-0" />
+                    <span><strong>사용:</strong> .claude/agents/ 폴더에 my-agent.md 생성</span>
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* MCP */}
-          <div className="bg-white rounded-xl p-4 border border-slate-200 hover:border-purple-300 hover:shadow-md transition-all">
-            <div className="flex items-center gap-3 mb-3">
-              <Plug className="w-5 h-5 text-purple-500" />
-              <h3 className="font-semibold text-slate-900">MCP</h3>
-              <span className="ml-auto text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full">연동</span>
-            </div>
-            <p className="text-sm text-slate-600 mb-2">Model Context Protocol</p>
-            <ul className="text-xs text-slate-500 space-y-1">
-              <li>• 파일, Git, DB, API 직접 접근</li>
-              <li>• 반복 조회 80% 토큰 절약</li>
-            </ul>
-          </div>
+          <Card className="group hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <Plug className="w-5 h-5 text-purple-500" />
+                <CardTitle>MCP</CardTitle>
+                <Badge variant="secondary" className="ml-auto">연동</Badge>
+              </div>
+              <CardDescription>Model Context Protocol</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-medium text-sm text-slate-800 mb-1">외부 시스템 연동</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li>• 파일 시스템 직접 접근</li>
+                    <li>• Git 저장소 연동</li>
+                    <li>• 데이터베이스 연결</li>
+                    <li>• API 자동 호출</li>
+                    <li>• 브라우저 자동화</li>
+                  </ul>
+                </div>
+                <div className="p-3 bg-purple-50 rounded-lg">
+                  <p className="text-xs text-purple-800 flex items-start gap-2">
+                    <Lightbulb className="w-3 h-3 mt-0.5 flex-shrink-0" />
+                    <span><strong>설치:</strong> npm install @modelcontextprotocol/server-filesystem</span>
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Plugins */}
-          <div className="bg-white rounded-xl p-4 border border-slate-200 hover:border-pink-300 hover:shadow-md transition-all">
-            <div className="flex items-center gap-3 mb-3">
-              <Star className="w-5 h-5 text-pink-500" />
-              <h3 className="font-semibold text-slate-900">Plugins</h3>
-              <span className="ml-auto text-xs bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full">10개</span>
-            </div>
-            <p className="text-sm text-slate-600 mb-2">공식 플러그인 패키지</p>
-            <ul className="text-xs text-slate-500 space-y-1">
-              <li>• Commands + Agents + Skills 통합</li>
-              <li>• anthropics/skills 마켓에서 설치</li>
-            </ul>
-          </div>
-        </div>
-
-        {/* AI 비교표 - 카드 바로 아래 */}
-        <div className="rounded-2xl border bg-card/50 p-6 shadow-sm backdrop-blur mb-8">
-          <h2 className="text-xl font-semibold text-slate-900 mb-4">🤖 AI 어시스턴트 비교</h2>
-          <p className="text-sm text-slate-600 mb-4">Claude vs ChatGPT vs Gemini - 나에게 맞는 AI 도구 찾기</p>
-          <div className="overflow-x-auto rounded-xl border bg-background/60">
-            <table className="min-w-full border-collapse text-sm">
-              <thead className="bg-muted/60">
-                <tr>
-                  <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-slate-500 w-24">특성</th>
-                  <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-orange-600">Claude</th>
-                  <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-green-600">ChatGPT</th>
-                  <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-blue-600">Gemini</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border-t px-4 py-2 font-medium text-slate-700">가격</td>
-                  <td className="border-t px-4 py-2 text-slate-600">무료 / Pro $20 / Max $100</td>
-                  <td className="border-t px-4 py-2 text-slate-600">무료 / Plus $20 / Pro $200</td>
-                  <td className="border-t px-4 py-2 text-slate-600">무료 / Advanced $20 / Ultra $250</td>
-                </tr>
-                <tr className="bg-muted/40">
-                  <td className="border-t px-4 py-2 font-medium text-slate-700">강점</td>
-                  <td className="border-t px-4 py-2 text-slate-600">코딩 1위, 200K 토큰, 지시 준수</td>
-                  <td className="border-t px-4 py-2 text-slate-600">만능, Sora 영상, 큰 커뮤니티</td>
-                  <td className="border-t px-4 py-2 text-slate-600">Imagen 이미지, Google 연동</td>
-                </tr>
-                <tr>
-                  <td className="border-t px-4 py-2 font-medium text-slate-700">약점</td>
-                  <td className="border-t px-4 py-2 text-slate-600">웹검색X, 이미지X</td>
-                  <td className="border-t px-4 py-2 text-slate-600">할루시네이션, 맥락 손실</td>
-                  <td className="border-t px-4 py-2 text-slate-600">창의성 부족, 코딩 약함</td>
-                </tr>
-                <tr className="bg-muted/40">
-                  <td className="border-t px-4 py-2 font-medium text-slate-700">주요 도구</td>
-                  <td className="border-t px-4 py-2 text-slate-600">Skills, Agents, Commands, MCP</td>
-                  <td className="border-t px-4 py-2 text-slate-600">GPTs, Sora, DALL-E, Canvas</td>
-                  <td className="border-t px-4 py-2 text-slate-600">Imagen, Gems, Canvas, Agent</td>
-                </tr>
-                <tr>
-                  <td className="border-t px-4 py-2 font-medium text-slate-700">추천 용도</td>
-                  <td className="border-t px-4 py-2 text-orange-600 font-medium">코딩, 긴 문서, 복잡한 작업</td>
-                  <td className="border-t px-4 py-2 text-green-600 font-medium">영상 생성, 데이터 분석, 통역</td>
-                  <td className="border-t px-4 py-2 text-blue-600 font-medium">이미지 생성, PPT, 검색</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Card className="group hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="flex items-center gap-3 mb-2">
+                <Star className="w-5 h-5 text-pink-500" />
+                <CardTitle>Plugins</CardTitle>
+                <Badge variant="secondary" className="ml-auto">10개</Badge>
+              </div>
+              <CardDescription>공식 플러그인 패키지</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-medium text-sm text-slate-800 mb-1">패키지 구성</h4>
+                  <ul className="text-sm text-slate-600 space-y-1">
+                    <li>• Commands + Agents + Skills 통합</li>
+                    <li>• 특정 작업 도메인 최적화</li>
+                    <li>• anthropics/skills 마켓에서 설치</li>
+                    <li>• 한 번 설치로 전체 기능</li>
+                    <li>• 커뮤니티 플러그인 지원</li>
+                  </ul>
+                </div>
+                <div className="p-3 bg-pink-50 rounded-lg">
+                  <p className="text-xs text-pink-800 flex items-start gap-2">
+                    <Lightbulb className="w-3 h-3 mt-0.5 flex-shrink-0" />
+                    <span><strong>설명:</strong> 플러그인 하나로 관련 기능 일괄 설치</span>
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Commands 상세 */}
