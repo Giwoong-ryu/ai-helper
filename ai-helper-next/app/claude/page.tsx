@@ -13,7 +13,7 @@ export default function ClaudePage() {
   return (
     <main className="min-h-screen bg-stone-50">
       {/* Header */}
-      <header className="border-b border-stone-200 bg-white/80 backdrop-blur">
+      <header className="border-b border-stone-400 bg-white/80 backdrop-blur">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
             <Link href="/">
@@ -35,7 +35,7 @@ export default function ClaudePage() {
 
       <section className="container mx-auto px-4 py-8">
         {/* 도구 체계 5단계 소개 */}
-        <div className="rounded-2xl border-2 border-violet-200 bg-white p-6 mb-8 shadow-sm">
+        <div className="rounded-2xl border-2 border-violet-400 bg-white p-6 mb-8 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <Layers className="w-5 h-5 text-violet-600" />
             <h3 className="text-lg font-bold text-stone-900">Claude 도구 체계 5단계</h3>
@@ -70,7 +70,7 @@ export default function ClaudePage() {
         </div>
 
         {/* 실사용자 불만사항 */}
-        <div className="rounded-2xl border-2 border-red-300 bg-white p-6 mb-8 shadow-sm">
+        <div className="rounded-2xl border-2 border-red-500 bg-white p-6 mb-8 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <AlertTriangle className="w-5 h-5 text-red-500" />
             <h2 className="text-xl font-bold text-stone-900">Claude 쓰면서 답답한 점</h2>
@@ -101,7 +101,7 @@ export default function ClaudePage() {
           <h2 className="text-xl font-bold text-stone-900">Projects (LEVEL 0)</h2>
           <Badge className="bg-orange-100 text-orange-700 border-2 border-orange-400">기본</Badge>
         </div>
-        <Card className="mb-8 border-2 border-orange-300 bg-white shadow-sm hover:shadow-md transition-shadow">
+        <Card className="mb-8 border-2 border-orange-500 bg-white shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <p className="text-stone-600 mb-4">작업규칙을 Custom Instructions에 저장하여 반복 설명 방지</p>
             <div className="grid md:grid-cols-2 gap-6">
@@ -139,7 +139,7 @@ export default function ClaudePage() {
           <h2 className="text-xl font-bold text-stone-900">슬래시 커맨드 17개 (LEVEL 1)</h2>
           <Badge className="bg-blue-100 text-blue-700 border-2 border-blue-400">자동화</Badge>
         </div>
-        <Card className="mb-8 border-2 border-blue-300 bg-white shadow-sm hover:shadow-md transition-shadow">
+        <Card className="mb-8 border-2 border-blue-500 bg-white shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <p className="text-stone-600 mb-4">슬래시(/) 명령어로 반복 작업을 한 번에 처리</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
@@ -162,7 +162,7 @@ export default function ClaudePage() {
                 { cmd: "/troubleshoot", desc: "문제 해결", detail: "버그 진단, 로그 분석" },
                 { cmd: "/workflow", desc: "워크플로우", detail: "CI/CD, GitHub Actions" },
               ].map((item) => (
-                <div key={item.cmd} className="bg-stone-50 rounded-lg p-3 border-2 border-stone-200 hover:border-blue-400 hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer">
+                <div key={item.cmd} className="bg-stone-50 rounded-lg p-3 border-2 border-stone-400 hover:border-blue-400 hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer">
                   <div className="flex items-center gap-2 mb-1">
                     <code className="text-blue-600 font-bold text-sm">{item.cmd}</code>
                     <span className="text-stone-700 font-medium text-sm">{item.desc}</span>
@@ -186,7 +186,7 @@ export default function ClaudePage() {
           <h2 className="text-xl font-bold text-stone-900">전문 AI 에이전트 60개 (LEVEL 2)</h2>
           <Badge className="bg-emerald-100 text-emerald-700 border-2 border-emerald-400">전문가</Badge>
         </div>
-        <Card className="mb-8 border-2 border-emerald-300 bg-white shadow-sm hover:shadow-md transition-shadow">
+        <Card className="mb-8 border-2 border-emerald-500 bg-white shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <p className="text-stone-600 mb-4">복잡한 다단계 작업을 각 분야 전문가 AI가 자율적으로 실행</p>
 
@@ -198,7 +198,7 @@ export default function ClaudePage() {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {["c-pro", "cpp-pro", "csharp-pro", "dart-pro", "go-pro", "java-pro", "javascript-pro", "kotlin-pro", "php-pro", "python-pro", "ruby-pro", "rust-pro", "scala-pro", "swift-pro", "typescript-pro", "zig-pro"].map((agent) => (
-                  <span key={agent} className="bg-stone-50 text-stone-700 px-3 py-1 rounded-full text-sm border-2 border-stone-300 hover:border-emerald-400 hover:bg-emerald-50 transition-all cursor-pointer">{agent}</span>
+                  <span key={agent} className="bg-stone-50 text-stone-700 px-3 py-1 rounded-full text-sm border-2 border-stone-500 hover:border-emerald-400 hover:bg-emerald-50 transition-all cursor-pointer">{agent}</span>
                 ))}
               </div>
             </div>
@@ -220,7 +220,7 @@ export default function ClaudePage() {
                   { name: "microservices-expert", desc: "마이크로서비스" },
                   { name: "database-design", desc: "DB 설계" },
                 ].map((agent) => (
-                  <div key={agent.name} className="bg-stone-50 rounded-lg p-2 border-2 border-stone-200 hover:border-emerald-400 hover:shadow transition-all cursor-pointer">
+                  <div key={agent.name} className="bg-stone-50 rounded-lg p-2 border-2 border-stone-400 hover:border-emerald-400 hover:shadow transition-all cursor-pointer">
                     <span className="text-sm font-medium text-stone-800 block">{agent.name}</span>
                     <span className="text-xs text-stone-500">{agent.desc}</span>
                   </div>
@@ -230,27 +230,27 @@ export default function ClaudePage() {
 
             {/* DevOps + 기타 */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-200 hover:border-emerald-400 hover:shadow transition-all">
+              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-400 hover:border-emerald-400 hover:shadow transition-all">
                 <h5 className="font-bold text-stone-800 mb-2">DevOps & 배포 (6개)</h5>
                 <p className="text-sm text-stone-600">devops-engineer, ci-cd-specialist, docker-expert, kubernetes-expert, cloud-architect, infrastructure-specialist</p>
               </div>
-              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-200 hover:border-emerald-400 hover:shadow transition-all">
+              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-400 hover:border-emerald-400 hover:shadow transition-all">
                 <h5 className="font-bold text-stone-800 mb-2">디버깅 & 테스트 (5개)</h5>
                 <p className="text-sm text-stone-600">debugger, test-engineer, qa-specialist, performance-optimizer, security-auditor</p>
               </div>
-              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-200 hover:border-emerald-400 hover:shadow transition-all">
+              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-400 hover:border-emerald-400 hover:shadow transition-all">
                 <h5 className="font-bold text-stone-800 mb-2">데이터 & AI/ML (4개)</h5>
                 <p className="text-sm text-stone-600">data-engineer, ml-engineer, ai-researcher, data-scientist</p>
               </div>
-              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-200 hover:border-emerald-400 hover:shadow transition-all">
+              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-400 hover:border-emerald-400 hover:shadow transition-all">
                 <h5 className="font-bold text-stone-800 mb-2">디자인 & UX (3개)</h5>
                 <p className="text-sm text-stone-600">ux-designer, ui-designer, design-system-architect</p>
               </div>
-              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-200 hover:border-emerald-400 hover:shadow transition-all">
+              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-400 hover:border-emerald-400 hover:shadow transition-all">
                 <h5 className="font-bold text-stone-800 mb-2">문서화 (5개)</h5>
                 <p className="text-sm text-stone-600">technical-writer, api-documenter, readme-generator, changelog-writer, tutorial-creator</p>
               </div>
-              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-200 hover:border-emerald-400 hover:shadow transition-all">
+              <div className="bg-stone-50 rounded-xl p-4 border-2 border-stone-400 hover:border-emerald-400 hover:shadow transition-all">
                 <h5 className="font-bold text-stone-800 mb-2">비즈니스 (7개) + 기타 (6개)</h5>
                 <p className="text-sm text-stone-600">product-manager, business-analyst, scrum-master 등 13개</p>
               </div>
@@ -265,7 +265,7 @@ export default function ClaudePage() {
         {/* Skills + MCP + Plugins 카드 그리드 */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {/* Skills */}
-          <Card className="border-2 border-violet-300 bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
+          <Card className="border-2 border-violet-500 bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <div className="bg-violet-100 p-1.5 rounded-lg">
@@ -283,14 +283,14 @@ export default function ClaudePage() {
                 <li>• 마케팅 콘텐츠 생성</li>
                 <li>• 개발 도구 통합</li>
               </ul>
-              <div className="mt-4 p-2 bg-violet-50 rounded border border-violet-200 text-xs text-violet-700">
+              <div className="mt-4 p-2 bg-violet-50 rounded border border-violet-400 text-xs text-violet-700">
                 설치: .claude/skills/ 폴더에 추가
               </div>
             </CardContent>
           </Card>
 
           {/* MCP */}
-          <Card className="border-2 border-pink-300 bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
+          <Card className="border-2 border-pink-500 bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <div className="bg-pink-100 p-1.5 rounded-lg">
@@ -314,7 +314,7 @@ export default function ClaudePage() {
           </Card>
 
           {/* Plugins */}
-          <Card className="border-2 border-amber-300 bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
+          <Card className="border-2 border-amber-500 bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <div className="bg-amber-100 p-1.5 rounded-lg">
@@ -339,7 +339,7 @@ export default function ClaudePage() {
 
         {/* 토큰 & 구독 플랜 */}
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <Card className="border-2 border-yellow-300 bg-white shadow-sm hover:shadow-md transition-shadow">
+          <Card className="border-2 border-yellow-500 bg-white shadow-sm hover:shadow-md transition-shadow">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <div className="bg-yellow-100 p-1.5 rounded-lg">
@@ -351,7 +351,7 @@ export default function ClaudePage() {
             <CardContent>
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b-2 border-stone-200">
+                  <tr className="border-b-2 border-stone-400">
                     <th className="text-left py-2 font-semibold text-stone-700">작업</th>
                     <th className="text-right py-2 font-semibold text-stone-700">토큰</th>
                   </tr>
@@ -374,7 +374,7 @@ export default function ClaudePage() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-green-300 bg-white shadow-sm hover:shadow-md transition-shadow">
+          <Card className="border-2 border-green-500 bg-white shadow-sm hover:shadow-md transition-shadow">
             <CardHeader>
               <div className="flex items-center gap-2">
                 <div className="bg-green-100 p-1.5 rounded-lg">
@@ -386,7 +386,7 @@ export default function ClaudePage() {
             <CardContent>
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b-2 border-stone-200">
+                  <tr className="border-b-2 border-stone-400">
                     <th className="text-left py-2 font-semibold text-stone-700">플랜</th>
                     <th className="text-center py-2 font-semibold text-stone-700">일일 토큰</th>
                     <th className="text-center py-2 font-semibold text-stone-700">대화/일</th>
@@ -416,7 +416,7 @@ export default function ClaudePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t-2 border-stone-200 bg-white">
+      <footer className="border-t-2 border-stone-400 bg-white">
         <div className="container mx-auto px-4 py-8 text-center text-sm text-stone-500">
           <p>
             Made with <span className="text-violet-500">♥</span> by{" "}
