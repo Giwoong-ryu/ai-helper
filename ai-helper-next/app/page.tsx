@@ -93,7 +93,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI 비교표 - 메인페이지로 이동 */}
+      {/* AI 비교표 - claude-tips 레포 기준 */}
       <section id="ai-comparison" className="mx-auto w-full max-w-screen-xl px-4 pb-8">
         <div className="rounded-2xl border bg-card/50 p-6 shadow-sm backdrop-blur">
           <h2 className="text-xl font-semibold text-slate-900 mb-4">🤖 AI 어시스턴트 비교</h2>
@@ -102,7 +102,7 @@ export default function Home() {
             <table className="min-w-full border-collapse text-sm">
               <thead className="bg-muted/60">
                 <tr>
-                  <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-slate-500 w-24">특성</th>
+                  <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-slate-500 w-24">항목</th>
                   <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-orange-600">Claude</th>
                   <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-green-600">ChatGPT</th>
                   <th className="border-b px-4 py-3 text-left text-xs font-semibold uppercase text-blue-600">Gemini</th>
@@ -111,33 +111,21 @@ export default function Home() {
               <tbody>
                 <tr>
                   <td className="border-t px-4 py-2 font-medium text-slate-700">가격</td>
-                  <td className="border-t px-4 py-2 text-slate-600">무료 / Pro $20 / Max $100</td>
-                  <td className="border-t px-4 py-2 text-slate-600">무료 / Plus $20 / Pro $200</td>
-                  <td className="border-t px-4 py-2 text-slate-600">무료 / Advanced $20 / Ultra $250</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Free / Pro(3만원) / Max(14만원)</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Free / Plus(3만원)</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Free / Advanced(3만원)</td>
                 </tr>
                 <tr className="bg-muted/40">
                   <td className="border-t px-4 py-2 font-medium text-slate-700">강점</td>
-                  <td className="border-t px-4 py-2 text-slate-600">코딩 1위, 200K 토큰, 지시 준수</td>
-                  <td className="border-t px-4 py-2 text-slate-600">만능, Sora 영상, 큰 커뮤니티</td>
-                  <td className="border-t px-4 py-2 text-slate-600">Imagen 이미지, Google 연동</td>
+                  <td className="border-t px-4 py-2 text-slate-600">긴 맥락유지, 한국어우수, 200K토큰</td>
+                  <td className="border-t px-4 py-2 text-slate-600">빠른속도, 이미지생성, 플러그인생태계</td>
+                  <td className="border-t px-4 py-2 text-slate-600">Google통합, 실시간검색, 무료무제한</td>
                 </tr>
                 <tr>
                   <td className="border-t px-4 py-2 font-medium text-slate-700">약점</td>
-                  <td className="border-t px-4 py-2 text-slate-600">웹검색X, 이미지X</td>
-                  <td className="border-t px-4 py-2 text-slate-600">할루시네이션, 맥락 손실</td>
-                  <td className="border-t px-4 py-2 text-slate-600">창의성 부족, 코딩 약함</td>
-                </tr>
-                <tr className="bg-muted/40">
-                  <td className="border-t px-4 py-2 font-medium text-slate-700">주요 도구</td>
-                  <td className="border-t px-4 py-2 text-slate-600">Skills, Agents, Commands, MCP</td>
-                  <td className="border-t px-4 py-2 text-slate-600">GPTs, Sora, DALL-E, Canvas</td>
-                  <td className="border-t px-4 py-2 text-slate-600">Imagen, Gems, Canvas, Agent</td>
-                </tr>
-                <tr>
-                  <td className="border-t px-4 py-2 font-medium text-slate-700">추천 용도</td>
-                  <td className="border-t px-4 py-2 text-orange-600 font-medium">코딩, 긴 문서, 복잡한 작업</td>
-                  <td className="border-t px-4 py-2 text-green-600 font-medium">영상 생성, 데이터 분석, 통역</td>
-                  <td className="border-t px-4 py-2 text-blue-600 font-medium">이미지 생성, PPT, 검색</td>
+                  <td className="border-t px-4 py-2 text-slate-600">토큰비용높음, 플러그인부족</td>
+                  <td className="border-t px-4 py-2 text-slate-600">맥락유지약함, 환각빈번</td>
+                  <td className="border-t px-4 py-2 text-slate-600">창의성부족, API불안정</td>
                 </tr>
               </tbody>
             </table>
